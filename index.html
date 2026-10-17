@@ -1,0 +1,48 @@
+
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>O Projeto | Arquivo Secreto</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <p>ARQUIVO CONFIDENCIAL // MUNDO G</p>
+    </header>
+
+    <main>
+        <p class="warning">⚠ SINAL INSTÁVEL</p>
+
+        <h1>O PROJETO</h1>
+
+        <p class="subtitle">
+            Nem tudo o que desaparece deixa de existir.
+        </p>
+
+        <button id="enter-button">
+            ENTRAR NO ARQUIVO
+        </button>
+
+        <p id="secret-message" hidden>
+            ERRO 001: NÃO DEVIA ESTAR AQUI.
+        </p>
+    </main>
+
+    <footer>
+        REGISTO 001 // FICHEIRO INCOMPLETO
+    </footer>
+
+    <script>
+        const button = document.getElementById("enter-button");
+        const message = document.getElementById("secret-message");
+
+        button.addEventListener("click", function () {
+            message.hidden = !message.hidden;
+        });
+    </script>
+
+</body>
+</html>
