@@ -1,414 +1,317 @@
-
 <!DOCTYPE html>
 <html lang="pt-PT">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>O Projeto | Sistema Confidencial</title>
+<title>O PROJETO | Arquivo Confidencial</title>
 
 <style>
-* { box-sizing: border-box; }
-
 :root {
-    --bg: #080910;
-    --panel: #11131e;
-    --panel2: #191c2b;
-    --line: #34394d;
-    --text: #e8e9f4;
-    --muted: #8e94aa;
-    --pink: #ff496c;
-    --green: #55f5a5;
-    --purple: #9b8cff;
+  --bg: #08090d;
+  --panel: #151720;
+  --panel2: #202330;
+  --border: #45485a;
+  --text: #e9e9f1;
+  --muted: #9a9db0;
+  --red: #ff424f;
+  --green: #9affbb;
+  --purple: #bca0ff;
 }
+
+* { box-sizing: border-box; }
 
 [hidden] { display: none !important; }
 
 body {
-    margin: 0;
-    min-height: 100vh;
-    background: var(--bg);
-    color: var(--text);
-    font-family: monospace;
-    overflow-x: hidden;
+  margin: 0;
+  min-height: 100vh;
+  background: var(--bg);
+  color: var(--text);
+  font-family: Consolas, "Courier New", monospace;
 }
 
 button, input { font: inherit; }
 
 button {
-    color: var(--text);
-    background: var(--panel2);
-    border: 1px solid var(--line);
-    padding: 10px 14px;
-    cursor: pointer;
+  cursor: pointer;
+  color: var(--text);
+  background: var(--panel2);
+  border: 1px solid var(--border);
+  padding: 9px 13px;
+  border-radius: 4px;
 }
 
 button:hover {
-    border-color: var(--pink);
-    background: #252034;
+  border-color: var(--red);
+  background: #30303e;
 }
 
-button:focus-visible {
-    outline: 2px solid var(--green);
-    outline-offset: 3px;
+button:focus-visible, [contenteditable="true"]:focus-visible {
+  outline: 2px solid var(--purple);
+  outline-offset: 2px;
 }
 
-header, footer {
-    padding: 18px 12px;
-    text-align: center;
-    color: var(--muted);
-    font-size: 11px;
-    letter-spacing: 2px;
+header {
+  padding: 14px;
+  text-align: center;
+  color: var(--red);
+  border-bottom: 1px solid #47232a;
+  letter-spacing: 2px;
+  font-size: 12px;
 }
 
-main#home {
-    min-height: 70vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    padding: 24px;
+main {
+  width: min(900px, 94%);
+  margin: 50px auto;
 }
+
+#home { text-align: center; }
 
 .warning {
-    color: var(--pink);
-    letter-spacing: 3px;
-    animation: flicker 2s infinite;
+  color: var(--red);
+  font-size: 12px;
+  letter-spacing: 2px;
+  animation: flicker 4s infinite;
 }
 
 h1 {
-    font-size: clamp(36px, 10vw, 68px);
-    letter-spacing: 5px;
-    text-shadow: 3px 0 var(--pink), -3px 0 #5948ff;
+  font-size: clamp(40px, 9vw, 82px);
+  letter-spacing: 7px;
+  margin: 25px 0 8px;
+  text-shadow: 0 0 20px #ff243b55;
 }
 
 .subtitle {
-    color: #aaa5bd;
-    line-height: 1.8;
-    max-width: 330px;
+  color: var(--muted);
+  line-height: 1.8;
 }
 
-#enter-button {
-    margin-top: 24px;
-    padding: 16px 20px;
-    color: var(--pink);
-    border-color: var(--pink);
-    letter-spacing: 2px;
+.primary {
+  margin-top: 24px;
+  padding: 13px 25px;
+  color: white;
+  background: #671b29;
+  border-color: var(--red);
 }
 
 #secret-message {
-    color: var(--pink);
-    line-height: 1.8;
+  margin-top: 28px;
+  color: var(--red);
+  min-height: 24px;
 }
 
-/* GLITCH */
-
-body.glitching {
-    animation: screen-glitch .12s steps(2, end) infinite;
+#terminal, #computer {
+  width: min(1000px, 96%);
+  margin: 25px auto;
 }
 
-body.glitching #home {
-    animation: content-glitch .12s steps(2, end) infinite;
+.terminal-window, .window {
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  overflow: hidden;
+  background: var(--panel);
+  box-shadow: 0 12px 35px #0008;
 }
 
-body.glitching::after {
-    content: "";
-    position: fixed;
-    inset: 0;
-    z-index: 9999;
-    pointer-events: none;
-    background: repeating-linear-gradient(
-        to bottom,
-        transparent 0 3px,
-        rgba(255,49,88,.25) 4px,
-        transparent 5px
-    );
+.terminal-title, .window-title {
+  min-height: 40px;
+  padding: 9px 12px;
+  background: var(--panel2);
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
 }
 
-@keyframes screen-glitch {
-    25% { transform: translate(4px,-2px); filter: hue-rotate(90deg); }
-    50% { transform: translate(-4px,2px); filter: invert(.15); }
-    75% { transform: translate(2px,1px); filter: hue-rotate(-90deg); }
+.terminal-content {
+  padding: 20px;
+  min-height: 150px;
+  line-height: 1.8;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
 }
 
-@keyframes content-glitch {
-    33% { transform: translateX(8px); clip-path: inset(20% 0 55% 0); }
-    66% { transform: translateX(-8px); clip-path: inset(60% 0 10% 0); }
-}
-
-@keyframes flicker {
-    0%, 19%, 21%, 100% { opacity: 1; }
-    20%, 60% { opacity: .65; }
-}
-
-/* TERMINAL */
-
-#terminal {
-    position: fixed;
-    inset: 0;
-    z-index: 1000;
-    background: #020503;
-    color: var(--green);
-    padding: 26px 20px;
-    overflow: auto;
-}
-
-.terminal-header {
-    border-bottom: 1px solid #23683d;
-    padding-bottom: 14px;
-    margin-bottom: 24px;
-    font-size: 12px;
-    letter-spacing: 2px;
-}
-
-#terminal-output {
-    white-space: pre-wrap;
-    overflow-wrap: anywhere;
-    line-height: 1.9;
-    font-size: 13px;
-}
-
-.danger { color: var(--pink); }
-
-#open-files {
-    margin-top: 24px;
-    color: var(--green);
-    border-color: var(--green);
-}
-
-.cursor {
-    display: inline-block;
-    width: 8px;
-    height: 15px;
-    background: var(--green);
-    animation: blink .7s steps(2,end) infinite;
-}
-
-@keyframes blink { 50% { opacity: 0; } }
-
-/* COMPUTADOR */
-
-#computer {
-    min-height: 100vh;
-    background:
-        radial-gradient(ellipse at 50% 0%, #22203b 0%, transparent 65%),
-        #090a12;
-    padding-bottom: 60px;
-}
-
-.desktop-top {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 10px;
-    flex-wrap: wrap;
-    padding: 14px 18px;
-    background: rgba(9,10,18,.9);
-    border-bottom: 1px solid var(--line);
-    font-size: 12px;
-}
-
-.computer-name {
-    color: var(--green);
-    letter-spacing: 2px;
-}
+.terminal-green { color: var(--green); }
 
 .desktop {
-    padding: 24px 18px;
-    max-width: 1000px;
-    margin: auto;
+  padding: 20px;
+  min-height: 280px;
+  background:
+    radial-gradient(ellipse at center, #252033 0%, #0b0c12 75%);
 }
 
-.desktop-title {
-    color: var(--muted);
-    font-size: 11px;
-    letter-spacing: 2px;
-}
-
-.desktop-icons {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
-    gap: 14px;
-    margin: 24px 0;
-}
-
-.desktop-icon {
-    padding: 15px 8px;
-    background: transparent;
-    border: 1px solid transparent;
-    text-align: center;
-    overflow-wrap: anywhere;
-}
-
-.desktop-icon .emoji {
-    display: block;
-    font-size: 32px;
-    margin-bottom: 10px;
-}
-
-.window {
-    border: 1px solid #41465e;
-    background: #11131e;
-    box-shadow: 0 15px 50px #0008;
-    margin: 20px 0;
-}
-
-.window-title {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 10px;
-    padding: 12px;
-    background: #222439;
-    border-bottom: 1px solid var(--line);
-    font-size: 12px;
-}
-
-.window-content {
-    padding: 16px;
-}
-
-.path {
-    color: var(--muted);
-    overflow-wrap: anywhere;
-    font-size: 12px;
-    padding-bottom: 14px;
-    border-bottom: 1px solid var(--line);
+.desktop-label {
+  color: var(--muted);
+  font-size: 12px;
+  margin-bottom: 20px;
 }
 
 .file-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(115px, 1fr));
-    gap: 8px;
-    margin-top: 16px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(115px, 1fr));
+  gap: 12px;
 }
 
 .file {
-    padding: 14px 8px;
-    background: transparent;
-    border: 1px solid transparent;
-    text-align: center;
-    overflow-wrap: anywhere;
+  min-height: 100px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  text-align: center;
+  overflow-wrap: anywhere;
+  background: #191b26;
 }
 
-.file:hover {
-    background: #232337;
-    border-color: #494765;
-}
-
-.file .emoji {
-    display: block;
-    font-size: 27px;
-    margin-bottom: 9px;
-}
+.file-icon { font-size: 30px; }
 
 .file small {
-    display: block;
-    color: var(--muted);
-    margin-top: 6px;
-    font-size: 10px;
+  font-size: 10px;
+  color: var(--muted);
 }
 
-.status-bar {
-    display: flex;
-    justify-content: space-between;
-    gap: 10px;
-    flex-wrap: wrap;
-    padding: 10px 14px;
-    color: var(--muted);
-    border-top: 1px solid var(--line);
-    font-size: 11px;
+.window {
+  margin: 15px 0;
 }
 
-#document-text {
-    white-space: pre-wrap;
-    overflow-wrap: anywhere;
-    line-height: 1.9;
-    font-size: 13px;
-    min-height: 130px;
+.window-content { padding: 16px; }
+
+.path, .status-bar {
+  color: var(--muted);
+  font-size: 11px;
+  padding: 9px 12px;
+  border-top: 1px solid var(--border);
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px;
 }
 
 .doc-label {
-    color: var(--green);
-    font-size: 11px;
-    letter-spacing: 2px;
+  color: var(--red);
+  font-size: 11px;
+  letter-spacing: 2px;
 }
 
 .doc-warning {
-    color: var(--pink);
+  color: var(--red);
+  font-size: 12px;
+  line-height: 1.7;
+  border-top: 1px dashed #71333b;
+  padding-top: 12px;
+  white-space: pre-wrap;
 }
 
-#alert {
-    position: fixed;
-    z-index: 2000;
-    right: 16px;
-    bottom: 75px;
-    width: min(340px, calc(100vw - 32px));
-    padding: 16px;
-    background: #1b101b;
-    border: 1px solid var(--pink);
-    box-shadow: 0 0 25px #ff174433;
-    animation: alert-in .25s ease-out;
+.editor-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  padding: 10px;
+  background: #d9d9df;
+  border: 1px solid #aaaab5;
 }
 
-#alert strong {
-    display: block;
-    color: var(--pink);
-    margin-bottom: 10px;
-    letter-spacing: 1px;
+.editor-toolbar button {
+  color: #191923;
+  background: white;
+  border-color: #aaaab5;
+  min-width: 38px;
 }
 
-#alert p {
-    line-height: 1.6;
-    font-size: 12px;
+.editor-toolbar button:hover {
+  background: #eee6ff;
 }
 
-#alert button {
-    border-color: var(--pink);
-    color: var(--pink);
+.paper {
+  min-height: 300px;
+  padding: 25px;
+  background: #fff;
+  color: #17171d;
+  font-family: Arial, sans-serif;
+  font-size: 15px;
+  line-height: 1.7;
+  overflow-wrap: anywhere;
+  outline: none;
 }
 
-@keyframes alert-in {
-    from { opacity: 0; transform: translateY(12px); }
-    to { opacity: 1; transform: translateY(0); }
+.paper:empty::before {
+  content: "Começa a escrever neste documento...";
+  color: #888;
+  pointer-events: none;
+}
+
+.editor-note {
+  color: var(--muted);
+  font-size: 11px;
+  line-height: 1.6;
+  margin-top: 10px;
+}
+
+#document-status { color: var(--green); }
+
+#alert-toast {
+  position: fixed;
+  right: 15px;
+  bottom: 15px;
+  width: min(340px, calc(100% - 30px));
+  padding: 15px;
+  background: #260e15;
+  border: 1px solid var(--red);
+  color: #fff;
+  box-shadow: 0 0 25px #ff203522;
+  z-index: 100;
+  white-space: pre-wrap;
+  animation: flicker 3s infinite;
+}
+
+#system-window p, #recycle-window p {
+  line-height: 1.7;
+}
+
+@keyframes flicker {
+  0%, 92%, 96%, 100% { opacity: 1; }
+  93%, 95% { opacity: .65; }
+}
+
+.glitch {
+  animation: glitch .2s steps(2, end) 3;
+}
+
+@keyframes glitch {
+  0% { transform: translate(0); filter: none; }
+  25% { transform: translate(3px, -2px); filter: hue-rotate(90deg); }
+  50% { transform: translate(-3px, 2px); filter: contrast(2); }
+  75% { transform: translate(2px, 1px); }
+  100% { transform: translate(0); filter: none; }
 }
 
 .taskbar {
-    position: fixed;
-    z-index: 1500;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    min-height: 48px;
-    background: #11121deF;
-    border-top: 1px solid var(--line);
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 10px;
-    padding: 7px 12px;
-    font-size: 11px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  background: #101119;
+  border-top: 1px solid var(--border);
+  padding: 10px 14px;
+  font-size: 12px;
 }
 
-.taskbar button {
-    padding: 7px 10px;
+.taskbar-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
 }
-
-.taskbar-name { color: var(--green); }
 
 @media (max-width: 480px) {
-    .desktop { padding: 15px 10px; }
-    .desktop-icons { grid-template-columns: repeat(3, minmax(0, 1fr)); }
-    .file-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-    .window-content { padding: 12px; }
-    .taskbar { font-size: 10px; }
-}
-
-@media (prefers-reduced-motion: reduce) {
-    *, *::before, *::after {
-        animation-duration: .01ms !important;
-        animation-iteration-count: 1 !important;
-    }
+  main { margin: 25px auto; }
+  h1 { letter-spacing: 3px; }
+  .desktop { padding: 10px; }
+  .window-content { padding: 10px; }
+  .paper { padding: 16px; min-height: 240px; }
+  .terminal-content { padding: 12px; }
 }
 </style>
 </head>
@@ -416,429 +319,459 @@ body.glitching::after {
 <body>
 
 <header id="home-header">
-    ARQUIVO CONFIDENCIAL // MUNDO G
+  ARQUIVO CONFIDENCIAL // MUNDO G
 </header>
 
 <main id="home">
-    <p class="warning">⚠ SINAL INSTÁVEL</p>
-    <h1>O PROJETO</h1>
-    <p class="subtitle">
-        Nem tudo o que desaparece deixa de existir.
-    </p>
-    <button id="enter-button">ENTRAR NO ARQUIVO</button>
-    <p id="secret-message" hidden>
-        ERRO 001: NÃO DEVIA ESTAR AQUI.
-    </p>
+  <p class="warning">⚠ ACESSO RESTRITO ⚠</p>
+  <h1>O PROJETO</h1>
+  <p class="subtitle">
+    Existem coisas que nunca deveriam ter sido descobertas.<br>
+    Alguns ficheiros deveriam ter permanecido fechados.
+  </p>
+
+  <button class="primary" id="enter-button">
+    ENTRAR NO ARQUIVO
+  </button>
+
+  <p id="secret-message"></p>
 </main>
 
-<footer id="home-footer">
-    REGISTO 001 // FICHEIRO INCOMPLETO
-</footer>
-
 <section id="terminal" hidden>
-    <div class="terminal-header">
-        MUNDO G // TERMINAL DE EMERGÊNCIA
+  <div class="terminal-window">
+    <div class="terminal-title">
+      <span>▸ TERMINAL DO SISTEMA</span>
+      <span>ONLINE</span>
     </div>
-    <div id="terminal-output"></div>
-    <span class="cursor" id="terminal-cursor"></span>
-    <br>
-    <button id="open-files" hidden>
-        ABRIR EXPLORADOR DE FICHEIROS
-    </button>
+    <div class="terminal-content">
+      <div id="terminal-output" class="terminal-green">
+        A aguardar autorização...
+      </div>
+      <button id="open-files">ABRIR EXPLORADOR DE FICHEIROS</button>
+    </div>
+  </div>
 </section>
 
 <section id="computer" hidden>
-    <div class="desktop-top">
-        <span class="computer-name">◈ MUNDO G OS</span>
-        <span>UTILIZADOR: DESCONHECIDO</span>
-        <span>ESTADO: <span style="color:#55f5a5">ONLINE</span></span>
+  <div class="window">
+    <div class="window-title">
+      <span>🖥️ ARQUIVO // MUNDO G</span>
+      <button id="desktop-refresh" aria-label="Atualizar">↻</button>
     </div>
 
     <div class="desktop">
-        <p class="desktop-title">AMBIENTE DE TRABALHO / DESKTOP</p>
+      <div class="desktop-label">
+        SISTEMA DE ARQUIVO // NÃO ABRIR FICHEIROS DESCONHECIDOS
+      </div>
 
-        <div class="desktop-icons">
-            <button class="desktop-icon" id="desktop-folder">
-                <span class="emoji">📁</span>
-                O_PROJETO
-            </button>
-
-            <button class="desktop-icon" id="desktop-system">
-                <span class="emoji">🖥️</span>
-                Sistema
-            </button>
-
-            <button class="desktop-icon" id="desktop-recycle">
-                <span class="emoji">🗑️</span>
-                Reciclagem
-            </button>
-        </div>
-
-        <div class="window" id="explorer">
-            <div class="window-title">
-                <span>📁 Explorador de Ficheiros</span>
-                <span>□ ×</span>
-            </div>
-
-            <div class="window-content">
-                <div class="path" id="file-path">
-                    Este computador / Arquivos / O_PROJETO
-                </div>
-
-                <p style="color:#8e94aa;font-size:12px">
-                    FICHEIROS RECUPERADOS: 8 DOCUMENTOS
-                </p>
-
-                <div class="file-grid" id="file-grid"></div>
-            </div>
-
-            <div class="status-bar">
-                <span id="file-count">8 itens</span>
-                <span>ACESSO RESTRITO</span>
-            </div>
-        </div>
-
-        <div class="window" id="document-window" hidden>
-            <div class="window-title">
-                <span id="document-title">📄 documento.txt</span>
-                <button id="close-document" aria-label="Fechar documento">×</button>
-            </div>
-
-            <div class="window-content">
-                <p class="doc-label">DOCUMENTO CONFIDENCIAL</p>
-                <p id="document-text"></p>
-                <p class="doc-warning" id="document-warning"></p>
-            </div>
-
-            <div class="status-bar">
-                <span>CODIFICAÇÃO: UTF-8</span>
-                <span id="document-status">FICHEIRO LIDO</span>
-            </div>
-        </div>
-
-        <div class="window" id="system-window" hidden>
-            <div class="window-title">
-                <span>🖥️ Informações do Sistema</span>
-                <button data-close="system-window">×</button>
-            </div>
-            <div class="window-content">
-                SISTEMA: MUNDO G OS
-                <br><br>
-                ESTADO DO ARQUIVO: INSTÁVEL
-                <br><br>
-                FICHEIROS RECUPERADOS: 8
-                <br><br>
-                PROCESSO DESCONHECIDO: EM EXECUÇÃO
-                <br><br>
-                <span class="doc-warning">AVISO: EXISTE UM PROCESSO QUE NÃO PODE SER TERMINADO.</span>
-            </div>
-        </div>
-
-        <div class="window" id="recycle-window" hidden>
-            <div class="window-title">
-                <span>🗑️ Reciclagem</span>
-                <button data-close="recycle-window">×</button>
-            </div>
-            <div class="window-content">
-                <p>Nenhum ficheiro eliminado.</p>
-                <p class="doc-warning">Ou será que os ficheiros foram apagados antes de chegares?</p>
-            </div>
-        </div>
+      <div class="file-grid" id="file-grid"></div>
     </div>
 
     <div class="taskbar">
-        <span class="taskbar-name">◈ MUNDO G OS</span>
-        <button id="taskbar-folder">📁 O_PROJETO</button>
-        <span id="clock">SISTEMA ATIVO</span>
+      <span>● SISTEMA CONFIDENCIAL</span>
+      <div class="taskbar-actions">
+        <button id="show-system">Sistema</button>
+        <button id="show-recycle">Reciclagem</button>
+        <button id="show-home">Sair</button>
+      </div>
+      <span id="clock">00:00:00</span>
     </div>
+  </div>
+
+  <div class="window" id="document-window" hidden>
+    <div class="window-title">
+      <span id="document-title">📄 documento.txt</span>
+      <button id="close-document" aria-label="Fechar documento">×</button>
+    </div>
+
+    <div class="window-content">
+      <p class="doc-label">DOCUMENTO CONFIDENCIAL</p>
+
+      <div class="editor-toolbar" aria-label="Formatação do documento">
+        <button type="button" data-command="bold" title="Negrito"><b>B</b></button>
+        <button type="button" data-command="italic" title="Itálico"><i>I</i></button>
+        <button type="button" data-command="underline" title="Sublinhado"><u>U</u></button>
+        <button type="button" data-command="insertUnorderedList" title="Lista">☷</button>
+        <button type="button" id="clear-format" title="Limpar formatação">Tx</button>
+      </div>
+
+      <div
+        id="document-text"
+        class="paper"
+        contenteditable="true"
+        role="textbox"
+        aria-label="Conteúdo editável do documento"
+        aria-multiline="true"
+        spellcheck="false"
+      ></div>
+
+      <p class="editor-note">
+        As alterações são guardadas automaticamente neste navegador.
+        Os documentos originais continuam disponíveis para repor o conteúdo.
+      </p>
+
+      <p class="doc-warning" id="document-warning"></p>
+
+      <div class="taskbar-actions">
+        <button id="restore-document">Restaurar original</button>
+        <button id="close-document-bottom">Fechar documento</button>
+      </div>
+    </div>
+
+    <div class="status-bar">
+      <span>EDITOR CONFIDENCIAL // UTF-8</span>
+      <span id="document-status">PRONTO</span>
+    </div>
+  </div>
+
+  <div class="window" id="system-window" hidden>
+    <div class="window-title">
+      <span>⚙️ Informações do sistema</span>
+      <button id="close-system">×</button>
+    </div>
+    <div class="window-content">
+      <p><b>SISTEMA:</b> ARQUIVO MUNDO G</p>
+      <p><b>ESTADO:</b> <span id="system-state">A funcionar</span></p>
+      <p><b>AVISO:</b> Nem todos os ficheiros são aquilo que parecem.</p>
+      <p id="system-secret">A ligação permanece ativa.</p>
+    </div>
+  </div>
+
+  <div class="window" id="recycle-window" hidden>
+    <div class="window-title">
+      <span>🗑️ Reciclagem</span>
+      <button id="close-recycle">×</button>
+    </div>
+    <div class="window-content">
+      <p>Não existem ficheiros eliminados visíveis.</p>
+      <p class="doc-warning">Algumas coisas não desaparecem quando são apagadas.</p>
+    </div>
+  </div>
 </section>
 
-<div id="alert" hidden role="status" aria-live="polite">
-    <strong id="alert-title">⚠ ALERTA DO SISTEMA</strong>
-    <p id="alert-text"></p>
-    <button id="close-alert">FECHAR ALERTA</button>
-</div>
+<div id="alert-toast" hidden role="status" aria-live="polite"></div>
+
 
 <script>
+"use strict";
+
 const $ = id => document.getElementById(id);
 
 const characterFiles = [
-    {
-        name: "Carolina",
-        icon: "📄",
-        file: "CAROLINA.txt",
-        status: "FICHEIRO RECUPERADO",
-        text: "NOME: Carolina\nESTADO: EM OBSERVAÇÃO\nREGISTO: A ligação ao Algorithmus foi detetada.\n\nNOTA: Ela confia nos amigos. Ainda não compreende tudo o que está a acontecer.",
-        warning: "ANOMALIA: FORAM DETETADOS DADOS QUE NÃO CONSTAM DO REGISTO ORIGINAL."
-    },
-    {
-        name: "Leonor",
-        icon: "📄",
-        file: "LEONOR.txt",
-        status: "ACESSO PARCIAL",
-        text: "NOME: Leonor\nESTADO: DESCONHECIDO\nREGISTO: O acesso a este documento foi limitado.\n\nNOTA: Existem informações sobre esta pessoa que não podem ser apresentadas.",
-        warning: "ERRO 403: ALGUMAS INFORMAÇÕES FORAM OCULTADAS."
-    },
-    {
-        name: "Professor",
-        icon: "📄",
-        file: "PROFESSOR.txt",
-        status: "FICHEIRO RECUPERADO",
-        text: "IDENTIFICAÇÃO: PROFESSOR\nESTADO: SOB INVESTIGAÇÃO\nREGISTO: Foi encontrada uma ligação entre o Professor e o Algorithmus.\n\nNOTA: O conteúdo completo deste registo permanece por confirmar.",
-        warning: "AVISO: EXISTEM REGISTOS ADICIONAIS NOUTRA LOCALIZAÇÃO."
-    },
-    {
-        name: "Bia",
-        icon: "📄",
-        file: "BIA.txt",
-        status: "FICHEIRO RECUPERADO",
-        text: "NOME: Bia\nESTADO: ATIVO\nREGISTO: Possui informações que nem todos conhecem.\n\nNOTA: Algumas ligações familiares permanecem confidenciais.",
-        warning: "ACESSO RESTRITO: REGISTO FAMILIAR PROTEGIDO."
-    },
-    {
-        name: "Juw",
-        icon: "📄",
-        file: "JUW.txt",
-        status: "FICHEIRO RECUPERADO",
-        text: "NOME: Juw\nESTADO: ATIVO\nREGISTO: Capacidade identificada: telecinese.\n\nNOTA: A utilizadora demonstrou capacidade de intervir em situações perigosas.",
-        warning: "REGISTO INCOMPLETO."
-    },
-    {
-        name: "Miriam",
-        icon: "📄",
-        file: "MIRIAM.txt",
-        status: "FICHEIRO RECUPERADO",
-        text: "NOME: Miriam\nESTADO: ATIVO\nREGISTO: Nova aluna. Ligação familiar a Bia.\n\nCAPACIDADE IDENTIFICADA: PORTAIS.\n\nNOTA: A sua chegada alterou os acontecimentos no grupo.",
-        warning: "REGISTO INCOMPLETO."
-    },
-    {
-        name: "Isa",
-        icon: "📄",
-        file: "ISA.txt",
-        status: "FICHEIRO RECUPERADO",
-        text: "NOME: Isa\nESTADO: ATIVO\nREGISTO: Capacidade identificada: invisibilidade.\n\nNOTA: A informação disponível sobre este ficheiro é limitada.",
-        warning: "REGISTO INCOMPLETO."
-    },
-    {
-        name: "Ben",
-        icon: "📄",
-        file: "BEN.txt",
-        status: "FICHEIRO RECUPERADO",
-        text: "NOME: Ben\nESTADO: ATIVO\nREGISTO: Identificado como fantasma visível.\n\nNOTA: A sua presença foi registada no grupo.",
-        warning: "REGISTO INCOMPLETO."
-    }
+  {
+    name: "Carolina",
+    icon: "👁️",
+    file: "carolina.txt",
+    status: "FICHEIRO CONFIDENCIAL",
+    text: `<h2>CAROLINA</h2>
+<p><b>Estado:</b> Sob observação.</p>
+<p>Carolina confia nos seus amigos e não esconde facilmente aquilo que sente. Mas há algo no Mundo G que começa a alterar tudo.</p>
+<p>Uma amostra de gosma negra foi guardada numa caixa na biblioteca.</p>
+<p>Os sintomas começaram depois do contacto com o Algorithmus.</p>`,
+    warning: "AVISO: A infeção pode já ter começado. Não ignores os sinais."
+  },
+  {
+    name: "Leonor",
+    icon: "🕯️",
+    file: "leonor.txt",
+    status: "ACESSO SUSPEITO",
+    text: `<h2>LEONOR</h2>
+<p><b>Estado:</b> Informação incompleta.</p>
+<p>Leonor esconde mais do que revela. A sua ligação ao Professor é um segredo conhecido por muito poucas pessoas.</p>
+<p>Há indícios de que consegue imitar Carolina.</p>
+<p><b>Nota:</b> Os seus objetivos não parecem coincidir com os do resto do grupo.</p>`,
+    warning: "ERRO 0x4C454F\nNÃO CONFIES NA PRIMEIRA PESSOA QUE VÊS.\n\nO FICHEIRO ESTÁ A SER OBSERVADO."
+  },
+  {
+    name: "Professor",
+    icon: "🧪",
+    file: "professor.txt",
+    status: "ACESSO RESTRITO",
+    text: `<h2>PROFESSOR</h2>
+<p><b>Estado:</b> Sob investigação.</p>
+<p>Foi manipulado pelo próprio pai para engolir o Algorithmus, devido a uma tradição familiar.</p>
+<p>As suas ações tiveram consequências para Carolina. No entanto, nem tudo parece ter começado com a intenção de a magoar.</p>
+<p>O passado continua por esclarecer.</p>`,
+    warning: "AVISO: Há informação em falta neste registo."
+  },
+  {
+    name: "Bia",
+    icon: "🔎",
+    file: "bia.txt",
+    status: "ACESSO AUTORIZADO",
+    text: `<h2>BIA</h2>
+<p><b>Estado:</b> Segredo familiar por investigar.</p>
+<p>Bia é descendente de uma linhagem ligada aos mistérios do Mundo G.</p>
+<p>Conhece segredos que não partilhou com toda a gente, incluindo informação relacionada com Leonor.</p>
+<p>Nem todas as respostas estão neste arquivo.</p>`,
+    warning: "AVISO: O silêncio também pode esconder informação."
+  },
+  {
+    name: "Juw",
+    icon: "✨",
+    file: "juw.txt",
+    status: "FICHEIRO DISPONÍVEL",
+    text: `<h2>JUW</h2>
+<p><b>Habilidade:</b> Telecinese.</p>
+<p>Juw consegue mover objetos com o poder da mente.</p>
+<p>Não hesita em agir quando acredita que os seus amigos estão em perigo.</p>
+<p>A sua ligação ao grupo poderá ser essencial nos acontecimentos futuros.</p>`,
+    warning: "AVISO: A telecinese não explica tudo o que acontece neste mundo."
+  },
+  {
+    name: "Miriam",
+    icon: "🌀",
+    file: "miriam.txt",
+    status: "FICHEIRO DISPONÍVEL",
+    text: `<h2>MIRIAM</h2>
+<p><b>Habilidade:</b> Portais.</p>
+<p>Miriam é prima de Bia e uma nova aluna.</p>
+<p>A sua capacidade de criar portais pode abrir caminhos inesperados.</p>
+<p>Também poderá ajudar a descobrir a verdade por trás dos acontecimentos.</p>`,
+    warning: "AVISO: Nem todos os caminhos levam ao lugar esperado."
+  },
+  {
+    name: "Isa",
+    icon: "👤",
+    file: "isa.txt",
+    status: "FICHEIRO DISPONÍVEL",
+    text: `<h2>ISA</h2>
+<p><b>Habilidade:</b> Invisibilidade.</p>
+<p>Isa consegue tornar-se invisível.</p>
+<p>Esta capacidade pode ser útil para observar situações sem ser vista.</p>
+<p>Mas desaparecer da vista não significa desaparecer de todos os registos.</p>`,
+    warning: "AVISO: O sistema pode registar aquilo que ninguém vê."
+  },
+  {
+    name: "Ben",
+    icon: "👻",
+    file: "ben.txt",
+    status: "FICHEIRO DISPONÍVEL",
+    text: `<h2>BEN</h2>
+<p><b>Estado:</b> Fantasma visível.</p>
+<p>Ben é um fantasma que pode ser visto pelos outros.</p>
+<p>Faz parte do grupo e acompanha os acontecimentos que ameaçam os seus amigos.</p>
+<p>A sua existência levanta questões sobre os limites entre os dois mundos.</p>`,
+    warning: "AVISO: Nem tudo o que parece impossível é uma ilusão."
+  }
 ];
 
-const alerts = [
-    {
-        title: "⚠ ANOMALIA DETETADA",
-        text: "Foi encontrado um processo desconhecido a ler os ficheiros."
-    },
-    {
-        title: "⚠ FICHEIRO ALTERADO",
-        text: "Um documento foi modificado depois de ter sido guardado."
-    },
-    {
-        title: "⚠ ACESSO DESCONHECIDO",
-        text: "Uma sessão desconhecida está ativa neste computador."
-    },
-    {
-        title: "⚠ AVISO DO ALGORITHMUS",
-        text: "Não feches o ficheiro. Ainda não terminei de ler."
-    },
-    {
-        title: "⚠ ERRO 001",
-        text: "O registo diz que estás sozinho. Então quem abriu esta janela?"
-    }
-];
-
-let timers = [];
-let alertTimer;
-let clockTimer;
-let usedAlerts = [];
 let currentCharacter = null;
+let alertTimeout = null;
 
-function later(fn, ms) {
-    const id = setTimeout(fn, ms);
-    timers.push(id);
-    return id;
+const originalDocuments = new Map(
+  characterFiles.map(character => [character.file, character.text])
+);
+
+function storageKey(character) {
+  return "oprojeto_documento_" + character.file;
 }
 
-function wait(ms) {
-    return new Promise(resolve => later(resolve, ms));
+function setStatus(message) {
+  $("document-status").textContent = message;
 }
 
-const terminalMessages = [
-    ["> A ANALISAR FICHEIRO...", false],
-    ["> A LIGAR AO SERVIDOR DO MUNDO G...", false],
-    ["> ERRO: SINAL DESCONHECIDO.", false],
-    ["> ANOMALIA DETETADA.", false],
-    ["> ALGORITHMUS: PRESENTE", true],
-    ["> O ARQUIVO FOI COMPROMETIDO.", true],
-    ["> A RECUPERAR DOCUMENTOS...", false],
-    ["> DOCUMENTOS RECUPERADOS: 8", false],
-    ["> NÃO DEVIA TERES ENTRADO.", true],
-    ["> A ABRIR EXPLORADOR DE FICHEIROS...", true]
-];
+function showAlert(message) {
+  const toast = $("alert-toast");
+  toast.textContent = message;
+  toast.hidden = false;
 
-async function typeLine(text, danger) {
-    const line = document.createElement("div");
-    if (danger) line.classList.add("danger");
-    $("terminal-output").appendChild(line);
-
-    for (const char of text) {
-        line.textContent += char;
-        await wait(24);
-    }
-
-    await wait(350);
+  clearTimeout(alertTimeout);
+  alertTimeout = setTimeout(() => {
+    toast.hidden = true;
+  }, 4500);
 }
 
-$("enter-button").addEventListener("click", async () => {
-    $("enter-button").disabled = true;
-    $("secret-message").hidden = false;
-    document.body.classList.add("glitching");
+function showRandomAlert() {
+  const messages = [
+    "ERRO: FOI DETETADA UMA ALTERAÇÃO NO ARQUIVO.",
+    "CAROLINA... CONSEGUES OUVIR-ME?",
+    "AVISO: EXISTE UMA LIGAÇÃO DESCONHECIDA.",
+    "NÃO DEVÍAMOS TER ABERTO ESTE FICHEIRO.",
+    "O SISTEMA NÃO RECONHECE ESTA PRESENÇA."
+  ];
 
-    await wait(2200);
+  showAlert(messages[Math.floor(Math.random() * messages.length)]);
+  $("computer").classList.add("glitch");
 
-    document.body.classList.remove("glitching");
-    $("home").hidden = true;
-    $("home-header").hidden = true;
-    $("home-footer").hidden = true;
-    $("terminal").hidden = false;
-
-    for (const item of terminalMessages) {
-        await typeLine(item[0], item[1]);
-    }
-
-    $("terminal-cursor").hidden = true;
-    $("open-files").hidden = false;
-});
-
-$("open-files").addEventListener("click", () => {
-    $("terminal").hidden = true;
-    $("computer").hidden = false;
-    renderFiles();
-    startClock();
-    scheduleAlert();
-});
+  setTimeout(() => {
+    $("computer").classList.remove("glitch");
+  }, 800);
+}
 
 function renderFiles() {
-    const grid = $("file-grid");
-    grid.textContent = "";
+  const grid = $("file-grid");
+  grid.replaceChildren();
 
-    characterFiles.forEach(character => {
-        const btn = document.createElement("button");
-        btn.className = "file";
+  characterFiles.forEach(character => {
+    const button = document.createElement("button");
+    button.className = "file";
+    button.type = "button";
+    button.innerHTML = `
+      <span class="file-icon">${character.icon}</span>
+      <span>${character.name}</span>
+      <small>${character.file}</small>
+    `;
 
-        const icon = document.createElement("span");
-        icon.className = "emoji";
-        icon.textContent = character.icon;
-
-        const name = document.createElement("span");
-        name.textContent = character.file;
-
-        const small = document.createElement("small");
-        small.textContent = "Documento de texto";
-
-        btn.append(icon, name, small);
-        btn.addEventListener("click", () => openDocument(character));
-        grid.appendChild(btn);
-    });
+    button.addEventListener("click", () => openDocument(character));
+    grid.appendChild(button);
+  });
 }
 
 function openDocument(character) {
-    currentCharacter = character;
+  currentCharacter = character;
 
-    $("document-title").textContent = "📄 " + character.file;
-    $("document-text").textContent = character.text;
-    $("document-warning").textContent = character.warning;
-    $("document-status").textContent = character.status;
-    $("document-window").hidden = false;
+  $("document-title").textContent = "📄 " + character.file;
+  $("document-warning").textContent = character.warning;
 
-    // Pequena hipótese de o Algorithmus reagir à abertura de um ficheiro.
-    if (Math.random() < 0.3) {
-        later(showRandomAlert, 700);
-    }
+  let savedContent = null;
+
+  try {
+    savedContent = localStorage.getItem(storageKey(character));
+  } catch (error) {
+    console.warn("Não foi possível ler o armazenamento local.", error);
+  }
+
+  $("document-text").innerHTML =
+    savedContent !== null ? savedContent : character.text;
+
+  $("document-window").hidden = false;
+  setStatus(savedContent !== null ? "ALTERAÇÕES RECUPERADAS" : character.status);
+
+  if (character.name === "Leonor") {
+    setTimeout(() => {
+      if (!$("document-window").hidden &&
+          currentCharacter === character) {
+        showAlert("ERRO 0x4C454F: QUEM ABRIU ESTE FICHEIRO?");
+        $("document-window").classList.add("glitch");
+
+        setTimeout(() => {
+          $("document-window").classList.remove("glitch");
+        }, 800);
+      }
+    }, 900);
+  } else if (Math.random() < 0.2) {
+    setTimeout(showRandomAlert, 900);
+  }
 }
 
-$("close-document").addEventListener("click", () => {
-    $("document-window").hidden = true;
-});
+function saveCurrentDocument() {
+  if (!currentCharacter) return;
 
-$("desktop-folder").addEventListener("click", () => {
-    $("explorer").hidden = false;
-});
+  try {
+    localStorage.setItem(
+      storageKey(currentCharacter),
+      $("document-text").innerHTML
+    );
 
-$("taskbar-folder").addEventListener("click", () => {
-    $("explorer").hidden = false;
-});
-
-$("desktop-system").addEventListener("click", () => {
-    $("system-window").hidden = false;
-});
-
-$("desktop-recycle").addEventListener("click", () => {
-    $("recycle-window").hidden = false;
-});
-
-document.querySelectorAll("[data-close]").forEach(btn => {
-    btn.addEventListener("click", () => {
-        $(btn.dataset.close).hidden = true;
-    });
-});
-
-function showRandomAlert() {
-    if ($("computer").hidden || !$("alert").hidden) return;
-
-    let available = alerts.filter((_, i) => !usedAlerts.includes(i));
-
-    if (available.length === 0) {
-        usedAlerts = [];
-        available = alerts;
-    }
-
-    const chosen = available[Math.floor(Math.random() * available.length)];
-    const index = alerts.indexOf(chosen);
-    usedAlerts.push(index);
-
-    $("alert-title").textContent = chosen.title;
-    $("alert-text").textContent = chosen.text;
-    $("alert").hidden = false;
+    setStatus("GUARDADO AUTOMATICAMENTE");
+  } catch (error) {
+    setStatus("ERRO AO GUARDAR");
+    console.warn("Não foi possível guardar o documento.", error);
+  }
 }
 
-function scheduleAlert() {
-    // O primeiro alerta só aparece depois de algum tempo.
-    const delay = 12000 + Math.random() * 10000;
-
-    alertTimer = later(() => {
-        showRandomAlert();
-
-        // Agenda o próximo alerta, sem sobrepor o que está aberto.
-        alertTimer = later(() => {
-            if ($("alert").hidden) showRandomAlert();
-            scheduleAlert();
-        }, 18000 + Math.random() * 12000);
-    }, delay);
+function closeDocument() {
+  $("document-window").hidden = true;
+  currentCharacter = null;
 }
 
-$("close-alert").addEventListener("click", () => {
-    $("alert").hidden = true;
+function restoreDocument() {
+  if (!currentCharacter) return;
+
+  const confirmed = confirm(
+    "Queres restaurar o texto original deste documento? " +
+    "As tuas alterações guardadas neste navegador serão perdidas."
+  );
+
+  if (!confirmed) return;
+
+  try {
+    localStorage.removeItem(storageKey(currentCharacter));
+  } catch (error) {
+    console.warn("Não foi possível remover a cópia guardada.", error);
+  }
+
+  $("document-text").innerHTML =
+    originalDocuments.get(currentCharacter.file);
+
+  setStatus("TEXTO ORIGINAL RESTAURADO");
+}
+
+$("enter-button").addEventListener("click", () => {
+  $("home").hidden = true;
+  $("terminal").hidden = false;
+  $("computer").hidden = false;
+
+  $("terminal-output").textContent =
+    "A AUTENTICAR UTILIZADOR...\n" +
+    "A LIGAR AO ARQUIVO MUNDO G...\n" +
+    "ACESSO CONCEDIDO.\n\n" +
+    "AVISO: ALGUNS FICHEIROS PODEM CONTER INFORMAÇÃO ALTERADA.";
+
+  $("secret-message").textContent = "";
+  renderFiles();
 });
 
-function startClock() {
-    function updateClock() {
-        const now = new Date();
-        $("clock").textContent = now.toLocaleTimeString("pt-PT", {
-            hour: "2-digit",
-            minute: "2-digit"
-        }) + " // SISTEMA ATIVO";
-    }
+$("open-files").addEventListener("click", () => {
+  $("computer").hidden = false;
+  $("computer").scrollIntoView({ behavior: "smooth", block: "start" });
+});
 
-    updateClock();
-    clockTimer = setInterval(updateClock, 1000);
+$("show-home").addEventListener("click", () => {
+  $("computer").hidden = true;
+  $("terminal").hidden = true;
+  $("home").hidden = false;
+});
+
+$("desktop-refresh").addEventListener("click", () => {
+  renderFiles();
+  showAlert("EXPLORADOR DE FICHEIROS ATUALIZADO.");
+});
+
+$("close-document").addEventListener("click", closeDocument);
+$("close-document-bottom").addEventListener("click", closeDocument);
+$("restore-document").addEventListener("click", restoreDocument);
+
+$("document-text").addEventListener("input", saveCurrentDocument);
+
+document.querySelectorAll("[data-command]").forEach(button => {
+  button.addEventListener("click", () => {
+    $("document-text").focus();
+    document.execCommand(button.dataset.command, false, null);
+    saveCurrentDocument();
+  });
+});
+
+$("clear-format").addEventListener("click", () => {
+  $("document-text").focus();
+  document.execCommand("removeFormat", false, null);
+  saveCurrentDocument();
+});
+
+$("show-system").addEventListener("click", () => {
+  $("system-window").hidden = false;
+});
+
+$("close-system").addEventListener("click", () => {
+  $("system-window").hidden = true;
+});
+
+$("show-recycle").addEventListener("click", () => {
+  $("recycle-window").hidden = false;
+});
+
+$("close-recycle").addEventListener("click", () => {
+  $("recycle-window").hidden = true;
+});
+
+function updateClock() {
+  $("clock").textContent = new Date().toLocaleTimeString("pt-PT");
 }
+
+updateClock();
+setInterval(updateClock, 1000);
+
+renderFiles();
 </script>
-
-</body>
-</html>
+...
