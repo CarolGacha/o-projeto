@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="pt-PT">
 <head>
@@ -19,7 +20,6 @@
 }
 
 * { box-sizing: border-box; }
-
 [hidden] { display: none !important; }
 
 body {
@@ -46,7 +46,8 @@ button:hover {
   background: #30303e;
 }
 
-button:focus-visible, [contenteditable="true"]:focus-visible {
+button:focus-visible,
+[contenteditable="true"]:focus-visible {
   outline: 2px solid var(--purple);
   outline-offset: 2px;
 }
@@ -137,8 +138,9 @@ h1 {
 .desktop {
   padding: 20px;
   min-height: 280px;
-  background:
-    radial-gradient(ellipse at center, #252033 0%, #0b0c12 75%);
+  background: radial-gradient(
+    ellipse at center, #252033 0%, #0b0c12 75%
+  );
 }
 
 .desktop-label {
@@ -172,10 +174,7 @@ h1 {
   color: var(--muted);
 }
 
-.window {
-  margin: 15px 0;
-}
-
+.window { margin: 15px 0; }
 .window-content { padding: 16px; }
 
 .path, .status-bar {
@@ -220,9 +219,7 @@ h1 {
   min-width: 38px;
 }
 
-.editor-toolbar button:hover {
-  background: #eee6ff;
-}
+.editor-toolbar button:hover { background: #eee6ff; }
 
 .paper {
   min-height: 300px;
@@ -266,18 +263,14 @@ h1 {
   animation: flicker 3s infinite;
 }
 
-#system-window p, #recycle-window p {
-  line-height: 1.7;
-}
+#system-window p, #recycle-window p { line-height: 1.7; }
 
 @keyframes flicker {
   0%, 92%, 96%, 100% { opacity: 1; }
   93%, 95% { opacity: .65; }
 }
 
-.glitch {
-  animation: glitch .2s steps(2, end) 3;
-}
+.glitch { animation: glitch .2s steps(2, end) 3; }
 
 @keyframes glitch {
   0% { transform: translate(0); filter: none; }
@@ -305,6 +298,191 @@ h1 {
   gap: 6px;
 }
 
+/* MUNDOCHAT */
+#open-mundochat { border-color: #39b86a; }
+
+#mundochat-window {
+  background: #101713;
+  color: #e9eee9;
+}
+
+.mc-app {
+  display: grid;
+  grid-template-columns: minmax(120px, 32%) minmax(0, 1fr);
+  min-height: 380px;
+  max-height: 560px;
+}
+
+.mc-sidebar {
+  background: #151e1a;
+  border-right: 1px solid #34433a;
+  overflow-y: auto;
+}
+
+.mc-heading {
+  padding: 12px;
+  font-weight: bold;
+  color: #73e69b;
+  border-bottom: 1px solid #34433a;
+}
+
+.mc-contact {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  border: 0;
+  border-bottom: 1px solid #29352e;
+  border-radius: 0;
+  background: transparent;
+  padding: 12px 8px;
+  text-align: left;
+}
+
+.mc-contact.active { background: #2b4034; }
+
+.mc-avatar {
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  background: #304b3a;
+  font-size: 19px;
+}
+
+.mc-contact-info { min-width: 0; }
+
+.mc-contact-name {
+  display: block;
+  font-size: 12px;
+  font-weight: bold;
+  overflow-wrap: anywhere;
+}
+
+.mc-preview {
+  display: block;
+  margin-top: 4px;
+  color: #a5b4a9;
+  font-size: 10px;
+  overflow-wrap: anywhere;
+}
+
+.mc-chat {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  background-color: #0c1712;
+  background-image: radial-gradient(#263a2c 0.7px, transparent 0.7px);
+  background-size: 15px 15px;
+}
+
+.mc-chat-header {
+  padding: 12px;
+  background: #1c2b22;
+  border-bottom: 1px solid #34433a;
+}
+
+.mc-chat-header strong {
+  display: block;
+  overflow-wrap: anywhere;
+}
+
+.mc-chat-header small {
+  display: block;
+  color: #a9b9ad;
+  margin-top: 4px;
+}
+
+.mc-messages {
+  flex: 1;
+  overflow-y: auto;
+  padding: 12px 8px;
+  min-height: 260px;
+}
+
+.mc-message {
+  width: fit-content;
+  max-width: 92%;
+  margin: 8px 0;
+  padding: 9px 11px 5px;
+  border-radius: 9px;
+  background: #25352b;
+  overflow-wrap: anywhere;
+  font-family: Arial, sans-serif;
+  font-size: 13px;
+  line-height: 1.5;
+  box-shadow: 0 2px 4px #0002;
+}
+
+.mc-message.mine {
+  margin-left: auto;
+  background: #245b3b;
+}
+
+.mc-message.system {
+  margin: 14px auto;
+  background: #352b22;
+  color: #ffd9a0;
+  border: 1px solid #735a39;
+  text-align: center;
+  font-family: Consolas, monospace;
+  font-size: 11px;
+}
+
+.mc-time {
+  display: block;
+  margin-top: 4px;
+  text-align: right;
+  color: #afc5b5;
+  font-size: 9px;
+}
+
+.mc-controls {
+  padding: 9px;
+  background: #17231b;
+  border-top: 1px solid #34433a;
+}
+
+.mc-controls button {
+  width: 100%;
+  border-color: #3c8a58;
+}
+
+.mc-note {
+  padding: 8px;
+  color: #a5b4a9;
+  font-size: 10px;
+  text-align: center;
+}
+
+#mundochat-window.mc-infected {
+  animation: mc-glitch .25s steps(2, end) 3;
+  border-color: #ff4258;
+}
+
+#mundochat-window.mc-infected .mc-chat {
+  background-color: #190d12;
+  background-image: radial-gradient(#4c1725 0.7px, transparent 0.7px);
+}
+
+#mundochat-window.mc-infected .mc-chat-header { background: #35131c; }
+#mundochat-window.mc-infected .mc-heading { color: #ff7585; }
+
+#mundochat-window.mc-infected .mc-message.system {
+  background: #400e19;
+  border-color: #ff4258;
+  color: #ffb3bd;
+}
+
+@keyframes mc-glitch {
+  0% { transform: translate(0); filter: none; }
+  25% { transform: translate(3px, -1px); filter: hue-rotate(60deg); }
+  50% { transform: translate(-3px, 1px); filter: contrast(1.7); }
+  100% { transform: translate(0); filter: none; }
+}
+
 @media (max-width: 480px) {
   main { margin: 25px auto; }
   h1 { letter-spacing: 3px; }
@@ -312,466 +490,690 @@ h1 {
   .window-content { padding: 10px; }
   .paper { padding: 16px; min-height: 240px; }
   .terminal-content { padding: 12px; }
+  .mc-app { grid-template-columns: 105px minmax(0, 1fr); }
+  .mc-contact { flex-direction: column; align-items: flex-start; }
+  .mc-messages { padding: 8px 5px; }
+  .mc-message { max-width: 98%; font-size: 12px; }
 }
 </style>
 </head>
 
+  
 <body>
 
-<header id="home-header">
-  ARQUIVO CONFIDENCIAL // MUNDO G
-</header>
+<!-- PÁGINA PRINCIPAL -->
+<main id="home" class="screen">
+  <header class="topbar">
+    <span>ARQUIVO CONFIDENCIAL</span>
+    <span>◆ MUNDO G ◆</span>
+  </header>
 
-<main id="home">
-  <p class="warning">⚠ ACESSO RESTRITO ⚠</p>
-  <h1>O PROJETO</h1>
-  <p class="subtitle">
-    Existem coisas que nunca deveriam ter sido descobertas.<br>
-    Alguns ficheiros deveriam ter permanecido fechados.
-  </p>
-
-  <button class="primary" id="enter-button">
-    ENTRAR NO ARQUIVO
-  </button>
-
-  <p id="secret-message"></p>
+  <section class="hero">
+    <p class="eyebrow">DOCUMENTO CLASSIFICADO // 001</p>
+    <h1>O PROJETO</h1>
+    <p class="subtitle">Alguns segredos deviam continuar escondidos.</p>
+    <button id="enter-button">ACEDER AO ARQUIVO</button>
+    <p class="secret">Não confies em tudo o que vês.</p>
+  </section>
 </main>
 
-<section id="terminal" hidden>
+<!-- TERMINAL -->
+<section id="terminal" class="screen hidden">
   <div class="terminal-window">
-    <div class="terminal-title">
-      <span>▸ TERMINAL DO SISTEMA</span>
-      <span>ONLINE</span>
+    <div class="terminal-bar">
+      <span>TERMINAL // SISTEMA</span>
+      <button id="terminal-back">VOLTAR</button>
     </div>
-    <div class="terminal-content">
-      <div id="terminal-output" class="terminal-green">
-        A aguardar autorização...
-      </div>
-      <button id="open-files">ABRIR EXPLORADOR DE FICHEIROS</button>
-    </div>
+    <div id="terminal-output" class="terminal-output"></div>
+    <button id="open-files">ABRIR ARQUIVOS</button>
   </div>
 </section>
 
-<section id="computer" hidden>
-  <div class="window">
-    <div class="window-title">
-      <span>🖥️ ARQUIVO // MUNDO G</span>
-      <button id="desktop-refresh" aria-label="Atualizar">↻</button>
-    </div>
+<!-- COMPUTADOR -->
+<section id="computer" class="screen hidden">
+  <header class="desktop-header">
+    <span>O PROJETO // COMPUTADOR</span>
+    <span id="clock">00:00:00</span>
+  </header>
 
-    <div class="desktop">
-      <div class="desktop-label">
-        SISTEMA DE ARQUIVO // NÃO ABRIR FICHEIROS DESCONHECIDOS
-      </div>
+  <div class="desktop-icons">
+    <button class="desktop-icon" id="desktop-files">
+      <span class="big-icon">📁</span>
+      <span>Arquivos</span>
+    </button>
 
-      <div class="file-grid" id="file-grid"></div>
-    </div>
+    <button class="desktop-icon" id="desktop-chat">
+      <span class="big-icon">💬</span>
+      <span>MundoChat</span>
+    </button>
 
-    <div class="taskbar">
-      <span>● SISTEMA CONFIDENCIAL</span>
-      <div class="taskbar-actions">
-        <button id="show-system">Sistema</button>
-        <button id="show-recycle">Reciclagem</button>
-        <button id="show-home">Sair</button>
-      </div>
-      <span id="clock">00:00:00</span>
-    </div>
+    <button class="desktop-icon" id="desktop-system">
+      <span class="big-icon">⚙️</span>
+      <span>Sistema</span>
+    </button>
+
+    <button class="desktop-icon" id="desktop-recycle">
+      <span class="big-icon">🗑️</span>
+      <span>Reciclagem</span>
+    </button>
   </div>
 
-  <div class="window" id="document-window" hidden>
+  <!-- EXPLORADOR DE ARQUIVOS -->
+  <section id="file-window" class="window hidden">
     <div class="window-title">
-      <span id="document-title">📄 documento.txt</span>
-      <button id="close-document" aria-label="Fechar documento">×</button>
-    </div>
-
-    <div class="window-content">
-      <p class="doc-label">DOCUMENTO CONFIDENCIAL</p>
-
-      <div class="editor-toolbar" aria-label="Formatação do documento">
-        <button type="button" data-command="bold" title="Negrito"><b>B</b></button>
-        <button type="button" data-command="italic" title="Itálico"><i>I</i></button>
-        <button type="button" data-command="underline" title="Sublinhado"><u>U</u></button>
-        <button type="button" data-command="insertUnorderedList" title="Lista">☷</button>
-        <button type="button" id="clear-format" title="Limpar formatação">Tx</button>
-      </div>
-
-      <div
-        id="document-text"
-        class="paper"
-        contenteditable="true"
-        role="textbox"
-        aria-label="Conteúdo editável do documento"
-        aria-multiline="true"
-        spellcheck="false"
-      ></div>
-
-      <p class="editor-note">
-        As alterações são guardadas automaticamente neste navegador.
-        Os documentos originais continuam disponíveis para repor o conteúdo.
-      </p>
-
-      <p class="doc-warning" id="document-warning"></p>
-
-      <div class="taskbar-actions">
-        <button id="restore-document">Restaurar original</button>
-        <button id="close-document-bottom">Fechar documento</button>
-      </div>
-    </div>
-
-    <div class="status-bar">
-      <span>EDITOR CONFIDENCIAL // UTF-8</span>
-      <span id="document-status">PRONTO</span>
-    </div>
-  </div>
-
-  <div class="window" id="system-window" hidden>
-    <div class="window-title">
-      <span>⚙️ Informações do sistema</span>
-      <button id="close-system">×</button>
+      <span>📁 ARQUIVOS CONFIDENCIAIS</span>
+      <button class="close-window" data-close="file-window">✕</button>
     </div>
     <div class="window-content">
-      <p><b>SISTEMA:</b> ARQUIVO MUNDO G</p>
-      <p><b>ESTADO:</b> <span id="system-state">A funcionar</span></p>
-      <p><b>AVISO:</b> Nem todos os ficheiros são aquilo que parecem.</p>
-      <p id="system-secret">A ligação permanece ativa.</p>
+      <p class="muted">Seleciona um ficheiro para consultar os registos.</p>
+      <div id="file-list"></div>
     </div>
-  </div>
+  </section>
 
-  <div class="window" id="recycle-window" hidden>
+  <!-- EDITOR DE DOCUMENTOS -->
+  <section id="document-window" class="window hidden">
     <div class="window-title">
-      <span>🗑️ Reciclagem</span>
-      <button id="close-recycle">×</button>
+      <span id="document-title">📄 DOCUMENTO</span>
+      <button class="close-window" data-close="document-window">✕</button>
+    </div>
+
+    <div class="editor-toolbar">
+      <button data-command="bold"><b>B</b></button>
+      <button data-command="italic"><i>I</i></button>
+      <button data-command="underline"><u>U</u></button>
+      <button data-command="insertUnorderedList">☷</button>
+      <button id="clear-format">Limpar formatação</button>
+    </div>
+
+    <div id="document-text" contenteditable="true" spellcheck="false"></div>
+
+    <div class="editor-footer">
+      <span id="document-status">Pronto.</span>
+      <button id="restore-document">RESTAURAR ORIGINAL</button>
+    </div>
+  </section>
+
+  <!-- JANELA DO SISTEMA -->
+  <section id="system-window" class="window hidden">
+    <div class="window-title">
+      <span>⚙️ ESTADO DO SISTEMA</span>
+      <button class="close-window" data-close="system-window">✕</button>
     </div>
     <div class="window-content">
-      <p>Não existem ficheiros eliminados visíveis.</p>
-      <p class="doc-warning">Algumas coisas não desaparecem quando são apagadas.</p>
+      <p>Sistema: <strong id="system-status">ESTÁVEL</strong></p>
+      <p>Ligação ao Mundo G: <span>ATIVA</span></p>
+      <p>Integridade dos arquivos: <span id="integrity-status">98%</span></p>
+      <button id="system-scan">ANALISAR SISTEMA</button>
     </div>
-  </div>
+  </section>
+
+  <!-- RECICLAGEM -->
+  <section id="recycle-window" class="window hidden">
+    <div class="window-title">
+      <span>🗑️ RECICLAGEM</span>
+      <button class="close-window" data-close="recycle-window">✕</button>
+    </div>
+    <div class="window-content">
+      <p>Não existem ficheiros eliminados.</p>
+      <p class="muted">Ou será que existem?</p>
+    </div>
+  </section>
+
+  <!-- MUNDOCHAT -->
+  <section id="mundochat-window" class="window hidden">
+    <div class="window-title">
+      <span>💬 MUNDOCHAT</span>
+      <button class="close-window" data-close="mundochat-window">✕</button>
+    </div>
+
+    <div class="mc-app">
+      <aside class="mc-sidebar">
+        <div class="mc-heading">
+          <strong>Conversas</strong>
+          <span>🍏</span>
+        </div>
+
+        <button class="mc-contact active" data-chat="grupo">
+          <span class="mc-avatar">👥</span>
+          <span class="mc-contact-info">
+            <strong>Grupo do Projeto</strong>
+            <small>Os cinco minutos de paz...</small>
+          </span>
+        </button>
+
+        <button class="mc-contact" data-chat="carolina">
+          <span class="mc-avatar">🌸</span>
+          <span class="mc-contact-info">
+            <strong>Carolina</strong>
+            <small>Conversa privada</small>
+          </span>
+        </button>
+
+        <button class="mc-contact" data-chat="bia">
+          <span class="mc-avatar">💜</span>
+          <span class="mc-contact-info">
+            <strong>Bia</strong>
+            <small>Tenho de te contar uma coisa.</small>
+          </span>
+        </button>
+
+        <button class="mc-contact" data-chat="professor">
+          <span class="mc-avatar">🕶️</span>
+          <span class="mc-contact-info">
+            <strong>Professor</strong>
+            <small>Última ligação desconhecida</small>
+          </span>
+        </button>
+
+        <button class="mc-contact" data-chat="leonor">
+          <span class="mc-avatar">🖤</span>
+          <span class="mc-contact-info">
+            <strong>Leonor</strong>
+            <small>online...</small>
+          </span>
+        </button>
+      </aside>
+
+      <div class="mc-chat">
+        <header class="mc-chat-header">
+          <span id="mc-current-avatar" class="mc-avatar">👥</span>
+          <div>
+            <strong id="mc-current-name">Grupo do Projeto</strong>
+            <small id="mc-current-status">online</small>
+          </div>
+        </header>
+
+        <div id="mc-messages" class="mc-messages" aria-live="polite">
+          <div class="mc-note">
+            As mensagens deste arquivo foram recuperadas parcialmente.
+          </div>
+        </div>
+
+        <div class="mc-controls">
+          <p id="mc-hint">A conversa ainda não terminou...</p>
+          <button id="mc-next">PRÓXIMA MENSAGEM ▸</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BARRA INFERIOR -->
+  <footer class="taskbar">
+    <button id="taskbar-home">⌂ Início</button>
+    <button id="taskbar-files">📁 Arquivos</button>
+    <button id="taskbar-chat">💬 MundoChat</button>
+    <span id="taskbar-status">SISTEMA ATIVO</span>
+  </footer>
 </section>
 
-<div id="alert-toast" hidden role="status" aria-live="polite"></div>
+<!-- NOTIFICAÇÃO -->
+<div id="alert-toast" class="alert-toast hidden" role="status"></div>
 
 
 <script>
-"use strict";
+/* ==================================
+   O PROJETO: SISTEMA PRINCIPAL
+   ================================== */
 
 const $ = id => document.getElementById(id);
 
 const characterFiles = [
   {
     name: "Carolina",
-    icon: "👁️",
-    file: "carolina.txt",
-    status: "FICHEIRO CONFIDENCIAL",
-    text: `<h2>CAROLINA</h2>
-<p><b>Estado:</b> Sob observação.</p>
-<p>Carolina confia nos seus amigos e não esconde facilmente aquilo que sente. Mas há algo no Mundo G que começa a alterar tudo.</p>
-<p>Uma amostra de gosma negra foi guardada numa caixa na biblioteca.</p>
-<p>Os sintomas começaram depois do contacto com o Algorithmus.</p>`,
-    warning: "AVISO: A infeção pode já ter começado. Não ignores os sinais."
+    icon: "🌸",
+    description: `REGISTO: CAROLINA
+
+Estado: Em observação.
+
+Carolina está a apresentar sintomas de doença.
+A possível ligação ao Algorithmus continua sob investigação.
+
+NOTA:
+A verdade sobre a infeção ainda não foi descoberta.`
   },
   {
     name: "Leonor",
-    icon: "🕯️",
-    file: "leonor.txt",
-    status: "ACESSO SUSPEITO",
-    text: `<h2>LEONOR</h2>
-<p><b>Estado:</b> Informação incompleta.</p>
-<p>Leonor esconde mais do que revela. A sua ligação ao Professor é um segredo conhecido por muito poucas pessoas.</p>
-<p>Há indícios de que consegue imitar Carolina.</p>
-<p><b>Nota:</b> Os seus objetivos não parecem coincidir com os do resto do grupo.</p>`,
-    warning: "ERRO 0x4C454F\nNÃO CONFIES NA PRIMEIRA PESSOA QUE VÊS.\n\nO FICHEIRO ESTÁ A SER OBSERVADO."
+    icon: "🖤",
+    description: `REGISTO: LEONOR
+
+Estado: CONFIDENCIAL.
+
+Existem indícios de uma ligação entre Leonor e o Professor.
+
+NOTA:
+Alguns registos continuam bloqueados.`
   },
   {
     name: "Professor",
-    icon: "🧪",
-    file: "professor.txt",
-    status: "ACESSO RESTRITO",
-    text: `<h2>PROFESSOR</h2>
-<p><b>Estado:</b> Sob investigação.</p>
-<p>Foi manipulado pelo próprio pai para engolir o Algorithmus, devido a uma tradição familiar.</p>
-<p>As suas ações tiveram consequências para Carolina. No entanto, nem tudo parece ter começado com a intenção de a magoar.</p>
-<p>O passado continua por esclarecer.</p>`,
-    warning: "AVISO: Há informação em falta neste registo."
+    icon: "🕶️",
+    description: `REGISTO: PROFESSOR
+
+Estado: Sob investigação.
+
+A ligação entre o Professor, Leonor e o Algorithmus continua por esclarecer.`
   },
   {
     name: "Bia",
-    icon: "🔎",
-    file: "bia.txt",
-    status: "ACESSO AUTORIZADO",
-    text: `<h2>BIA</h2>
-<p><b>Estado:</b> Segredo familiar por investigar.</p>
-<p>Bia é descendente de uma linhagem ligada aos mistérios do Mundo G.</p>
-<p>Conhece segredos que não partilhou com toda a gente, incluindo informação relacionada com Leonor.</p>
-<p>Nem todas as respostas estão neste arquivo.</p>`,
-    warning: "AVISO: O silêncio também pode esconder informação."
+    icon: "💜",
+    description: `REGISTO: BIA
+
+Estado: Ativo.
+
+Bia descobriu informações importantes sobre o Professor e Leonor.`
   },
   {
     name: "Juw",
-    icon: "✨",
-    file: "juw.txt",
-    status: "FICHEIRO DISPONÍVEL",
-    text: `<h2>JUW</h2>
-<p><b>Habilidade:</b> Telecinese.</p>
-<p>Juw consegue mover objetos com o poder da mente.</p>
-<p>Não hesita em agir quando acredita que os seus amigos estão em perigo.</p>
-<p>A sua ligação ao grupo poderá ser essencial nos acontecimentos futuros.</p>`,
-    warning: "AVISO: A telecinese não explica tudo o que acontece neste mundo."
+    icon: "🔮",
+    description: `REGISTO: JUW
+
+Estado: Ativo.
+
+Capacidade conhecida: telecinese.`
   },
   {
     name: "Miriam",
     icon: "🌀",
-    file: "miriam.txt",
-    status: "FICHEIRO DISPONÍVEL",
-    text: `<h2>MIRIAM</h2>
-<p><b>Habilidade:</b> Portais.</p>
-<p>Miriam é prima de Bia e uma nova aluna.</p>
-<p>A sua capacidade de criar portais pode abrir caminhos inesperados.</p>
-<p>Também poderá ajudar a descobrir a verdade por trás dos acontecimentos.</p>`,
-    warning: "AVISO: Nem todos os caminhos levam ao lugar esperado."
+    description: `REGISTO: MIRIAM
+
+Estado: Ativo.
+
+Capacidade conhecida: criação de portais.`
   },
   {
     name: "Isa",
-    icon: "👤",
-    file: "isa.txt",
-    status: "FICHEIRO DISPONÍVEL",
-    text: `<h2>ISA</h2>
-<p><b>Habilidade:</b> Invisibilidade.</p>
-<p>Isa consegue tornar-se invisível.</p>
-<p>Esta capacidade pode ser útil para observar situações sem ser vista.</p>
-<p>Mas desaparecer da vista não significa desaparecer de todos os registos.</p>`,
-    warning: "AVISO: O sistema pode registar aquilo que ninguém vê."
+    icon: "👁️",
+    description: `REGISTO: ISA
+
+Estado: Ativo.
+
+Capacidade conhecida: invisibilidade.`
   },
   {
     name: "Ben",
     icon: "👻",
-    file: "ben.txt",
-    status: "FICHEIRO DISPONÍVEL",
-    text: `<h2>BEN</h2>
-<p><b>Estado:</b> Fantasma visível.</p>
-<p>Ben é um fantasma que pode ser visto pelos outros.</p>
-<p>Faz parte do grupo e acompanha os acontecimentos que ameaçam os seus amigos.</p>
-<p>A sua existência levanta questões sobre os limites entre os dois mundos.</p>`,
-    warning: "AVISO: Nem tudo o que parece impossível é uma ilusão."
+    description: `REGISTO: BEN
+
+Estado: Ativo.
+
+Condição: fantasma.`
   }
 ];
 
-let currentCharacter = null;
-let alertTimeout = null;
+/* NAVEGAÇÃO */
 
-const originalDocuments = new Map(
-  characterFiles.map(character => [character.file, character.text])
-);
-
-function storageKey(character) {
-  return "oprojeto_documento_" + character.file;
-}
-
-function setStatus(message) {
-  $("document-status").textContent = message;
-}
-
-function showAlert(message) {
-  const toast = $("alert-toast");
-  toast.textContent = message;
-  toast.hidden = false;
-
-  clearTimeout(alertTimeout);
-  alertTimeout = setTimeout(() => {
-    toast.hidden = true;
-  }, 4500);
-}
-
-function showRandomAlert() {
-  const messages = [
-    "ERRO: FOI DETETADA UMA ALTERAÇÃO NO ARQUIVO.",
-    "CAROLINA... CONSEGUES OUVIR-ME?",
-    "AVISO: EXISTE UMA LIGAÇÃO DESCONHECIDA.",
-    "NÃO DEVÍAMOS TER ABERTO ESTE FICHEIRO.",
-    "O SISTEMA NÃO RECONHECE ESTA PRESENÇA."
-  ];
-
-  showAlert(messages[Math.floor(Math.random() * messages.length)]);
-  $("computer").classList.add("glitch");
-
-  setTimeout(() => {
-    $("computer").classList.remove("glitch");
-  }, 800);
-}
-
-function renderFiles() {
-  const grid = $("file-grid");
-  grid.replaceChildren();
-
-  characterFiles.forEach(character => {
-    const button = document.createElement("button");
-    button.className = "file";
-    button.type = "button";
-    button.innerHTML = `
-      <span class="file-icon">${character.icon}</span>
-      <span>${character.name}</span>
-      <small>${character.file}</small>
-    `;
-
-    button.addEventListener("click", () => openDocument(character));
-    grid.appendChild(button);
+function showScreen(id) {
+  ["home", "terminal", "computer"].forEach(screenId => {
+    const el = $(screenId);
+    if (el) el.classList.toggle("hidden", screenId !== id);
   });
 }
 
-function openDocument(character) {
-  currentCharacter = character;
+function openWindow(id) {
+  document.querySelectorAll("#computer .window").forEach(win => {
+    win.classList.add("hidden");
+  });
 
-  $("document-title").textContent = "📄 " + character.file;
-  $("document-warning").textContent = character.warning;
-
-  let savedContent = null;
-
-  try {
-    savedContent = localStorage.getItem(storageKey(character));
-  } catch (error) {
-    console.warn("Não foi possível ler o armazenamento local.", error);
-  }
-
-  $("document-text").innerHTML =
-    savedContent !== null ? savedContent : character.text;
-
-  $("document-window").hidden = false;
-  setStatus(savedContent !== null ? "ALTERAÇÕES RECUPERADAS" : character.status);
-
-  if (character.name === "Leonor") {
-    setTimeout(() => {
-      if (!$("document-window").hidden &&
-          currentCharacter === character) {
-        showAlert("ERRO 0x4C454F: QUEM ABRIU ESTE FICHEIRO?");
-        $("document-window").classList.add("glitch");
-
-        setTimeout(() => {
-          $("document-window").classList.remove("glitch");
-        }, 800);
-      }
-    }, 900);
-  } else if (Math.random() < 0.2) {
-    setTimeout(showRandomAlert, 900);
-  }
+  $(id)?.classList.remove("hidden");
 }
 
-function saveCurrentDocument() {
-  if (!currentCharacter) return;
-
-  try {
-    localStorage.setItem(
-      storageKey(currentCharacter),
-      $("document-text").innerHTML
-    );
-
-    setStatus("GUARDADO AUTOMATICAMENTE");
-  } catch (error) {
-    setStatus("ERRO AO GUARDAR");
-    console.warn("Não foi possível guardar o documento.", error);
-  }
+function closeWindow(id) {
+  $(id)?.classList.add("hidden");
 }
 
-function closeDocument() {
-  $("document-window").hidden = true;
-  currentCharacter = null;
-}
+$("enter-button")?.addEventListener("click", () => {
+  showScreen("terminal");
 
-function restoreDocument() {
-  if (!currentCharacter) return;
+  const output = $("terminal-output");
+  if (!output) return;
 
-  const confirmed = confirm(
-    "Queres restaurar o texto original deste documento? " +
-    "As tuas alterações guardadas neste navegador serão perdidas."
-  );
+  output.textContent = "";
 
-  if (!confirmed) return;
-
-  try {
-    localStorage.removeItem(storageKey(currentCharacter));
-  } catch (error) {
-    console.warn("Não foi possível remover a cópia guardada.", error);
-  }
-
-  $("document-text").innerHTML =
-    originalDocuments.get(currentCharacter.file);
-
-  setStatus("TEXTO ORIGINAL RESTAURADO");
-}
-
-$("enter-button").addEventListener("click", () => {
-  $("home").hidden = true;
-  $("terminal").hidden = false;
-  $("computer").hidden = false;
-
-  $("terminal-output").textContent =
-    "A AUTENTICAR UTILIZADOR...\n" +
-    "A LIGAR AO ARQUIVO MUNDO G...\n" +
-    "ACESSO CONCEDIDO.\n\n" +
-    "AVISO: ALGUNS FICHEIROS PODEM CONTER INFORMAÇÃO ALTERADA.";
-
-  $("secret-message").textContent = "";
-  renderFiles();
-});
-
-$("open-files").addEventListener("click", () => {
-  $("computer").hidden = false;
-  $("computer").scrollIntoView({ behavior: "smooth", block: "start" });
-});
-
-$("show-home").addEventListener("click", () => {
-  $("computer").hidden = true;
-  $("terminal").hidden = true;
-  $("home").hidden = false;
-});
-
-$("desktop-refresh").addEventListener("click", () => {
-  renderFiles();
-  showAlert("EXPLORADOR DE FICHEIROS ATUALIZADO.");
-});
-
-$("close-document").addEventListener("click", closeDocument);
-$("close-document-bottom").addEventListener("click", closeDocument);
-$("restore-document").addEventListener("click", restoreDocument);
-
-$("document-text").addEventListener("input", saveCurrentDocument);
-
-document.querySelectorAll("[data-command]").forEach(button => {
-  button.addEventListener("click", () => {
-    $("document-text").focus();
-    document.execCommand(button.dataset.command, false, null);
-    saveCurrentDocument();
+  [
+    "> A iniciar ligação ao Mundo G...",
+    "> A verificar arquivos...",
+    "> Foram detetadas anomalias.",
+    "> Acesso autorizado.",
+    "> AVISO: alguns dados poderão não ser fiáveis."
+  ].forEach(line => {
+    const row = document.createElement("p");
+    row.textContent = line;
+    output.appendChild(row);
   });
 });
 
-$("clear-format").addEventListener("click", () => {
-  $("document-text").focus();
-  document.execCommand("removeFormat", false, null);
-  saveCurrentDocument();
+$("terminal-back")?.addEventListener("click", () => showScreen("home"));
+
+$("open-files")?.addEventListener("click", () => {
+  showScreen("computer");
+  openWindow("file-window");
 });
 
-$("show-system").addEventListener("click", () => {
-  $("system-window").hidden = false;
+$("desktop-files")?.addEventListener("click", () => openWindow("file-window"));
+$("taskbar-files")?.addEventListener("click", () => openWindow("file-window"));
+$("desktop-system")?.addEventListener("click", () => openWindow("system-window"));
+$("desktop-recycle")?.addEventListener("click", () => openWindow("recycle-window"));
+
+function openMundoChat() {
+  openWindow("mundochat-window");
+  selectChat("grupo");
+}
+
+$("desktop-chat")?.addEventListener("click", openMundoChat);
+$("taskbar-chat")?.addEventListener("click", openMundoChat);
+$("taskbar-home")?.addEventListener("click", () => showScreen("home"));
+
+document.querySelectorAll("[data-close]").forEach(button => {
+  button.addEventListener("click", () => closeWindow(button.dataset.close));
 });
 
-$("close-system").addEventListener("click", () => {
-  $("system-window").hidden = true;
-});
-
-$("show-recycle").addEventListener("click", () => {
-  $("recycle-window").hidden = false;
-});
-
-$("close-recycle").addEventListener("click", () => {
-  $("recycle-window").hidden = true;
-});
+/* RELÓGIO */
 
 function updateClock() {
-  $("clock").textContent = new Date().toLocaleTimeString("pt-PT");
+  const clock = $("clock");
+  if (!clock) return;
+
+  clock.textContent = new Date().toLocaleTimeString("pt-PT", {
+    hour: "2-digit",
+    minute: "2-digit",
+    second: "2-digit"
+  });
 }
 
 updateClock();
 setInterval(updateClock, 1000);
 
-renderFiles();
+/* EXPLORADOR E DOCUMENTOS */
+
+let currentDocumentIndex = 0;
+
+characterFiles.forEach((character, index) => {
+  const button = document.createElement("button");
+  button.className = "file-entry";
+  button.textContent = `${character.icon} ${character.name}.txt`;
+  button.addEventListener("click", () => openDocument(index));
+  $("file-list")?.appendChild(button);
+});
+
+function openDocument(index) {
+  currentDocumentIndex = index;
+  const character = characterFiles[index];
+  if (!character) return;
+
+  $("document-title").textContent =
+    `${character.icon} ${character.name}.txt`;
+
+  const saved = localStorage.getItem(
+    "oprojeto-document-" + character.name
+  );
+
+  $("document-text").textContent = saved ?? character.description;
+  $("document-status").textContent =
+    saved ? "Documento guardado." : "Documento original.";
+
+  openWindow("document-window");
+}
+
+$("document-text")?.addEventListener("input", () => {
+  const character = characterFiles[currentDocumentIndex];
+  if (!character) return;
+
+  localStorage.setItem(
+    "oprojeto-document-" + character.name,
+    $("document-text").innerText
+  );
+
+  $("document-status").textContent =
+    "Alterações guardadas automaticamente.";
+});
+
+document.querySelectorAll("[data-command]").forEach(button => {
+  button.addEventListener("click", () => {
+    $("document-text")?.focus();
+    document.execCommand(button.dataset.command, false, null);
+  });
+});
+
+$("clear-format")?.addEventListener("click", () => {
+  const editor = $("document-text");
+  if (!editor) return;
+
+  editor.textContent = editor.innerText;
+  editor.focus();
+});
+
+$("restore-document")?.addEventListener("click", () => {
+  const character = characterFiles[currentDocumentIndex];
+  if (!character) return;
+
+  localStorage.removeItem("oprojeto-document-" + character.name);
+  $("document-text").textContent = character.description;
+  $("document-status").textContent = "Versão original restaurada.";
+});
+
+/* SISTEMA */
+
+$("system-scan")?.addEventListener("click", () => {
+  $("system-status").textContent = "ANOMALIA DETETADA";
+  $("integrity-status").textContent = "67%";
+  showToast("AVISO: foi detetada uma atividade desconhecida.");
+});
+
+/* NOTIFICAÇÕES */
+
+function showToast(message) {
+  const toast = $("alert-toast");
+  if (!toast) return;
+
+  toast.textContent = message;
+  toast.classList.remove("hidden");
+
+  clearTimeout(showToast.timeout);
+
+  showToast.timeout = setTimeout(() => {
+    toast.classList.add("hidden");
+  }, 3500);
+}
+
+/* ==================================
+   MUNDOCHAT: EPISÓDIO BÓNUS
+   A VERDADE ESCONDIDA
+   ================================== */
+
+const chats = {
+  grupo: {
+    name: "Grupo do Projeto",
+    avatar: "👥",
+    messages: [
+      { from: "Juw", text: "Carolina, estás ainda pior do que de manhã. Tens a certeza de que estás bem?" },
+      { from: "Carolina", text: "Não... Não paro de tossir e sinto-me bué tonta." },
+      { from: "Miriam", text: "Espera, desde quando é que te sentes assim?" },
+      { from: "Carolina", text: "Desde que aconteceu aquela coisa com a minha mãe..." },
+      { from: "Bia", text: "Carolina, conta-nos tudo. Não tens de esconder nada de nós." },
+      { from: "Carolina", text: "A infeção começou depois de uma coisa sair da boca da minha mãe quando ela estava inconsciente." },
+      { from: "Isa", text: "Uma coisa?! Como assim?!" },
+      { from: "Carolina", text: "Eu sei que parece impossível, mas acho que tem a ver com o Algorithmus." },
+      { from: "Ben", text: "Então temos de descobrir o que te está a acontecer." },
+      { from: "Juw", text: "Vamos investigar. Deve existir alguma maneira de te ajudar." },
+      { from: "Miriam", text: "Podemos começar por procurar pistas sobre o Professor." },
+      { from: "Carolina", text: "O Professor? O que é que ele tem a ver com isto?" },
+      { from: "Bia", text: "Há uma coisa que ainda não vos contei..." },
+      { from: "Bia", text: "O Professor... trabalha para a Leonor." },
+      { from: "SISTEMA", text: "REGISTO INTERROMPIDO.", system: true },
+      { from: "SISTEMA", text: "ANOMALIA DETETADA.", system: true },
+      { from: "Desconhecido", text: "Não deviam estar a investigar.", glitch: true }
+    ]
+  },
+
+  carolina: {
+    name: "Carolina",
+    avatar: "🌸",
+    messages: [
+      { from: "Carolina", text: "Não percebo o que me está a acontecer..." },
+      { from: "Carolina", text: "Estou doente, tenho tonturas e não paro de tossir." },
+      { from: "Bia", text: "Vamos descobrir o que se passa. Não estás sozinha." },
+      { from: "Carolina", text: "E se não existir uma cura?" },
+      { from: "Bia", text: "Não vamos desistir antes de tentar." },
+      { from: "SISTEMA", text: "FICHEIRO: ALGORITHMUS. ACESSO NEGADO.", system: true },
+      { from: "Desconhecido", text: "A infeção não aconteceu por acaso.", glitch: true }
+    ]
+  },
+
+  bia: {
+    name: "Bia",
+    avatar: "💜",
+    messages: [
+      { from: "Bia", text: "Preciso de vos contar uma coisa sobre o Professor." },
+      { from: "Carolina", text: "O que aconteceu?" },
+      { from: "Bia", text: "Descobri uma ligação entre ele e a Leonor." },
+      { from: "Juw", text: "Que ligação?" },
+      { from: "Bia", text: "O Professor trabalha para a Leonor." },
+      { from: "Carolina", text: "A LEONOR?! Mas porquê?!" },
+      { from: "Bia", text: "Ainda não sei. Temos de descobrir o que ela quer." },
+      { from: "SISTEMA", text: "ACESSO AO REGISTO BLOQUEADO.", system: true },
+      { from: "Desconhecido", text: "Há verdades que deviam continuar escondidas.", glitch: true }
+    ]
+  },
+
+  professor: {
+    name: "Professor",
+    avatar: "🕶️",
+    messages: [
+      { from: "Professor", text: "A Carolina começou a apresentar sintomas." },
+      { from: "Desconhecido", text: "Era uma questão de tempo." },
+      { from: "Professor", text: "Não era suposto as coisas chegarem a este ponto." },
+      { from: "Desconhecido", text: "A Leonor espera resultados." },
+      { from: "Professor", text: "Eu sei." },
+      { from: "SISTEMA", text: "CONVERSA CLASSIFICADA.", system: true },
+      { from: "Desconhecido", text: "Não te esqueças de quem está a dar as ordens.", glitch: true }
+    ]
+  },
+
+  leonor: {
+    name: "Leonor",
+    avatar: "🖤",
+    messages: [
+      { from: "Leonor", text: "Então, já começaram a fazer perguntas?" },
+      { from: "Professor", text: "A Carolina está a investigar." },
+      { from: "Leonor", text: "Era previsível." },
+      { from: "Professor", text: "E se descobrir a verdade?" },
+      { from: "Leonor", text: "Então teremos de lidar com isso." },
+      { from: "SISTEMA", text: "MENSAGENS PARCIALMENTE CORROMPIDAS.", system: true },
+      { from: "Leonor", text: "Não deixes que descubram mais do que devem.", glitch: true }
+    ]
+  }
+};
+
+let currentChatId = "grupo";
+const chatProgress = {};
+
+function selectChat(chatId) {
+  if (!chats[chatId]) return;
+
+  currentChatId = chatId;
+
+  document.querySelectorAll(".mc-contact").forEach(button => {
+    button.classList.toggle("active", button.dataset.chat === chatId);
+  });
+
+  const chat = chats[chatId];
+
+  $("mc-current-name").textContent = chat.name;
+  $("mc-current-avatar").textContent = chat.avatar;
+  $("mc-current-status").textContent = "mensagens recuperadas parcialmente";
+
+  $("mc-messages").textContent = "";
+
+  const note = document.createElement("div");
+  note.className = "mc-note";
+  note.textContent =
+    "Arquivo recuperado. Algumas mensagens podem estar em falta.";
+
+  $("mc-messages").appendChild(note);
+
+  chatProgress[chatId] = 0;
+  $("mc-hint").textContent = "A conversa ainda não terminou...";
+  $("mc-next").disabled = false;
+  $("mc-next").textContent = "PRÓXIMA MENSAGEM ▸";
+  $("mundochat-window").classList.remove("mc-infected");
+}
+
+document.querySelectorAll(".mc-contact").forEach(button => {
+  button.addEventListener("click", () => selectChat(button.dataset.chat));
+});
+
+function addChatMessage(message) {
+  const messages = $("mc-messages");
+  const bubble = document.createElement("div");
+
+  bubble.className = "mc-message";
+
+  if (message.system) {
+    bubble.classList.add("system");
+  } else if (message.glitch) {
+    bubble.classList.add("system");
+    $("mundochat-window").classList.add("mc-infected");
+  } else if (message.from === "Carolina") {
+    bubble.classList.add("mine");
+  }
+
+  const sender = document.createElement("strong");
+  sender.className = "mc-sender";
+  sender.textContent = message.from;
+
+  const content = document.createElement("div");
+  content.textContent = message.text;
+
+  const time = document.createElement("small");
+  time.className = "mc-time";
+  time.textContent = new Date().toLocaleTimeString("pt-PT", {
+    hour: "2-digit",
+    minute: "2-digit"
+  });
+
+  bubble.append(sender, content, time);
+  messages.appendChild(bubble);
+  messages.scrollTop = messages.scrollHeight;
+
+  if (message.glitch) {
+    showToast("⚠ ANOMALIA DETETADA NO MUNDOCHAT");
+  }
+}
+
+$("mc-next")?.addEventListener("click", () => {
+  const chat = chats[currentChatId];
+  if (!chat) return;
+
+  const progress = chatProgress[currentChatId] || 0;
+
+  if (progress >= chat.messages.length) {
+    $("mc-hint").textContent = "Fim do registo. Ou talvez não...";
+    $("mc-next").textContent = "CONVERSA TERMINADA";
+    $("mc-next").disabled = true;
+    return;
+  }
+
+  addChatMessage(chat.messages[progress]);
+  chatProgress[currentChatId] = progress + 1;
+
+  if (chatProgress[currentChatId] >= chat.messages.length) {
+    $("mc-hint").textContent = "Fim do registo. Ou talvez não...";
+    $("mc-next").textContent = "FIM DA CONVERSA";
+  } else {
+    $("mc-hint").textContent =
+      `${chat.messages.length - chatProgress[currentChatId]} mensagens por recuperar.`;
+  }
+});
+
+selectChat("grupo");
+
+/* ==================================
+   FIM DO SISTEMA
+   ================================== */
 </script>
-...
+
+<!-- ==================================
+     PARTE 4/4: FINAL DO DOCUMENTO
+     ================================== -->
+
+</body>
+</html>
