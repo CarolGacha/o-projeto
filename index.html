@@ -7,494 +7,813 @@
 <title>O PROJETO | Arquivo Confidencial</title>
 
 <style>
+
+<!DOCTYPE html>
+<html lang=”pt-PT”>
+<head>
+<meta charset=”UTF-8”>
+<meta name=”viewport” content=”width=device-width, initial-scale=1.0”>
+<title>O Projeto | Sistema Confidencial</title>
+
+<style>
+•	{ box-sizing: border-box; }
+
 :root {
-  --bg: #08090d;
-  --panel: #151720;
-  --panel2: #202330;
-  --border: #45485a;
-  --text: #e9e9f1;
-  --muted: #9a9db0;
-  --red: #ff424f;
-  --green: #9affbb;
-  --purple: #bca0ff;
+    --bg: #080910;
+    --panel: #11131e;
+    --panel2: #191c2b;
+    --line: #34394d;
+    --text: #e8e9f4;
+    --muted: #8e94aa;
+    --pink: #ff496c;
+    --green: #55f5a5;
+    --purple: #9b8cff;
 }
 
-* { box-sizing: border-box; }
 [hidden] { display: none !important; }
 
-body {
-  margin: 0;
-  min-height: 100vh;
-  background: var(--bg);
-  color: var(--text);
-  font-family: Consolas, "Courier New", monospace;
+Body {
+    Margin: 0;
+    Min-height: 100vh;
+    Background: var(--bg);
+    Color: var(--text);
+    Font-family: monospace;
+    Overflow-x: hidden;
 }
 
-button, input { font: inherit; }
+Button, input { font: inherit; }
 
-button {
-  cursor: pointer;
-  color: var(--text);
-  background: var(--panel2);
-  border: 1px solid var(--border);
-  padding: 9px 13px;
-  border-radius: 4px;
+Button {
+    Color: var(--text);
+    Background: var(--panel2);
+    Border: 1px solid var(--line);
+    Padding: 10px 14px;
+    Cursor: pointer;
 }
 
-button:hover {
-  border-color: var(--red);
-  background: #30303e;
+Button:hover {
+    Border-color: var(--pink);
+    Background: #252034;
 }
 
-button:focus-visible,
-[contenteditable="true"]:focus-visible {
-  outline: 2px solid var(--purple);
-  outline-offset: 2px;
+Button:focus-visible {
+    Outline: 2px solid var(--green);
+    Outline-offset: 3px;
 }
 
-header {
-  padding: 14px;
-  text-align: center;
-  color: var(--red);
-  border-bottom: 1px solid #47232a;
-  letter-spacing: 2px;
-  font-size: 12px;
+Header, footer {
+    Padding: 18px 12px;
+    Text-align: center;
+    Color: var(--muted);
+    Font-size: 11px;
+    Letter-spacing: 2px;
 }
 
-main {
-  width: min(900px, 94%);
-  margin: 50px auto;
+Main#home {
+    Min-height: 70vh;
+    Display: flex;
+    Flex-direction: column;
+    Justify-content: center;
+    Align-items: center;
+    Text-align: center;
+    Padding: 24px;
 }
-
-#home { text-align: center; }
 
 .warning {
-  color: var(--red);
-  font-size: 12px;
-  letter-spacing: 2px;
-  animation: flicker 4s infinite;
+    Color: var(--pink);
+    Letter-spacing: 3px;
+    Animation: flicker 2s infinite;
 }
 
-h1 {
-  font-size: clamp(40px, 9vw, 82px);
-  letter-spacing: 7px;
-  margin: 25px 0 8px;
-  text-shadow: 0 0 20px #ff243b55;
+H1 {
+    Font-size: clamp(36px, 10vw, 68px);
+    Letter-spacing: 5px;
+    Text-shadow: 3px 0 var(--pink), -3px 0 #5948ff;
 }
 
 .subtitle {
-  color: var(--muted);
-  line-height: 1.8;
+    Color: #aaa5bd;
+    Line-height: 1.8;
+    Max-width: 330px;
 }
 
-.primary {
-  margin-top: 24px;
-  padding: 13px 25px;
-  color: white;
-  background: #671b29;
-  border-color: var(--red);
+#enter-button {
+    Margin-top: 24px;
+    Padding: 16px 20px;
+    Color: var(--pink);
+    Border-color: var(--pink);
+    Letter-spacing: 2px;
 }
 
 #secret-message {
-  margin-top: 28px;
-  color: var(--red);
-  min-height: 24px;
+    Color: var(--pink);
+    Line-height: 1.8;
 }
 
-#terminal, #computer {
-  width: min(1000px, 96%);
-  margin: 25px auto;
+/* GLITCH */
+
+Body.glitching {
+    Animation: screen-glitch .12s steps(2, end) infinite;
 }
 
-.terminal-window, .window {
-  border: 1px solid var(--border);
-  border-radius: 6px;
-  overflow: hidden;
-  background: var(--panel);
-  box-shadow: 0 12px 35px #0008;
+Body.glitching #home {
+    Animation: content-glitch .12s steps(2, end) infinite;
 }
 
-.terminal-title, .window-title {
-  min-height: 40px;
-  padding: 9px 12px;
-  background: var(--panel2);
-  border-bottom: 1px solid var(--border);
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 10px;
+Body.glitching::after {
+    Content: “”;
+    Position: fixed;
+    Inset: 0;
+    z-index: 9999;
+    pointer-events: none;
+    background: repeating-linear-gradient(
+        to bottom,
+        transparent 0 3px,
+        rgba(255,49,88,.25) 4px,
+        transparent 5px
+    );
 }
 
-.terminal-content {
-  padding: 20px;
-  min-height: 150px;
-  line-height: 1.8;
-  white-space: pre-wrap;
-  overflow-wrap: anywhere;
+@keyframes screen-glitch {
+    25% { transform: translate(4px,-2px); filter: hue-rotate(90deg); }
+    50% { transform: translate(-4px,2px); filter: invert(.15); }
+    75% { transform: translate(2px,1px); filter: hue-rotate(-90deg); }
 }
 
-.terminal-green { color: var(--green); }
+@keyframes content-glitch {
+    33% { transform: translateX(8px); clip-path: inset(20% 0 55% 0); }
+    66% { transform: translateX(-8px); clip-path: inset(60% 0 10% 0); }
+}
+
+@keyframes flicker {
+    0%, 19%, 21%, 100% { opacity: 1; }
+    20%, 60% { opacity: .65; }
+}
+
+/* TERMINAL */
+
+#terminal {
+    Position: fixed;
+    Inset: 0;
+    z-index: 1000;
+    background: #020503;
+    color: var(--green);
+    padding: 26px 20px;
+    overflow: auto;
+}
+
+.terminal-header {
+    Border-bottom: 1px solid #23683d;
+    Padding-bottom: 14px;
+    Margin-bottom: 24px;
+    Font-size: 12px;
+    Letter-spacing: 2px;
+}
+
+#terminal-output {
+    White-space: pre-wrap;
+    Overflow-wrap: anywhere;
+    Line-height: 1.9;
+    Font-size: 13px;
+}
+
+.danger { color: var(--pink); }
+
+#open-files {
+    Margin-top: 24px;
+    Color: var(--green);
+    Border-color: var(--green);
+}
+
+.cursor {
+    Display: inline-block;
+    Width: 8px;
+    Height: 15px;
+    Background: var(--green);
+    Animation: blink .7s steps(2,end) infinite;
+}
+
+@keyframes blink { 50% { opacity: 0; } }
+
+/* COMPUTADOR */
+
+#computer {
+    Min-height: 100vh;
+    Background:
+        Radial-gradient(ellipse at 50% 0%, #22203b 0%, transparent 65%),
+        #090ª12;
+    Padding-bottom: 60px;
+}
+
+.desktop-top {
+    Display: flex;
+    Justify-content: space-between;
+    Align-items: center;
+    Gap: 10px;
+    Flex-wrap: wrap;
+    Padding: 14px 18px;
+    Background: rgba(9,10,18,.9);
+    Border-bottom: 1px solid var(--line);
+    Font-size: 12px;
+}
+
+.computer-name {
+    Color: var(--green);
+    Letter-spacing: 2px;
+}
 
 .desktop {
-  padding: 20px;
-  min-height: 280px;
-  background: radial-gradient(
-    ellipse at center, #252033 0%, #0b0c12 75%
-  );
+    Padding: 24px 18px;
+    Max-width: 1000px;
+    Margin: auto;
 }
 
-.desktop-label {
-  color: var(--muted);
-  font-size: 12px;
-  margin-bottom: 20px;
+.desktop-title {
+    Color: var(--muted);
+    Font-size: 11px;
+    Letter-spacing: 2px;
+}
+
+.desktop-icons {
+    Display: grid;
+    Grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    Gap: 14px;
+    Margin: 24px 0;
+}
+
+.desktop-icon {
+    Padding: 15px 8px;
+    Background: transparent;
+    Border: 1px solid transparent;
+    Text-align: center;
+    Overflow-wrap: anywhere;
+}
+
+.desktop-icon .emoji {
+    Display: block;
+    Font-size: 32px;
+    Margin-bottom: 10px;
+}
+
+.window {
+    Border: 1px solid #41465e;
+    Background: #11131e;
+    Box-shadow: 0 15px 50px #0008;
+    Margin: 20px 0;
+}
+
+.window-title {
+    Display: flex;
+    Justify-content: space-between;
+    Align-items: center;
+    Gap: 10px;
+    Padding: 12px;
+    Background: #222439;
+    Border-bottom: 1px solid var(--line);
+    Font-size: 12px;
+}
+
+.window-content {
+    Padding: 16px;
+}
+
+.path {
+    Color: var(--muted);
+    Overflow-wrap: anywhere;
+    Font-size: 12px;
+    Padding-bottom: 14px;
+    Border-bottom: 1px solid var(--line);
 }
 
 .file-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(115px, 1fr));
-  gap: 12px;
+    Display: grid;
+    Grid-template-columns: repeat(auto-fit, minmax(115px, 1fr));
+    Gap: 8px;
+    Margin-top: 16px;
 }
 
 .file {
-  min-height: 100px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 8px;
-  text-align: center;
-  overflow-wrap: anywhere;
-  background: #191b26;
+    Padding: 14px 8px;
+    Background: transparent;
+    Border: 1px solid transparent;
+    Text-align: center;
+    Overflow-wrap: anywhere;
 }
 
-.file-icon { font-size: 30px; }
+.file:hover {
+    Background: #232337;
+    Border-color: #494765;
+}
+
+.file .emoji {
+    Display: block;
+    Font-size: 27px;
+    Margin-bottom: 9px;
+}
 
 .file small {
-  font-size: 10px;
-  color: var(--muted);
+    Display: block;
+    Color: var(--muted);
+    Margin-top: 6px;
+    Font-size: 10px;
 }
 
-.window { margin: 15px 0; }
-.window-content { padding: 16px; }
+.status-bar {
+    Display: flex;
+    Justify-content: space-between;
+    Gap: 10px;
+    Flex-wrap: wrap;
+    Padding: 10px 14px;
+    Color: var(--muted);
+    Border-top: 1px solid var(--line);
+    Font-size: 11px;
+}
 
-.path, .status-bar {
-  color: var(--muted);
-  font-size: 11px;
-  padding: 9px 12px;
-  border-top: 1px solid var(--border);
-  display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 8px;
+#document-text {
+    White-space: pre-wrap;
+    Overflow-wrap: anywhere;
+    Line-height: 1.9;
+    Font-size: 13px;
+    Min-height: 130px;
 }
 
 .doc-label {
-  color: var(--red);
-  font-size: 11px;
-  letter-spacing: 2px;
+    Color: var(--green);
+    Font-size: 11px;
+    Letter-spacing: 2px;
 }
 
 .doc-warning {
-  color: var(--red);
-  font-size: 12px;
-  line-height: 1.7;
-  border-top: 1px dashed #71333b;
-  padding-top: 12px;
-  white-space: pre-wrap;
+    Color: var(--pink);
 }
 
-.editor-toolbar {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 6px;
-  padding: 10px;
-  background: #d9d9df;
-  border: 1px solid #aaaab5;
+#alert {
+    Position: fixed;
+    z-index: 2000;
+    right: 16px;
+    bottom: 75px;
+    width: min(340px, calc(100vw – 32px));
+    padding: 16px;
+    background: #1b101b;
+    border: 1px solid var(--pink);
+    box-shadow: 0 0 25px #ff174433;
+    animation: alert-in .25s ease-out;
 }
 
-.editor-toolbar button {
-  color: #191923;
-  background: white;
-  border-color: #aaaab5;
-  min-width: 38px;
+#alert strong {
+    Display: block;
+    Color: var(--pink);
+    Margin-bottom: 10px;
+    Letter-spacing: 1px;
 }
 
-.editor-toolbar button:hover { background: #eee6ff; }
-
-.paper {
-  min-height: 300px;
-  padding: 25px;
-  background: #fff;
-  color: #17171d;
-  font-family: Arial, sans-serif;
-  font-size: 15px;
-  line-height: 1.7;
-  overflow-wrap: anywhere;
-  outline: none;
+#alert p {
+    Line-height: 1.6;
+    Font-size: 12px;
 }
 
-.paper:empty::before {
-  content: "Começa a escrever neste documento...";
-  color: #888;
-  pointer-events: none;
+#alert button {
+    Border-color: var(--pink);
+    Color: var(--pink);
 }
 
-.editor-note {
-  color: var(--muted);
-  font-size: 11px;
-  line-height: 1.6;
-  margin-top: 10px;
-}
-
-#document-status { color: var(--green); }
-
-#alert-toast {
-  position: fixed;
-  right: 15px;
-  bottom: 15px;
-  width: min(340px, calc(100% - 30px));
-  padding: 15px;
-  background: #260e15;
-  border: 1px solid var(--red);
-  color: #fff;
-  box-shadow: 0 0 25px #ff203522;
-  z-index: 100;
-  white-space: pre-wrap;
-  animation: flicker 3s infinite;
-}
-
-#system-window p, #recycle-window p { line-height: 1.7; }
-
-@keyframes flicker {
-  0%, 92%, 96%, 100% { opacity: 1; }
-  93%, 95% { opacity: .65; }
-}
-
-.glitch { animation: glitch .2s steps(2, end) 3; }
-
-@keyframes glitch {
-  0% { transform: translate(0); filter: none; }
-  25% { transform: translate(3px, -2px); filter: hue-rotate(90deg); }
-  50% { transform: translate(-3px, 2px); filter: contrast(2); }
-  75% { transform: translate(2px, 1px); }
-  100% { transform: translate(0); filter: none; }
+@keyframes alert-in {
+    From { opacity: 0; transform: translateY(12px); }
+    To { opacity: 1; transform: translateY(0); }
 }
 
 .taskbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 10px;
-  flex-wrap: wrap;
-  background: #101119;
-  border-top: 1px solid var(--border);
-  padding: 10px 14px;
-  font-size: 12px;
+    Position: fixed;
+    z-index: 1500;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    min-height: 48px;
+    background: #11121deF;
+    border-top: 1px solid var(--line);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    padding: 7px 12px;
+    font-size: 11px;
 }
 
-.taskbar-actions {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 6px;
+.taskbar button {
+    Padding: 7px 10px;
 }
 
-/* MUNDOCHAT */
-#open-mundochat { border-color: #39b86a; }
-
-#mundochat-window {
-  background: #101713;
-  color: #e9eee9;
-}
-
-.mc-app {
-  display: grid;
-  grid-template-columns: minmax(120px, 32%) minmax(0, 1fr);
-  min-height: 380px;
-  max-height: 560px;
-}
-
-.mc-sidebar {
-  background: #151e1a;
-  border-right: 1px solid #34433a;
-  overflow-y: auto;
-}
-
-.mc-heading {
-  padding: 12px;
-  font-weight: bold;
-  color: #73e69b;
-  border-bottom: 1px solid #34433a;
-}
-
-.mc-contact {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  width: 100%;
-  border: 0;
-  border-bottom: 1px solid #29352e;
-  border-radius: 0;
-  background: transparent;
-  padding: 12px 8px;
-  text-align: left;
-}
-
-.mc-contact.active { background: #2b4034; }
-
-.mc-avatar {
-  display: grid;
-  place-items: center;
-  flex-shrink: 0;
-  width: 35px;
-  height: 35px;
-  border-radius: 50%;
-  background: #304b3a;
-  font-size: 19px;
-}
-
-.mc-contact-info { min-width: 0; }
-
-.mc-contact-name {
-  display: block;
-  font-size: 12px;
-  font-weight: bold;
-  overflow-wrap: anywhere;
-}
-
-.mc-preview {
-  display: block;
-  margin-top: 4px;
-  color: #a5b4a9;
-  font-size: 10px;
-  overflow-wrap: anywhere;
-}
-
-.mc-chat {
-  display: flex;
-  flex-direction: column;
-  min-width: 0;
-  background-color: #0c1712;
-  background-image: radial-gradient(#263a2c 0.7px, transparent 0.7px);
-  background-size: 15px 15px;
-}
-
-.mc-chat-header {
-  padding: 12px;
-  background: #1c2b22;
-  border-bottom: 1px solid #34433a;
-}
-
-.mc-chat-header strong {
-  display: block;
-  overflow-wrap: anywhere;
-}
-
-.mc-chat-header small {
-  display: block;
-  color: #a9b9ad;
-  margin-top: 4px;
-}
-
-.mc-messages {
-  flex: 1;
-  overflow-y: auto;
-  padding: 12px 8px;
-  min-height: 260px;
-}
-
-.mc-message {
-  width: fit-content;
-  max-width: 92%;
-  margin: 8px 0;
-  padding: 9px 11px 5px;
-  border-radius: 9px;
-  background: #25352b;
-  overflow-wrap: anywhere;
-  font-family: Arial, sans-serif;
-  font-size: 13px;
-  line-height: 1.5;
-  box-shadow: 0 2px 4px #0002;
-}
-
-.mc-message.mine {
-  margin-left: auto;
-  background: #245b3b;
-}
-
-.mc-message.system {
-  margin: 14px auto;
-  background: #352b22;
-  color: #ffd9a0;
-  border: 1px solid #735a39;
-  text-align: center;
-  font-family: Consolas, monospace;
-  font-size: 11px;
-}
-
-.mc-time {
-  display: block;
-  margin-top: 4px;
-  text-align: right;
-  color: #afc5b5;
-  font-size: 9px;
-}
-
-.mc-controls {
-  padding: 9px;
-  background: #17231b;
-  border-top: 1px solid #34433a;
-}
-
-.mc-controls button {
-  width: 100%;
-  border-color: #3c8a58;
-}
-
-.mc-note {
-  padding: 8px;
-  color: #a5b4a9;
-  font-size: 10px;
-  text-align: center;
-}
-
-#mundochat-window.mc-infected {
-  animation: mc-glitch .25s steps(2, end) 3;
-  border-color: #ff4258;
-}
-
-#mundochat-window.mc-infected .mc-chat {
-  background-color: #190d12;
-  background-image: radial-gradient(#4c1725 0.7px, transparent 0.7px);
-}
-
-#mundochat-window.mc-infected .mc-chat-header { background: #35131c; }
-#mundochat-window.mc-infected .mc-heading { color: #ff7585; }
-
-#mundochat-window.mc-infected .mc-message.system {
-  background: #400e19;
-  border-color: #ff4258;
-  color: #ffb3bd;
-}
-
-@keyframes mc-glitch {
-  0% { transform: translate(0); filter: none; }
-  25% { transform: translate(3px, -1px); filter: hue-rotate(60deg); }
-  50% { transform: translate(-3px, 1px); filter: contrast(1.7); }
-  100% { transform: translate(0); filter: none; }
-}
+.taskbar-name { color: var(--green); }
 
 @media (max-width: 480px) {
-  main { margin: 25px auto; }
-  h1 { letter-spacing: 3px; }
-  .desktop { padding: 10px; }
-  .window-content { padding: 10px; }
-  .paper { padding: 16px; min-height: 240px; }
-  .terminal-content { padding: 12px; }
-  .mc-app { grid-template-columns: 105px minmax(0, 1fr); }
-  .mc-contact { flex-direction: column; align-items: flex-start; }
-  .mc-messages { padding: 8px 5px; }
-  .mc-message { max-width: 98%; font-size: 12px; }
+    .desktop { padding: 15px 10px; }
+    .desktop-icons { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .file-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .window-content { padding: 12px; }
+    .taskbar { font-size: 10px; }
 }
+
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        Animation-duration: .01ms !important;
+        Animation-iteration-count: 1 !important;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header id=”home-header”>
+    ARQUIVO CONFIDENCIAL // MUNDO G
+</header>
+
+<main id=”home”>
+    <p class=”warning”>⚠ SINAL INSTÁVEL</p>
+    <h1>O PROJETO</h1>
+    <p class=”subtitle”>
+        Nem tudo o que desaparece deixa de existir.
+    </p>
+    <button id=”enter-button”>ENTRAR NO ARQUIVO</button>
+    <p id=”secret-message” hidden>
+        ERRO 001: NÃO DEVIA ESTAR AQUI.
+    </p>
+</main>
+
+<footer id=”home-footer”>
+    REGISTO 001 // FICHEIRO INCOMPLETO
+</footer>
+
+<section id=”terminal” hidden>
+    <div class=”terminal-header”>
+        MUNDO G // TERMINAL DE EMERGÊNCIA
+    </div>
+    <div id=”terminal-output”></div>
+    <span class=”cursor” id=”terminal-cursor”></span>
+    <br>
+    <button id=”open-files” hidden>
+        ABRIR EXPLORADOR DE FICHEIROS
+    </button>
+</section>
+
+<section id=”computer” hidden>
+    <div class=”desktop-top”>
+        <span class=”computer-name”>◈ MUNDO G OS</span>
+        <span>UTILIZADOR: DESCONHECIDO</span>
+        <span>ESTADO: <span style=”color:#55f5a5”>ONLINE</span></span>
+    </div>
+
+    <div class=”desktop”>
+        <p class=”desktop-title”>AMBIENTE DE TRABALHO / DESKTOP</p>
+
+        <div class=”desktop-icons”>
+            <button class=”desktop-icon” id=”desktop-folder”>
+                <span class=”emoji”>📁</span>
+                O_PROJETO
+            </button>
+
+            <button class=”desktop-icon” id=”desktop-system”>
+                <span class=”emoji”>🖥️</span>
+                Sistema
+            </button>
+
+            <button class=”desktop-icon” id=”desktop-recycle”>
+                <span class=”emoji”>🗑️</span>
+                Reciclagem
+            </button>
+        </div>
+
+        <div class=”window” id=”explorer”>
+            <div class=”window-title”>
+                <span>📁 Explorador de Ficheiros</span>
+                <span>□ ×</span>
+            </div>
+
+            <div class=”window-content”>
+                <div class=”path” id=”file-path”>
+                    Este computador / Arquivos / O_PROJETO
+                </div>
+
+                <p style=”color:#8e94aa;font-size:12px”>
+                    FICHEIROS RECUPERADOS: 8 DOCUMENTOS
+                </p>
+
+                <div class=”file-grid” id=”file-grid”></div>
+            </div>
+
+            <div class=”status-bar”>
+                <span id=”file-count”>8 itens</span>
+                <span>ACESSO RESTRITO</span>
+            </div>
+        </div>
+
+        <div class=”window” id=”document-window” hidden>
+            <div class=”window-title”>
+                <span id=”document-title”>📄 documento.txt</span>
+                <button id=”close-document” aria-label=”Fechar documento”>×</button>
+            </div>
+
+            <div class=”window-content”>
+                <p class=”doc-label”>DOCUMENTO CONFIDENCIAL</p>
+                <p id=”document-text”></p>
+                <p class=”doc-warning” id=”document-warning”></p>
+            </div>
+
+            <div class=”status-bar”>
+                <span>CODIFICAÇÃO: UTF-8</span>
+                <span id=”document-status”>FICHEIRO LIDO</span>
+            </div>
+        </div>
+
+        <div class=”window” id=”system-window” hidden>
+            <div class=”window-title”>
+                <span>🖥️ Informações do Sistema</span>
+                <button data-close=”system-window”>×</button>
+            </div>
+            <div class=”window-content”>
+                SISTEMA: MUNDO G OS
+                <br><br>
+                ESTADO DO ARQUIVO: INSTÁVEL
+                <br><br>
+                FICHEIROS RECUPERADOS: 8
+                <br><br>
+                PROCESSO DESCONHECIDO: EM EXECUÇÃO
+                <br><br>
+                <span class=”doc-warning”>AVISO: EXISTE UM PROCESSO QUE NÃO PODE SER TERMINADO.</span>
+            </div>
+        </div>
+
+        <div class=”window” id=”recycle-window” hidden>
+            <div class=”window-title”>
+                <span>🗑️ Reciclagem</span>
+                <button data-close=”recycle-window”>×</button>
+            </div>
+            <div class=”window-content”>
+                <p>Nenhum ficheiro eliminado.</p>
+                <p class=”doc-warning”>Ou será que os ficheiros foram apagados antes de chegares?</p>
+            </div>
+        </div>
+    </div>
+
+    <div class=”taskbar”>
+        <span class=”taskbar-name”>◈ MUNDO G OS</span>
+        <button id=”taskbar-folder”>📁 O_PROJETO</button>
+        <span id=”clock”>SISTEMA ATIVO</span>
+    </div>
+</section>
+
+<div id=”alert” hidden role=”status” aria-live=”polite”>
+    <strong id=”alert-title”>⚠ ALERTA DO SISTEMA</strong>
+    <p id=”alert-text”></p>
+    <button id=”close-alert”>FECHAR ALERTA</button>
+</div>
+
+<script>
+Const $ = id => document.getElementById(id);
+
+Const characterFiles = [
+    {
+        Name: “Carolina”,
+        Icon: “📄”,
+        File: “CAROLINA.txt”,
+        Status: “FICHEIRO RECUPERADO”,
+        Text: “NOME: Carolina\nESTADO: EM OBSERVAÇÃO\nREGISTO: A ligação ao Algorithmus foi detetada.\n\nNOTA: Ela confia nos amigos. Ainda não compreende tudo o que está a acontecer.”,
+        Warning: “ANOMALIA: FORAM DETETADOS DADOS QUE NÃO CONSTAM DO REGISTO ORIGINAL.”
+    },
+    {
+        Name: “Leonor”,
+        Icon: “📄”,
+        File: “LEONOR.txt”,
+        Status: “ACESSO PARCIAL”,
+        Text: “NOME: Leonor\nESTADO: DESCONHECIDO\nREGISTO: O acesso a este documento foi limitado.\n\nNOTA: Existem informações sobre esta pessoa que não podem ser apresentadas.”,
+        Warning: “ERRO 403: ALGUMAS INFORMAÇÕES FORAM OCULTADAS.”
+    },
+    {
+        Name: “Professor”,
+        Icon: “📄”,
+        File: “PROFESSOR.txt”,
+        Status: “FICHEIRO RECUPERADO”,
+        Text: “IDENTIFICAÇÃO: PROFESSOR\nESTADO: SOB INVESTIGAÇÃO\nREGISTO: Foi encontrada uma ligação entre o Professor e o Algorithmus.\n\nNOTA: O conteúdo completo deste registo permanece por confirmar.”,
+        Warning: “AVISO: EXISTEM REGISTOS ADICIONAIS NOUTRA LOCALIZAÇÃO.”
+    },
+    {
+        Name: “Bia”,
+        Icon: “📄”,
+        File: “BIA.txt”,
+        Status: “FICHEIRO RECUPERADO”,
+        Text: “NOME: Bia\nESTADO: ATIVO\nREGISTO: Possui informações que nem todos conhecem.\n\nNOTA: Algumas ligações familiares permanecem confidenciais.”,
+        Warning: “ACESSO RESTRITO: REGISTO FAMILIAR PROTEGIDO.”
+    },
+    {
+        Name: “Juw”,
+        Icon: “📄”,
+        File: “JUW.txt”,
+        Status: “FICHEIRO RECUPERADO”,
+        Text: “NOME: Juw\nESTADO: ATIVO\nREGISTO: Capacidade identificada: telecinese.\n\nNOTA: A utilizadora demonstrou capacidade de intervir em situações perigosas.”,
+        Warning: “REGISTO INCOMPLETO.”
+    },
+    {
+        Name: “Miriam”,
+        Icon: “📄”,
+        File: “MIRIAM.txt”,
+        Status: “FICHEIRO RECUPERADO”,
+        Text: “NOME: Miriam\nESTADO: ATIVO\nREGISTO: Nova aluna. Ligação familiar a Bia.\n\nCAPACIDADE IDENTIFICADA: PORTAIS.\n\nNOTA: A sua chegada alterou os acontecimentos no grupo.”,
+        Warning: “REGISTO INCOMPLETO.”
+    },
+    {
+        Name: “Isa”,
+        Icon: “📄”,
+        File: “ISA.txt”,
+        Status: “FICHEIRO RECUPERADO”,
+        Text: “NOME: Isa\nESTADO: ATIVO\nREGISTO: Capacidade identificada: invisibilidade.\n\nNOTA: A informação disponível sobre este ficheiro é limitada.”,
+        Warning: “REGISTO INCOMPLETO.”
+    },
+    {
+        Name: “Bem”,
+        Icon: “📄”,
+        File: “BEM.txt”,
+        Status: “FICHEIRO RECUPERADO”,
+        Text: “NOME: Bem\nESTADO: ATIVO\nREGISTO: Identificado como fantasma visível.\n\nNOTA: A sua presença foi registada no grupo.”,
+        Warning: “REGISTO INCOMPLETO.”
+    }
+];
+
+Const alerts = [
+    {
+        Title: “⚠ ANOMALIA DETETADA”,
+        Text: “Foi encontrado um processo desconhecido a ler os ficheiros.”
+    },
+    {
+        Title: “⚠ FICHEIRO ALTERADO”,
+        Text: “Um documento foi modificado depois de ter sido guardado.”
+    },
+    {
+        Title: “⚠ ACESSO DESCONHECIDO”,
+        Text: “Uma sessão desconhecida está ativa neste computador.”
+    },
+    {
+        Title: “⚠ AVISO DO ALGORITHMUS”,
+        Text: “Não feches o ficheiro. Ainda não terminei de ler.”
+    },
+    {
+        Title: “⚠ ERRO 001”,
+        Text: “O registo diz que estás sozinho. Então quem abriu esta janela?”
+    }
+];
+
+Let timers = [];
+Let alertTimer;
+Let clockTimer;
+Let usedAlerts = [];
+Let currentCharacter = null;
+
+Function later(fn, ms) {
+    Const id = setTimeout(fn, ms);
+    Timers.push(id);
+    Return id;
+}
+
+Function wait(ms) {
+    Return new Promise(resolve => later(resolve, ms));
+}
+
+Const terminalMessages = [
+    [“> A ANALISAR FICHEIRO…”, false],
+    [“> A LIGAR AO SERVIDOR DO MUNDO G…”, false],
+    [“> ERRO: SINAL DESCONHECIDO.”, false],
+    [“> ANOMALIA DETETADA.”, false],
+    [“> ALGORITHMUS: PRESENTE”, true],
+    [“> O ARQUIVO FOI COMPROMETIDO.”, true],
+    [“> A RECUPERAR DOCUMENTOS…”, false],
+    [“> DOCUMENTOS RECUPERADOS: 8”, false],
+    [“> NÃO DEVIA TERES ENTRADO.”, true],
+    [“> A ABRIR EXPLORADOR DE FICHEIROS…”, true]
+];
+
+Async function typeLine(text, danger) {
+    Const line = document.createElement(“div”);
+    If (danger) line.classList.add(“danger”);
+    $(“terminal-output”).appendChild(line);
+
+    For (const char of text) {
+        Line.textContent += char;
+        Await wait(24);
+    }
+
+    Await wait(350);
+}
+
+$(“enter-button”).addEventListener(“click”, async () => {
+    $(“enter-button”).disabled = true;
+    $(“secret-message”).hidden = false;
+    Document.body.classList.add(“glitching”);
+
+    Await wait(2200);
+
+    Document.body.classList.remove(“glitching”);
+    $(“home”).hidden = true;
+    $(“home-header”).hidden = true;
+    $(“home-footer”).hidden = true;
+    $(“terminal”).hidden = false;
+
+    For (const item of terminalMessages) {
+        Await typeLine(item[0], item[1]);
+    }
+
+    $(“terminal-cursor”).hidden = true;
+    $(“open-files”).hidden = false;
+});
+
+$(“open-files”).addEventListener(“click”, () => {
+    $(“terminal”).hidden = true;
+    $(“computer”).hidden = false;
+    renderFiles();
+    startClock();
+    scheduleAlert();
+});
+
+Function renderFiles() {
+    Const grid = $(“file-grid”);
+    Grid.textContent = “”;
+
+    characterFiles.forEach(character => {
+        const btn = document.createElement(“button”);
+        btn.className = “file”;
+
+        const icon = document.createElement(“span”);
+        icon.className = “emoji”;
+        icon.textContent = character.icon;
+
+        const name = document.createElement(“span”);
+        name.textContent = character.file;
+
+        const small = document.createElement(“small”);
+        small.textContent = “Documento de texto”;
+
+        btn.append(icon, name, small);
+        btn.addEventListener(“click”, () => openDocument(character));
+        grid.appendChild(btn);
+    });
+}
+
+Function openDocument(character) {
+    currentCharacter = character;
+
+    $(“document-title”).textContent = “📄 “ + character.file;
+    $(“document-text”).textContent = character.text;
+    $(“document-warning”).textContent = character.warning;
+    $(“document-status”).textContent = character.status;
+    $(“document-window”).hidden = false;
+
+    // Pequena hipótese de o Algorithmus reagir à abertura de um ficheiro.
+    If (Math.random() < 0.3) {
+        Later(showRandomAlert, 700);
+    }
+}
+
+$(“close-document”).addEventListener(“click”, () => {
+    $(“document-window”).hidden = true;
+});
+
+$(“desktop-folder”).addEventListener(“click”, () => {
+    $(“explorer”).hidden = false;
+});
+
+$(“taskbar-folder”).addEventListener(“click”, () => {
+    $(“explorer”).hidden = false;
+});
+
+$(“desktop-system”).addEventListener(“click”, () => {
+    $(“system-window”).hidden = false;
+});
+
+$(“desktop-recycle”).addEventListener(“click”, () => {
+    $(“recycle-window”).hidden = false;
+});
+
+Document.querySelectorAll(“[data-close]”).forEach(btn => {
+    Btn.addEventListener(“click”, () => {
+        $(btn.dataset.close).hidden = true;
+    });
+});
+
+Function showRandomAlert() {
+    If ($(“computer”).hidden || !$(“alert”).hidden) return;
+
+    Let available = alerts.filter((_, i) => !usedAlerts.includes(i));
+
+    If (available.length === 0) {
+        usedAlerts = [];
+        available = alerts;
+    }
+
+    Const chosen = available[Math.floor(Math.random() * available.length)];
+    Const index = alerts.indexOf(chosen);
+    usedAlerts.push(index);
+
+    $(“alert-title”).textContent = chosen.title;
+    $(“alert-text”).textContent
+
 </style>
 </head>
 
