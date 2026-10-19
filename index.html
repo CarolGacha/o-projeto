@@ -7,826 +7,512 @@
 <title>O PROJETO | Arquivo Confidencial</title>
 
 <style>
-
-<!DOCTYPE html>
-<html lang=”pt-PT”>
-<head>
-<meta charset=”UTF-8”>
-<meta name=”viewport” content=”width=device-width, initial-scale=1.0”>
-<title>O Projeto | Sistema Confidencial</title>
-
-<style>
-•	{ box-sizing: border-box; }
-
 :root {
-    --bg: #080910;
-    --panel: #11131e;
-    --panel2: #191c2b;
-    --line: #34394d;
-    --text: #e8e9f4;
-    --muted: #8e94aa;
-    --pink: #ff496c;
-    --green: #55f5a5;
-    --purple: #9b8cff;
+  --bg: #080910;
+  --panel: #11131e;
+  --panel2: #1b1e2d;
+  --line: #34394d;
+  --text: #e8e9f4;
+  --muted: #9298ad;
+  --pink: #ff496c;
+  --green: #55f5a5;
+  --purple: #9b8cff;
 }
 
-[hidden] { display: none !important; }
+* { box-sizing: border-box; }
 
-Body {
-    Margin: 0;
-    Min-height: 100vh;
-    Background: var(--bg);
-    Color: var(--text);
-    Font-family: monospace;
-    Overflow-x: hidden;
+[hidden], .hidden { display: none !important; }
+
+html, body {
+  margin: 0;
+  min-height: 100%;
+  background: var(--bg);
+  color: var(--text);
+  font-family: Consolas, "Courier New", monospace;
 }
 
-Button, input { font: inherit; }
+body { min-height: 100vh; overflow-x: hidden; }
+button { font: inherit; }
 
-Button {
-    Color: var(--text);
-    Background: var(--panel2);
-    Border: 1px solid var(--line);
-    Padding: 10px 14px;
-    Cursor: pointer;
+button {
+  color: var(--text);
+  background: var(--panel2);
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  padding: 10px 13px;
+  cursor: pointer;
 }
 
-Button:hover {
-    Border-color: var(--pink);
-    Background: #252034;
+button:hover {
+  border-color: var(--pink);
+  background: #252034;
 }
 
-Button:focus-visible {
-    Outline: 2px solid var(--green);
-    Outline-offset: 3px;
+button:focus-visible {
+  outline: 2px solid var(--green);
+  outline-offset: 3px;
 }
 
-Header, footer {
-    Padding: 18px 12px;
-    Text-align: center;
-    Color: var(--muted);
-    Font-size: 11px;
-    Letter-spacing: 2px;
+button:disabled { opacity: .55; cursor: not-allowed; }
+
+.screen { min-height: 100vh; width: 100%; }
+
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 18px 22px;
+  color: var(--muted);
+  font-size: 11px;
+  letter-spacing: 2px;
+  border-bottom: 1px solid #242638;
 }
 
-Main#home {
-    Min-height: 70vh;
-    Display: flex;
-    Flex-direction: column;
-    Justify-content: center;
-    Align-items: center;
-    Text-align: center;
-    Padding: 24px;
+.hero {
+  min-height: 80vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 30px 20px 70px;
 }
 
-.warning {
-    Color: var(--pink);
-    Letter-spacing: 3px;
-    Animation: flicker 2s infinite;
+.eyebrow {
+  color: var(--pink);
+  letter-spacing: 3px;
+  font-size: 12px;
+  animation: flicker 2s infinite;
 }
 
-H1 {
-    Font-size: clamp(36px, 10vw, 68px);
-    Letter-spacing: 5px;
-    Text-shadow: 3px 0 var(--pink), -3px 0 #5948ff;
+h1 {
+  margin: 16px 0;
+  font-size: clamp(42px, 10vw, 86px);
+  letter-spacing: clamp(3px, 1vw, 9px);
+  text-shadow: 3px 0 var(--pink), -3px 0 #5948ff;
 }
 
 .subtitle {
-    Color: #aaa5bd;
-    Line-height: 1.8;
-    Max-width: 330px;
+  color: #aaa5bd;
+  line-height: 1.8;
+  max-width: 420px;
 }
 
 #enter-button {
-    Margin-top: 24px;
-    Padding: 16px 20px;
-    Color: var(--pink);
-    Border-color: var(--pink);
-    Letter-spacing: 2px;
+  margin-top: 25px;
+  padding: 16px 22px;
+  border-color: var(--pink);
+  color: var(--pink);
+  letter-spacing: 2px;
 }
 
-#secret-message {
-    Color: var(--pink);
-    Line-height: 1.8;
-}
-
-/* GLITCH */
-
-Body.glitching {
-    Animation: screen-glitch .12s steps(2, end) infinite;
-}
-
-Body.glitching #home {
-    Animation: content-glitch .12s steps(2, end) infinite;
-}
-
-Body.glitching::after {
-    Content: “”;
-    Position: fixed;
-    Inset: 0;
-    z-index: 9999;
-    pointer-events: none;
-    background: repeating-linear-gradient(
-        to bottom,
-        transparent 0 3px,
-        rgba(255,49,88,.25) 4px,
-        transparent 5px
-    );
-}
-
-@keyframes screen-glitch {
-    25% { transform: translate(4px,-2px); filter: hue-rotate(90deg); }
-    50% { transform: translate(-4px,2px); filter: invert(.15); }
-    75% { transform: translate(2px,1px); filter: hue-rotate(-90deg); }
-}
-
-@keyframes content-glitch {
-    33% { transform: translateX(8px); clip-path: inset(20% 0 55% 0); }
-    66% { transform: translateX(-8px); clip-path: inset(60% 0 10% 0); }
-}
+.secret { color: var(--muted); font-size: 12px; margin-top: 26px; }
 
 @keyframes flicker {
-    0%, 19%, 21%, 100% { opacity: 1; }
-    20%, 60% { opacity: .65; }
+  0%, 19%, 21%, 100% { opacity: 1; }
+  20%, 60% { opacity: .6; }
+}
+
+body.glitching { animation: glitch .12s steps(2, end) 5; }
+
+body.glitching::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9999;
+  background: repeating-linear-gradient(
+    to bottom, transparent 0 3px,
+    rgba(255,49,88,.2) 4px, transparent 5px
+  );
+}
+
+@keyframes glitch {
+  25% { transform: translate(3px,-2px); filter: hue-rotate(60deg); }
+  50% { transform: translate(-3px,2px); }
+  75% { transform: translate(2px,1px); filter: hue-rotate(-60deg); }
 }
 
 /* TERMINAL */
 
 #terminal {
-    Position: fixed;
-    Inset: 0;
-    z-index: 1000;
-    background: #020503;
-    color: var(--green);
-    padding: 26px 20px;
-    overflow: auto;
+  background: #020503;
+  color: var(--green);
+  padding: 22px;
 }
 
-.terminal-header {
-    Border-bottom: 1px solid #23683d;
-    Padding-bottom: 14px;
-    Margin-bottom: 24px;
-    Font-size: 12px;
-    Letter-spacing: 2px;
+.terminal-window {
+  max-width: 900px;
+  margin: 6vh auto;
+  min-height: 65vh;
+  border: 1px solid #23683d;
+  background: #030704;
+  box-shadow: 0 0 35px #55f5a51a;
+  padding: 18px;
 }
 
-#terminal-output {
-    White-space: pre-wrap;
-    Overflow-wrap: anywhere;
-    Line-height: 1.9;
-    Font-size: 13px;
+.terminal-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  border-bottom: 1px solid #23683d;
+  padding-bottom: 14px;
+  margin-bottom: 18px;
+  font-size: 12px;
+  letter-spacing: 2px;
 }
 
-.danger { color: var(--pink); }
+.terminal-output {
+  min-height: 300px;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  line-height: 1.9;
+  font-size: 13px;
+}
+
+.terminal-output p { margin: 7px 0; }
 
 #open-files {
-    Margin-top: 24px;
-    Color: var(--green);
-    Border-color: var(--green);
+  color: var(--green);
+  border-color: var(--green);
+  margin-top: 10px;
 }
 
-.cursor {
-    Display: inline-block;
-    Width: 8px;
-    Height: 15px;
-    Background: var(--green);
-    Animation: blink .7s steps(2,end) infinite;
-}
-
-@keyframes blink { 50% { opacity: 0; } }
-
-/* COMPUTADOR */
+/* AMBIENTE DE TRABALHO */
 
 #computer {
-    Min-height: 100vh;
-    Background:
-        Radial-gradient(ellipse at 50% 0%, #22203b 0%, transparent 65%),
-        #090ª12;
-    Padding-bottom: 60px;
+  position: relative;
+  min-height: 100vh;
+  padding-bottom: 70px;
+  background:
+    radial-gradient(ellipse at 50% 0%, #282044 0%, #101323 45%, #080910 100%);
 }
 
-.desktop-top {
-    Display: flex;
-    Justify-content: space-between;
-    Align-items: center;
-    Gap: 10px;
-    Flex-wrap: wrap;
-    Padding: 14px 18px;
-    Background: rgba(9,10,18,.9);
-    Border-bottom: 1px solid var(--line);
-    Font-size: 12px;
-}
-
-.computer-name {
-    Color: var(--green);
-    Letter-spacing: 2px;
-}
-
-.desktop {
-    Padding: 24px 18px;
-    Max-width: 1000px;
-    Margin: auto;
-}
-
-.desktop-title {
-    Color: var(--muted);
-    Font-size: 11px;
-    Letter-spacing: 2px;
+.desktop-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  padding: 13px 20px;
+  background: #090a12ef;
+  border-bottom: 1px solid var(--line);
+  color: var(--muted);
+  font-size: 12px;
 }
 
 .desktop-icons {
-    Display: grid;
-    Grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
-    Gap: 14px;
-    Margin: 24px 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(95px, 115px));
+  gap: 12px;
+  padding: 24px;
+  align-content: start;
 }
 
 .desktop-icon {
-    Padding: 15px 8px;
-    Background: transparent;
-    Border: 1px solid transparent;
-    Text-align: center;
-    Overflow-wrap: anywhere;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  min-height: 90px;
+  background: transparent;
+  border-color: transparent;
+  text-align: center;
+  overflow-wrap: anywhere;
 }
 
-.desktop-icon .emoji {
-    Display: block;
-    Font-size: 32px;
-    Margin-bottom: 10px;
-}
+.big-icon { font-size: 32px; }
 
 .window {
-    Border: 1px solid #41465e;
-    Background: #11131e;
-    Box-shadow: 0 15px 50px #0008;
-    Margin: 20px 0;
+  width: min(760px, calc(100% - 28px));
+  margin: 8px auto 24px;
+  border: 1px solid #41465e;
+  background: var(--panel);
+  box-shadow: 0 15px 50px #0008;
 }
 
 .window-title {
-    Display: flex;
-    Justify-content: space-between;
-    Align-items: center;
-    Gap: 10px;
-    Padding: 12px;
-    Background: #222439;
-    Border-bottom: 1px solid var(--line);
-    Font-size: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 11px 13px;
+  background: #222439;
+  border-bottom: 1px solid var(--line);
+  font-size: 12px;
 }
 
-.window-content {
-    Padding: 16px;
+.window-title button { padding: 4px 10px; }
+.window-content { padding: 16px; }
+
+.muted {
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.7;
 }
 
-.path {
-    Color: var(--muted);
-    Overflow-wrap: anywhere;
-    Font-size: 12px;
-    Padding-bottom: 14px;
-    Border-bottom: 1px solid var(--line);
+#file-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 8px;
+  margin-top: 14px;
 }
 
-.file-grid {
-    Display: grid;
-    Grid-template-columns: repeat(auto-fit, minmax(115px, 1fr));
-    Gap: 8px;
-    Margin-top: 16px;
-}
-
-.file {
-    Padding: 14px 8px;
-    Background: transparent;
-    Border: 1px solid transparent;
-    Text-align: center;
-    Overflow-wrap: anywhere;
-}
-
-.file:hover {
-    Background: #232337;
-    Border-color: #494765;
-}
-
-.file .emoji {
-    Display: block;
-    Font-size: 27px;
-    Margin-bottom: 9px;
-}
-
-.file small {
-    Display: block;
-    Color: var(--muted);
-    Margin-top: 6px;
-    Font-size: 10px;
-}
-
-.status-bar {
-    Display: flex;
-    Justify-content: space-between;
-    Gap: 10px;
-    Flex-wrap: wrap;
-    Padding: 10px 14px;
-    Color: var(--muted);
-    Border-top: 1px solid var(--line);
-    Font-size: 11px;
-}
+.file-entry { text-align: left; overflow-wrap: anywhere; }
 
 #document-text {
-    White-space: pre-wrap;
-    Overflow-wrap: anywhere;
-    Line-height: 1.9;
-    Font-size: 13px;
-    Min-height: 130px;
+  min-height: 220px;
+  max-height: 50vh;
+  overflow: auto;
+  padding: 15px;
+  border: 1px solid var(--line);
+  background: #090b13;
+  color: var(--text);
+  line-height: 1.8;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  outline: none;
 }
 
-.doc-label {
-    Color: var(--green);
-    Font-size: 11px;
-    Letter-spacing: 2px;
+#document-text:focus { border-color: var(--green); }
+
+.editor-toolbar, .editor-footer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+  align-items: center;
+  padding: 10px 0;
 }
 
-.doc-warning {
-    Color: var(--pink);
+.editor-footer {
+  justify-content: space-between;
+  color: var(--muted);
+  font-size: 11px;
 }
 
-#alert {
-    Position: fixed;
-    z-index: 2000;
-    right: 16px;
-    bottom: 75px;
-    width: min(340px, calc(100vw – 32px));
-    padding: 16px;
-    background: #1b101b;
-    border: 1px solid var(--pink);
-    box-shadow: 0 0 25px #ff174433;
-    animation: alert-in .25s ease-out;
-}
-
-#alert strong {
-    Display: block;
-    Color: var(--pink);
-    Margin-bottom: 10px;
-    Letter-spacing: 1px;
-}
-
-#alert p {
-    Line-height: 1.6;
-    Font-size: 12px;
-}
-
-#alert button {
-    Border-color: var(--pink);
-    Color: var(--pink);
-}
-
-@keyframes alert-in {
-    From { opacity: 0; transform: translateY(12px); }
-    To { opacity: 1; transform: translateY(0); }
-}
+/* BARRA INFERIOR */
 
 .taskbar {
-    Position: fixed;
-    z-index: 1500;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    min-height: 48px;
-    background: #11121deF;
-    border-top: 1px solid var(--line);
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 10px;
-    padding: 7px 12px;
-    font-size: 11px;
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  min-height: 52px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 12px;
+  background: #11121df2;
+  border-top: 1px solid var(--line);
 }
 
-.taskbar button {
-    Padding: 7px 10px;
+.taskbar button { padding: 7px 10px; }
+
+#taskbar-status {
+  margin-left: auto;
+  color: var(--green);
+  font-size: 10px;
+  letter-spacing: 1px;
 }
 
-.taskbar-name { color: var(--green); }
+/* NOTIFICAÇÕES */
 
-@media (max-width: 480px) {
-    .desktop { padding: 15px 10px; }
-    .desktop-icons { grid-template-columns: repeat(3, minmax(0, 1fr)); }
-    .file-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-    .window-content { padding: 12px; }
-    .taskbar { font-size: 10px; }
+.alert-toast {
+  position: fixed;
+  z-index: 2000;
+  right: 16px;
+  bottom: 68px;
+  width: min(340px, calc(100vw - 32px));
+  padding: 15px;
+  background: #1b101b;
+  border: 1px solid var(--pink);
+  box-shadow: 0 0 25px #ff174433;
+  line-height: 1.6;
+  font-size: 12px;
+  animation: toast-in .2s ease-out;
+}
+
+.alert-toast:empty { display: none !important; }
+
+@keyframes toast-in {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* MUNDOCHAT */
+
+.mc-app {
+  display: grid;
+  grid-template-columns: 220px minmax(0, 1fr);
+  min-height: 430px;
+}
+
+.mc-sidebar {
+  background: #0c0e17;
+  border-right: 1px solid var(--line);
+  padding: 10px;
+}
+
+.mc-heading {
+  display: flex;
+  justify-content: space-between;
+  padding: 8px 5px 14px;
+}
+
+.mc-contact {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  gap: 9px;
+  padding: 9px 7px;
+  text-align: left;
+  border-color: transparent;
+  background: transparent;
+  margin-bottom: 4px;
+}
+
+.mc-contact.active {
+  background: #252238;
+  border-color: #4b416b;
+}
+
+.mc-avatar {
+  display: inline-flex;
+  width: 32px;
+  height: 32px;
+  flex: 0 0 32px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: #25283b;
+  font-size: 18px;
+}
+
+.mc-contact-info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+}
+
+.mc-contact-info strong { font-size: 11px; }
+
+.mc-contact-info small {
+  font-size: 10px;
+  color: var(--muted);
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.mc-chat { min-width: 0; display: flex; flex-direction: column; }
+
+.mc-chat-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px;
+  border-bottom: 1px solid var(--line);
+}
+
+.mc-chat-header div { display: flex; flex-direction: column; gap: 4px; }
+.mc-chat-header strong { font-size: 12px; }
+.mc-chat-header small { color: var(--muted); font-size: 10px; }
+
+.mc-messages {
+  flex: 1;
+  min-height: 250px;
+  max-height: 430px;
+  overflow: auto;
+  padding: 13px;
+  background: radial-gradient(ellipse at top, #191a2a, #0d0f18);
+}
+
+.mc-note {
+  text-align: center;
+  color: var(--muted);
+  font-size: 10px;
+  padding: 8px;
+  line-height: 1.6;
+}
+
+.mc-message {
+  width: fit-content;
+  max-width: 90%;
+  margin: 10px 0;
+  padding: 10px 12px;
+  border: 1px solid #35394f;
+  background: #1b1e2d;
+  border-radius: 8px;
+  font-size: 12px;
+  line-height: 1.6;
+  overflow-wrap: anywhere;
+}
+
+.mc-message.mine {
+  margin-left: auto;
+  border-color: #3e6658;
+  background: #142820;
+}
+
+.mc-message.system {
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  border-color: #674052;
+  background: #24131f;
+  color: #ff9ab0;
+}
+
+.mc-sender {
+  display: block;
+  color: var(--purple);
+  font-size: 10px;
+  margin-bottom: 4px;
+}
+
+.mc-time {
+  display: block;
+  text-align: right;
+  color: var(--muted);
+  font-size: 9px;
+  margin-top: 5px;
+}
+
+.mc-controls { padding: 11px; border-top: 1px solid var(--line); }
+#mc-hint { color: var(--muted); font-size: 10px; line-height: 1.5; }
+#mc-next { width: 100%; color: var(--green); border-color: #32694f; }
+.mc-infected .mc-chat-header { animation: flicker .35s 3; }
+
+@media (max-width: 600px) {
+  .topbar { font-size: 9px; padding: 14px 12px; }
+  .desktop-icons { grid-template-columns: repeat(3, minmax(0, 1fr)); padding: 15px 8px; }
+  .window-content { padding: 11px; }
+  .mc-app { grid-template-columns: 105px minmax(0, 1fr); }
+  .mc-sidebar { padding: 5px; }
+  .mc-contact { flex-direction: column; text-align: center; }
+  .mc-contact-info small { display: none; }
+  .mc-contact-info strong { font-size: 9px; }
+  .taskbar { gap: 5px; padding: 6px; }
+  .taskbar button { padding: 7px 6px; font-size: 10px; }
+  #taskbar-status { display: none; }
 }
 
 @media (prefers-reduced-motion: reduce) {
-    *, *::before, *::after {
-        Animation-duration: .01ms !important;
-        Animation-iteration-count: 1 !important;
-    }
+  *, *::before, *::after {
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+  }
 }
 </style>
 </head>
-
 <body>
 
-<header id=”home-header”>
-    ARQUIVO CONFIDENCIAL // MUNDO G
-</header>
-
-<main id=”home”>
-    <p class=”warning”>⚠ SINAL INSTÁVEL</p>
-    <h1>O PROJETO</h1>
-    <p class=”subtitle”>
-        Nem tudo o que desaparece deixa de existir.
-    </p>
-    <button id=”enter-button”>ENTRAR NO ARQUIVO</button>
-    <p id=”secret-message” hidden>
-        ERRO 001: NÃO DEVIA ESTAR AQUI.
-    </p>
-</main>
-
-<footer id=”home-footer”>
-    REGISTO 001 // FICHEIRO INCOMPLETO
-</footer>
-
-<section id=”terminal” hidden>
-    <div class=”terminal-header”>
-        MUNDO G // TERMINAL DE EMERGÊNCIA
-    </div>
-    <div id=”terminal-output”></div>
-    <span class=”cursor” id=”terminal-cursor”></span>
-    <br>
-    <button id=”open-files” hidden>
-        ABRIR EXPLORADOR DE FICHEIROS
-    </button>
-</section>
-
-<section id=”computer” hidden>
-    <div class=”desktop-top”>
-        <span class=”computer-name”>◈ MUNDO G OS</span>
-        <span>UTILIZADOR: DESCONHECIDO</span>
-        <span>ESTADO: <span style=”color:#55f5a5”>ONLINE</span></span>
-    </div>
-
-    <div class=”desktop”>
-        <p class=”desktop-title”>AMBIENTE DE TRABALHO / DESKTOP</p>
-
-        <div class=”desktop-icons”>
-            <button class=”desktop-icon” id=”desktop-folder”>
-                <span class=”emoji”>📁</span>
-                O_PROJETO
-            </button>
-
-            <button class=”desktop-icon” id=”desktop-system”>
-                <span class=”emoji”>🖥️</span>
-                Sistema
-            </button>
-
-            <button class=”desktop-icon” id=”desktop-recycle”>
-                <span class=”emoji”>🗑️</span>
-                Reciclagem
-            </button>
-        </div>
-
-        <div class=”window” id=”explorer”>
-            <div class=”window-title”>
-                <span>📁 Explorador de Ficheiros</span>
-                <span>□ ×</span>
-            </div>
-
-            <div class=”window-content”>
-                <div class=”path” id=”file-path”>
-                    Este computador / Arquivos / O_PROJETO
-                </div>
-
-                <p style=”color:#8e94aa;font-size:12px”>
-                    FICHEIROS RECUPERADOS: 8 DOCUMENTOS
-                </p>
-
-                <div class=”file-grid” id=”file-grid”></div>
-            </div>
-
-            <div class=”status-bar”>
-                <span id=”file-count”>8 itens</span>
-                <span>ACESSO RESTRITO</span>
-            </div>
-        </div>
-
-        <div class=”window” id=”document-window” hidden>
-            <div class=”window-title”>
-                <span id=”document-title”>📄 documento.txt</span>
-                <button id=”close-document” aria-label=”Fechar documento”>×</button>
-            </div>
-
-            <div class=”window-content”>
-                <p class=”doc-label”>DOCUMENTO CONFIDENCIAL</p>
-                <p id=”document-text”></p>
-                <p class=”doc-warning” id=”document-warning”></p>
-            </div>
-
-            <div class=”status-bar”>
-                <span>CODIFICAÇÃO: UTF-8</span>
-                <span id=”document-status”>FICHEIRO LIDO</span>
-            </div>
-        </div>
-
-        <div class=”window” id=”system-window” hidden>
-            <div class=”window-title”>
-                <span>🖥️ Informações do Sistema</span>
-                <button data-close=”system-window”>×</button>
-            </div>
-            <div class=”window-content”>
-                SISTEMA: MUNDO G OS
-                <br><br>
-                ESTADO DO ARQUIVO: INSTÁVEL
-                <br><br>
-                FICHEIROS RECUPERADOS: 8
-                <br><br>
-                PROCESSO DESCONHECIDO: EM EXECUÇÃO
-                <br><br>
-                <span class=”doc-warning”>AVISO: EXISTE UM PROCESSO QUE NÃO PODE SER TERMINADO.</span>
-            </div>
-        </div>
-
-        <div class=”window” id=”recycle-window” hidden>
-            <div class=”window-title”>
-                <span>🗑️ Reciclagem</span>
-                <button data-close=”recycle-window”>×</button>
-            </div>
-            <div class=”window-content”>
-                <p>Nenhum ficheiro eliminado.</p>
-                <p class=”doc-warning”>Ou será que os ficheiros foram apagados antes de chegares?</p>
-            </div>
-        </div>
-    </div>
-
-    <div class=”taskbar”>
-        <span class=”taskbar-name”>◈ MUNDO G OS</span>
-        <button id=”taskbar-folder”>📁 O_PROJETO</button>
-        <span id=”clock”>SISTEMA ATIVO</span>
-    </div>
-</section>
-
-<div id=”alert” hidden role=”status” aria-live=”polite”>
-    <strong id=”alert-title”>⚠ ALERTA DO SISTEMA</strong>
-    <p id=”alert-text”></p>
-    <button id=”close-alert”>FECHAR ALERTA</button>
-</div>
-
-<script>
-Const $ = id => document.getElementById(id);
-
-Const characterFiles = [
-    {
-        Name: “Carolina”,
-        Icon: “📄”,
-        File: “CAROLINA.txt”,
-        Status: “FICHEIRO RECUPERADO”,
-        Text: “NOME: Carolina\nESTADO: EM OBSERVAÇÃO\nREGISTO: A ligação ao Algorithmus foi detetada.\n\nNOTA: Ela confia nos amigos. Ainda não compreende tudo o que está a acontecer.”,
-        Warning: “ANOMALIA: FORAM DETETADOS DADOS QUE NÃO CONSTAM DO REGISTO ORIGINAL.”
-    },
-    {
-        Name: “Leonor”,
-        Icon: “📄”,
-        File: “LEONOR.txt”,
-        Status: “ACESSO PARCIAL”,
-        Text: “NOME: Leonor\nESTADO: DESCONHECIDO\nREGISTO: O acesso a este documento foi limitado.\n\nNOTA: Existem informações sobre esta pessoa que não podem ser apresentadas.”,
-        Warning: “ERRO 403: ALGUMAS INFORMAÇÕES FORAM OCULTADAS.”
-    },
-    {
-        Name: “Professor”,
-        Icon: “📄”,
-        File: “PROFESSOR.txt”,
-        Status: “FICHEIRO RECUPERADO”,
-        Text: “IDENTIFICAÇÃO: PROFESSOR\nESTADO: SOB INVESTIGAÇÃO\nREGISTO: Foi encontrada uma ligação entre o Professor e o Algorithmus.\n\nNOTA: O conteúdo completo deste registo permanece por confirmar.”,
-        Warning: “AVISO: EXISTEM REGISTOS ADICIONAIS NOUTRA LOCALIZAÇÃO.”
-    },
-    {
-        Name: “Bia”,
-        Icon: “📄”,
-        File: “BIA.txt”,
-        Status: “FICHEIRO RECUPERADO”,
-        Text: “NOME: Bia\nESTADO: ATIVO\nREGISTO: Possui informações que nem todos conhecem.\n\nNOTA: Algumas ligações familiares permanecem confidenciais.”,
-        Warning: “ACESSO RESTRITO: REGISTO FAMILIAR PROTEGIDO.”
-    },
-    {
-        Name: “Juw”,
-        Icon: “📄”,
-        File: “JUW.txt”,
-        Status: “FICHEIRO RECUPERADO”,
-        Text: “NOME: Juw\nESTADO: ATIVO\nREGISTO: Capacidade identificada: telecinese.\n\nNOTA: A utilizadora demonstrou capacidade de intervir em situações perigosas.”,
-        Warning: “REGISTO INCOMPLETO.”
-    },
-    {
-        Name: “Miriam”,
-        Icon: “📄”,
-        File: “MIRIAM.txt”,
-        Status: “FICHEIRO RECUPERADO”,
-        Text: “NOME: Miriam\nESTADO: ATIVO\nREGISTO: Nova aluna. Ligação familiar a Bia.\n\nCAPACIDADE IDENTIFICADA: PORTAIS.\n\nNOTA: A sua chegada alterou os acontecimentos no grupo.”,
-        Warning: “REGISTO INCOMPLETO.”
-    },
-    {
-        Name: “Isa”,
-        Icon: “📄”,
-        File: “ISA.txt”,
-        Status: “FICHEIRO RECUPERADO”,
-        Text: “NOME: Isa\nESTADO: ATIVO\nREGISTO: Capacidade identificada: invisibilidade.\n\nNOTA: A informação disponível sobre este ficheiro é limitada.”,
-        Warning: “REGISTO INCOMPLETO.”
-    },
-    {
-        Name: “Bem”,
-        Icon: “📄”,
-        File: “BEM.txt”,
-        Status: “FICHEIRO RECUPERADO”,
-        Text: “NOME: Bem\nESTADO: ATIVO\nREGISTO: Identificado como fantasma visível.\n\nNOTA: A sua presença foi registada no grupo.”,
-        Warning: “REGISTO INCOMPLETO.”
-    }
-];
-
-Const alerts = [
-    {
-        Title: “⚠ ANOMALIA DETETADA”,
-        Text: “Foi encontrado um processo desconhecido a ler os ficheiros.”
-    },
-    {
-        Title: “⚠ FICHEIRO ALTERADO”,
-        Text: “Um documento foi modificado depois de ter sido guardado.”
-    },
-    {
-        Title: “⚠ ACESSO DESCONHECIDO”,
-        Text: “Uma sessão desconhecida está ativa neste computador.”
-    },
-    {
-        Title: “⚠ AVISO DO ALGORITHMUS”,
-        Text: “Não feches o ficheiro. Ainda não terminei de ler.”
-    },
-    {
-        Title: “⚠ ERRO 001”,
-        Text: “O registo diz que estás sozinho. Então quem abriu esta janela?”
-    }
-];
-
-Let timers = [];
-Let alertTimer;
-Let clockTimer;
-Let usedAlerts = [];
-Let currentCharacter = null;
-
-Function later(fn, ms) {
-    Const id = setTimeout(fn, ms);
-    Timers.push(id);
-    Return id;
-}
-
-Function wait(ms) {
-    Return new Promise(resolve => later(resolve, ms));
-}
-
-Const terminalMessages = [
-    [“> A ANALISAR FICHEIRO…”, false],
-    [“> A LIGAR AO SERVIDOR DO MUNDO G…”, false],
-    [“> ERRO: SINAL DESCONHECIDO.”, false],
-    [“> ANOMALIA DETETADA.”, false],
-    [“> ALGORITHMUS: PRESENTE”, true],
-    [“> O ARQUIVO FOI COMPROMETIDO.”, true],
-    [“> A RECUPERAR DOCUMENTOS…”, false],
-    [“> DOCUMENTOS RECUPERADOS: 8”, false],
-    [“> NÃO DEVIA TERES ENTRADO.”, true],
-    [“> A ABRIR EXPLORADOR DE FICHEIROS…”, true]
-];
-
-Async function typeLine(text, danger) {
-    Const line = document.createElement(“div”);
-    If (danger) line.classList.add(“danger”);
-    $(“terminal-output”).appendChild(line);
-
-    For (const char of text) {
-        Line.textContent += char;
-        Await wait(24);
-    }
-
-    Await wait(350);
-}
-
-$(“enter-button”).addEventListener(“click”, async () => {
-    $(“enter-button”).disabled = true;
-    $(“secret-message”).hidden = false;
-    Document.body.classList.add(“glitching”);
-
-    Await wait(2200);
-
-    Document.body.classList.remove(“glitching”);
-    $(“home”).hidden = true;
-    $(“home-header”).hidden = true;
-    $(“home-footer”).hidden = true;
-    $(“terminal”).hidden = false;
-
-    For (const item of terminalMessages) {
-        Await typeLine(item[0], item[1]);
-    }
-
-    $(“terminal-cursor”).hidden = true;
-    $(“open-files”).hidden = false;
-});
-
-$(“open-files”).addEventListener(“click”, () => {
-    $(“terminal”).hidden = true;
-    $(“computer”).hidden = false;
-    renderFiles();
-    startClock();
-    scheduleAlert();
-});
-
-Function renderFiles() {
-    Const grid = $(“file-grid”);
-    Grid.textContent = “”;
-
-    characterFiles.forEach(character => {
-        const btn = document.createElement(“button”);
-        btn.className = “file”;
-
-        const icon = document.createElement(“span”);
-        icon.className = “emoji”;
-        icon.textContent = character.icon;
-
-        const name = document.createElement(“span”);
-        name.textContent = character.file;
-
-        const small = document.createElement(“small”);
-        small.textContent = “Documento de texto”;
-
-        btn.append(icon, name, small);
-        btn.addEventListener(“click”, () => openDocument(character));
-        grid.appendChild(btn);
-    });
-}
-
-Function openDocument(character) {
-    currentCharacter = character;
-
-    $(“document-title”).textContent = “📄 “ + character.file;
-    $(“document-text”).textContent = character.text;
-    $(“document-warning”).textContent = character.warning;
-    $(“document-status”).textContent = character.status;
-    $(“document-window”).hidden = false;
-
-    // Pequena hipótese de o Algorithmus reagir à abertura de um ficheiro.
-    If (Math.random() < 0.3) {
-        Later(showRandomAlert, 700);
-    }
-}
-
-$(“close-document”).addEventListener(“click”, () => {
-    $(“document-window”).hidden = true;
-});
-
-$(“desktop-folder”).addEventListener(“click”, () => {
-    $(“explorer”).hidden = false;
-});
-
-$(“taskbar-folder”).addEventListener(“click”, () => {
-    $(“explorer”).hidden = false;
-});
-
-$(“desktop-system”).addEventListener(“click”, () => {
-    $(“system-window”).hidden = false;
-});
-
-$(“desktop-recycle”).addEventListener(“click”, () => {
-    $(“recycle-window”).hidden = false;
-});
-
-Document.querySelectorAll(“[data-close]”).forEach(btn => {
-    Btn.addEventListener(“click”, () => {
-        $(btn.dataset.close).hidden = true;
-    });
-});
-
-Function showRandomAlert() {
-    If ($(“computer”).hidden || !$(“alert”).hidden) return;
-
-    Let available = alerts.filter((_, i) => !usedAlerts.includes(i));
-
-    If (available.length === 0) {
-        usedAlerts = [];
-        available = alerts;
-    }
-
-    Const chosen = available[Math.floor(Math.random() * available.length)];
-    Const index = alerts.indexOf(chosen);
-    usedAlerts.push(index);
-
-    $(“alert-title”).textContent = chosen.title;
-    $(“alert-text”).textContent
-
-</style>
-</head>
-
-  
-<body>
-
-<!-- PÁGINA PRINCIPAL -->
 <main id="home" class="screen">
   <header class="topbar">
     <span>ARQUIVO CONFIDENCIAL</span>
     <span>◆ MUNDO G ◆</span>
   </header>
-
   <section class="hero">
     <p class="eyebrow">DOCUMENTO CLASSIFICADO // 001</p>
     <h1>O PROJETO</h1>
@@ -836,7 +522,6 @@ Function showRandomAlert() {
   </section>
 </main>
 
-<!-- TERMINAL -->
 <section id="terminal" class="screen hidden">
   <div class="terminal-window">
     <div class="terminal-bar">
@@ -844,179 +529,83 @@ Function showRandomAlert() {
       <button id="terminal-back">VOLTAR</button>
     </div>
     <div id="terminal-output" class="terminal-output"></div>
-    <button id="open-files">ABRIR ARQUIVOS</button>
+    <button id="open-files" class="hidden">ABRIR COMPUTADOR</button>
   </div>
 </section>
 
-<!-- COMPUTADOR -->
 <section id="computer" class="screen hidden">
   <header class="desktop-header">
-    <span>O PROJETO // COMPUTADOR</span>
+    <span>◈ MUNDO G OS // AMBIENTE DE TRABALHO</span>
     <span id="clock">00:00:00</span>
   </header>
 
   <div class="desktop-icons">
-    <button class="desktop-icon" id="desktop-files">
-      <span class="big-icon">📁</span>
-      <span>Arquivos</span>
-    </button>
-
-    <button class="desktop-icon" id="desktop-chat">
-      <span class="big-icon">💬</span>
-      <span>MundoChat</span>
-    </button>
-
-    <button class="desktop-icon" id="desktop-system">
-      <span class="big-icon">⚙️</span>
-      <span>Sistema</span>
-    </button>
-
-    <button class="desktop-icon" id="desktop-recycle">
-      <span class="big-icon">🗑️</span>
-      <span>Reciclagem</span>
-    </button>
+    <button class="desktop-icon" id="desktop-files"><span class="big-icon">📁</span><span>Arquivos</span></button>
+    <button class="desktop-icon" id="desktop-chat"><span class="big-icon">💬</span><span>MundoChat</span></button>
+    <button class="desktop-icon" id="desktop-system"><span class="big-icon">⚙️</span><span>Sistema</span></button>
+    <button class="desktop-icon" id="desktop-recycle"><span class="big-icon">🗑️</span><span>Reciclagem</span></button>
   </div>
 
-  <!-- EXPLORADOR DE ARQUIVOS -->
   <section id="file-window" class="window hidden">
-    <div class="window-title">
-      <span>📁 ARQUIVOS CONFIDENCIAIS</span>
-      <button class="close-window" data-close="file-window">✕</button>
-    </div>
+    <div class="window-title"><span>📁 ARQUIVOS CONFIDENCIAIS</span><button data-close="file-window">✕</button></div>
     <div class="window-content">
-      <p class="muted">Seleciona um ficheiro para consultar os registos.</p>
+      <p class="muted">Seleciona um ficheiro para consultar ou editar o registo.</p>
       <div id="file-list"></div>
     </div>
   </section>
 
-  <!-- EDITOR DE DOCUMENTOS -->
   <section id="document-window" class="window hidden">
-    <div class="window-title">
-      <span id="document-title">📄 DOCUMENTO</span>
-      <button class="close-window" data-close="document-window">✕</button>
-    </div>
-
-    <div class="editor-toolbar">
-      <button data-command="bold"><b>B</b></button>
-      <button data-command="italic"><i>I</i></button>
-      <button data-command="underline"><u>U</u></button>
-      <button data-command="insertUnorderedList">☷</button>
-      <button id="clear-format">Limpar formatação</button>
-    </div>
-
-    <div id="document-text" contenteditable="true" spellcheck="false"></div>
-
-    <div class="editor-footer">
-      <span id="document-status">Pronto.</span>
-      <button id="restore-document">RESTAURAR ORIGINAL</button>
+    <div class="window-title"><span id="document-title">📄 DOCUMENTO</span><button data-close="document-window">✕</button></div>
+    <div class="window-content">
+      <div class="editor-toolbar">
+        <button data-command="bold"><b>B</b></button>
+        <button data-command="italic"><i>I</i></button>
+        <button data-command="underline"><u>U</u></button>
+        <button data-command="insertUnorderedList">☷</button>
+        <button id="clear-format">Limpar formatação</button>
+      </div>
+      <div id="document-text" contenteditable="true" spellcheck="false"></div>
+      <div class="editor-footer"><span id="document-status">Pronto.</span><button id="restore-document">RESTAURAR ORIGINAL</button></div>
     </div>
   </section>
 
-  <!-- JANELA DO SISTEMA -->
   <section id="system-window" class="window hidden">
-    <div class="window-title">
-      <span>⚙️ ESTADO DO SISTEMA</span>
-      <button class="close-window" data-close="system-window">✕</button>
-    </div>
+    <div class="window-title"><span>⚙️ ESTADO DO SISTEMA</span><button data-close="system-window">✕</button></div>
     <div class="window-content">
       <p>Sistema: <strong id="system-status">ESTÁVEL</strong></p>
-      <p>Ligação ao Mundo G: <span>ATIVA</span></p>
+      <p>Ligação ao Mundo G: ATIVA</p>
       <p>Integridade dos arquivos: <span id="integrity-status">98%</span></p>
       <button id="system-scan">ANALISAR SISTEMA</button>
     </div>
   </section>
 
-  <!-- RECICLAGEM -->
   <section id="recycle-window" class="window hidden">
-    <div class="window-title">
-      <span>🗑️ RECICLAGEM</span>
-      <button class="close-window" data-close="recycle-window">✕</button>
-    </div>
-    <div class="window-content">
-      <p>Não existem ficheiros eliminados.</p>
-      <p class="muted">Ou será que existem?</p>
-    </div>
+    <div class="window-title"><span>🗑️ RECICLAGEM</span><button data-close="recycle-window">✕</button></div>
+    <div class="window-content"><p>Não existem ficheiros eliminados.</p><p class="muted">Ou será que existem?</p></div>
   </section>
 
-  <!-- MUNDOCHAT -->
   <section id="mundochat-window" class="window hidden">
-    <div class="window-title">
-      <span>💬 MUNDOCHAT</span>
-      <button class="close-window" data-close="mundochat-window">✕</button>
-    </div>
-
+    <div class="window-title"><span>💬 MUNDOCHAT // A VERDADE ESCONDIDA</span><button data-close="mundochat-window">✕</button></div>
     <div class="mc-app">
       <aside class="mc-sidebar">
-        <div class="mc-heading">
-          <strong>Conversas</strong>
-          <span>🍏</span>
-        </div>
-
-        <button class="mc-contact active" data-chat="grupo">
-          <span class="mc-avatar">👥</span>
-          <span class="mc-contact-info">
-            <strong>Grupo do Projeto</strong>
-            <small>Os cinco minutos de paz...</small>
-          </span>
-        </button>
-
-        <button class="mc-contact" data-chat="carolina">
-          <span class="mc-avatar">🌸</span>
-          <span class="mc-contact-info">
-            <strong>Carolina</strong>
-            <small>Conversa privada</small>
-          </span>
-        </button>
-
-        <button class="mc-contact" data-chat="bia">
-          <span class="mc-avatar">💜</span>
-          <span class="mc-contact-info">
-            <strong>Bia</strong>
-            <small>Tenho de te contar uma coisa.</small>
-          </span>
-        </button>
-
-        <button class="mc-contact" data-chat="professor">
-          <span class="mc-avatar">🕶️</span>
-          <span class="mc-contact-info">
-            <strong>Professor</strong>
-            <small>Última ligação desconhecida</small>
-          </span>
-        </button>
-
-        <button class="mc-contact" data-chat="leonor">
-          <span class="mc-avatar">🖤</span>
-          <span class="mc-contact-info">
-            <strong>Leonor</strong>
-            <small>online...</small>
-          </span>
-        </button>
+        <div class="mc-heading"><strong>Conversas</strong><span>🍏</span></div>
+        <button class="mc-contact active" data-chat="grupo"><span class="mc-avatar">👥</span><span class="mc-contact-info"><strong>Grupo do Projeto</strong><small>Os cinco minutos de paz...</small></span></button>
+        <button class="mc-contact" data-chat="carolina"><span class="mc-avatar">🌸</span><span class="mc-contact-info"><strong>Carolina</strong><small>Conversa privada</small></span></button>
+        <button class="mc-contact" data-chat="bia"><span class="mc-avatar">💜</span><span class="mc-contact-info"><strong>Bia</strong><small>Tenho de te contar uma coisa.</small></span></button>
+        <button class="mc-contact" data-chat="professor"><span class="mc-avatar">🕶️</span><span class="mc-contact-info"><strong>Professor</strong><small>Última ligação desconhecida</small></span></button>
+        <button class="mc-contact" data-chat="leonor"><span class="mc-avatar">🖤</span><span class="mc-contact-info"><strong>Leonor</strong><small>online...</small></span></button>
       </aside>
-
       <div class="mc-chat">
         <header class="mc-chat-header">
           <span id="mc-current-avatar" class="mc-avatar">👥</span>
-          <div>
-            <strong id="mc-current-name">Grupo do Projeto</strong>
-            <small id="mc-current-status">online</small>
-          </div>
+          <div><strong id="mc-current-name">Grupo do Projeto</strong><small id="mc-current-status">mensagens recuperadas parcialmente</small></div>
         </header>
-
-        <div id="mc-messages" class="mc-messages" aria-live="polite">
-          <div class="mc-note">
-            As mensagens deste arquivo foram recuperadas parcialmente.
-          </div>
-        </div>
-
-        <div class="mc-controls">
-          <p id="mc-hint">A conversa ainda não terminou...</p>
-          <button id="mc-next">PRÓXIMA MENSAGEM ▸</button>
-        </div>
+        <div id="mc-messages" class="mc-messages" aria-live="polite"><div class="mc-note">As mensagens deste arquivo foram recuperadas parcialmente.</div></div>
+        <div class="mc-controls"><p id="mc-hint">A conversa ainda não terminou...</p><button id="mc-next">PRÓXIMA MENSAGEM ▸</button></div>
       </div>
     </div>
   </section>
 
-  <!-- BARRA INFERIOR -->
   <footer class="taskbar">
     <button id="taskbar-home">⌂ Início</button>
     <button id="taskbar-files">📁 Arquivos</button>
@@ -1025,21 +614,17 @@ Function showRandomAlert() {
   </footer>
 </section>
 
-<!-- NOTIFICAÇÃO -->
-<div id="alert-toast" class="alert-toast hidden" role="status"></div>
+<div id="alert-toast" class="alert-toast hidden" role="status" aria-live="polite"></div>
 
 
 <script>
-/* ==================================
-   O PROJETO: SISTEMA PRINCIPAL
-   ================================== */
+"use strict";
 
 const $ = id => document.getElementById(id);
 
 const characterFiles = [
   {
-    name: "Carolina",
-    icon: "🌸",
+    name: "Carolina", icon: "🌸",
     description: `REGISTO: CAROLINA
 
 Estado: Em observação.
@@ -1051,8 +636,7 @@ NOTA:
 A verdade sobre a infeção ainda não foi descoberta.`
   },
   {
-    name: "Leonor",
-    icon: "🖤",
+    name: "Leonor", icon: "🖤",
     description: `REGISTO: LEONOR
 
 Estado: CONFIDENCIAL.
@@ -1063,8 +647,7 @@ NOTA:
 Alguns registos continuam bloqueados.`
   },
   {
-    name: "Professor",
-    icon: "🕶️",
+    name: "Professor", icon: "🕶️",
     description: `REGISTO: PROFESSOR
 
 Estado: Sob investigação.
@@ -1072,8 +655,7 @@ Estado: Sob investigação.
 A ligação entre o Professor, Leonor e o Algorithmus continua por esclarecer.`
   },
   {
-    name: "Bia",
-    icon: "💜",
+    name: "Bia", icon: "💜",
     description: `REGISTO: BIA
 
 Estado: Ativo.
@@ -1081,8 +663,7 @@ Estado: Ativo.
 Bia descobriu informações importantes sobre o Professor e Leonor.`
   },
   {
-    name: "Juw",
-    icon: "🔮",
+    name: "Juw", icon: "🔮",
     description: `REGISTO: JUW
 
 Estado: Ativo.
@@ -1090,8 +671,7 @@ Estado: Ativo.
 Capacidade conhecida: telecinese.`
   },
   {
-    name: "Miriam",
-    icon: "🌀",
+    name: "Miriam", icon: "🌀",
     description: `REGISTO: MIRIAM
 
 Estado: Ativo.
@@ -1099,8 +679,7 @@ Estado: Ativo.
 Capacidade conhecida: criação de portais.`
   },
   {
-    name: "Isa",
-    icon: "👁️",
+    name: "Isa", icon: "👁️",
     description: `REGISTO: ISA
 
 Estado: Ativo.
@@ -1108,8 +687,7 @@ Estado: Ativo.
 Capacidade conhecida: invisibilidade.`
   },
   {
-    name: "Ben",
-    icon: "👻",
+    name: "Ben", icon: "👻",
     description: `REGISTO: BEN
 
 Estado: Ativo.
@@ -1122,8 +700,7 @@ Condição: fantasma.`
 
 function showScreen(id) {
   ["home", "terminal", "computer"].forEach(screenId => {
-    const el = $(screenId);
-    if (el) el.classList.toggle("hidden", screenId !== id);
+    $(screenId).classList.toggle("hidden", screenId !== id);
   });
 }
 
@@ -1131,55 +708,68 @@ function openWindow(id) {
   document.querySelectorAll("#computer .window").forEach(win => {
     win.classList.add("hidden");
   });
-
-  $(id)?.classList.remove("hidden");
+  const target = $(id);
+  if (target) target.classList.remove("hidden");
 }
 
 function closeWindow(id) {
-  $(id)?.classList.add("hidden");
+  const element = $(id);
+  if (element) element.classList.add("hidden");
 }
 
-$("enter-button")?.addEventListener("click", () => {
+const terminalLines = [
+  "> A iniciar ligação ao Mundo G...",
+  "> A verificar arquivos...",
+  "> Foram detetadas anomalias.",
+  "> Acesso autorizado.",
+  "> AVISO: alguns dados poderão não ser fiáveis."
+];
+
+$("enter-button").addEventListener("click", async () => {
+  $("enter-button").disabled = true;
+  document.body.classList.add("glitching");
+
+  await new Promise(resolve => setTimeout(resolve, 650));
+  document.body.classList.remove("glitching");
   showScreen("terminal");
 
   const output = $("terminal-output");
-  if (!output) return;
-
   output.textContent = "";
 
-  [
-    "> A iniciar ligação ao Mundo G...",
-    "> A verificar arquivos...",
-    "> Foram detetadas anomalias.",
-    "> Acesso autorizado.",
-    "> AVISO: alguns dados poderão não ser fiáveis."
-  ].forEach(line => {
+  for (const line of terminalLines) {
     const row = document.createElement("p");
     row.textContent = line;
     output.appendChild(row);
-  });
+    await new Promise(resolve => setTimeout(resolve, 250));
+  }
+
+  $("open-files").classList.remove("hidden");
 });
 
-$("terminal-back")?.addEventListener("click", () => showScreen("home"));
+$("terminal-back").addEventListener("click", () => {
+  showScreen("home");
+  $("enter-button").disabled = false;
+  $("open-files").classList.add("hidden");
+});
 
-$("open-files")?.addEventListener("click", () => {
+$("open-files").addEventListener("click", () => {
   showScreen("computer");
   openWindow("file-window");
 });
 
-$("desktop-files")?.addEventListener("click", () => openWindow("file-window"));
-$("taskbar-files")?.addEventListener("click", () => openWindow("file-window"));
-$("desktop-system")?.addEventListener("click", () => openWindow("system-window"));
-$("desktop-recycle")?.addEventListener("click", () => openWindow("recycle-window"));
+$("desktop-files").addEventListener("click", () => openWindow("file-window"));
+$("taskbar-files").addEventListener("click", () => openWindow("file-window"));
+$("desktop-system").addEventListener("click", () => openWindow("system-window"));
+$("desktop-recycle").addEventListener("click", () => openWindow("recycle-window"));
 
 function openMundoChat() {
   openWindow("mundochat-window");
   selectChat("grupo");
 }
 
-$("desktop-chat")?.addEventListener("click", openMundoChat);
-$("taskbar-chat")?.addEventListener("click", openMundoChat);
-$("taskbar-home")?.addEventListener("click", () => showScreen("home"));
+$("desktop-chat").addEventListener("click", openMundoChat);
+$("taskbar-chat").addEventListener("click", openMundoChat);
+$("taskbar-home").addEventListener("click", () => showScreen("home"));
 
 document.querySelectorAll("[data-close]").forEach(button => {
   button.addEventListener("click", () => closeWindow(button.dataset.close));
@@ -1188,20 +778,15 @@ document.querySelectorAll("[data-close]").forEach(button => {
 /* RELÓGIO */
 
 function updateClock() {
-  const clock = $("clock");
-  if (!clock) return;
-
-  clock.textContent = new Date().toLocaleTimeString("pt-PT", {
-    hour: "2-digit",
-    minute: "2-digit",
-    second: "2-digit"
+  $("clock").textContent = new Date().toLocaleTimeString("pt-PT", {
+    hour: "2-digit", minute: "2-digit", second: "2-digit"
   });
 }
 
 updateClock();
 setInterval(updateClock, 1000);
 
-/* EXPLORADOR E DOCUMENTOS */
+/* FICHEIROS E DOCUMENTOS */
 
 let currentDocumentIndex = 0;
 
@@ -1210,7 +795,7 @@ characterFiles.forEach((character, index) => {
   button.className = "file-entry";
   button.textContent = `${character.icon} ${character.name}.txt`;
   button.addEventListener("click", () => openDocument(index));
-  $("file-list")?.appendChild(button);
+  $("file-list").appendChild(button);
 });
 
 function openDocument(index) {
@@ -1218,21 +803,16 @@ function openDocument(index) {
   const character = characterFiles[index];
   if (!character) return;
 
-  $("document-title").textContent =
-    `${character.icon} ${character.name}.txt`;
+  $("document-title").textContent = `${character.icon} ${character.name}.txt`;
 
-  const saved = localStorage.getItem(
-    "oprojeto-document-" + character.name
-  );
-
+  const saved = localStorage.getItem("oprojeto-document-" + character.name);
   $("document-text").textContent = saved ?? character.description;
-  $("document-status").textContent =
-    saved ? "Documento guardado." : "Documento original.";
+  $("document-status").textContent = saved ? "Documento guardado." : "Documento original.";
 
   openWindow("document-window");
 }
 
-$("document-text")?.addEventListener("input", () => {
+$("document-text").addEventListener("input", () => {
   const character = characterFiles[currentDocumentIndex];
   if (!character) return;
 
@@ -1241,26 +821,23 @@ $("document-text")?.addEventListener("input", () => {
     $("document-text").innerText
   );
 
-  $("document-status").textContent =
-    "Alterações guardadas automaticamente.";
+  $("document-status").textContent = "Alterações guardadas automaticamente.";
 });
 
 document.querySelectorAll("[data-command]").forEach(button => {
   button.addEventListener("click", () => {
-    $("document-text")?.focus();
+    $("document-text").focus();
     document.execCommand(button.dataset.command, false, null);
   });
 });
 
-$("clear-format")?.addEventListener("click", () => {
+$("clear-format").addEventListener("click", () => {
   const editor = $("document-text");
-  if (!editor) return;
-
   editor.textContent = editor.innerText;
   editor.focus();
 });
 
-$("restore-document")?.addEventListener("click", () => {
+$("restore-document").addEventListener("click", () => {
   const character = characterFiles[currentDocumentIndex];
   if (!character) return;
 
@@ -1269,115 +846,112 @@ $("restore-document")?.addEventListener("click", () => {
   $("document-status").textContent = "Versão original restaurada.";
 });
 
-/* SISTEMA */
+/* SISTEMA E NOTIFICAÇÕES */
 
-$("system-scan")?.addEventListener("click", () => {
+$("system-scan").addEventListener("click", () => {
   $("system-status").textContent = "ANOMALIA DETETADA";
   $("integrity-status").textContent = "67%";
-  showToast("AVISO: foi detetada uma atividade desconhecida.");
+  showToast("⚠ AVISO: foi detetada uma atividade desconhecida.");
 });
 
-/* NOTIFICAÇÕES */
+let toastTimer = null;
 
 function showToast(message) {
   const toast = $("alert-toast");
-  if (!toast) return;
+  if (!toast || !message || !String(message).trim()) return;
 
   toast.textContent = message;
   toast.classList.remove("hidden");
 
-  clearTimeout(showToast.timeout);
-
-  showToast.timeout = setTimeout(() => {
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => {
     toast.classList.add("hidden");
+    toast.textContent = "";
   }, 3500);
 }
+</script>
 
-/* ==================================
-   MUNDOCHAT: EPISÓDIO BÓNUS
-   A VERDADE ESCONDIDA
-   ================================== */
+
+<script>
+/* MUNDOCHAT: EPISÓDIO BÓNUS
+   A VERDADE ESCONDIDA */
 
 const chats = {
   grupo: {
     name: "Grupo do Projeto",
     avatar: "👥",
     messages: [
-      { from: "Juw", text: "Carolina, estás ainda pior do que de manhã. Tens a certeza de que estás bem?" },
-      { from: "Carolina", text: "Não... Não paro de tossir e sinto-me bué tonta." },
-      { from: "Miriam", text: "Espera, desde quando é que te sentes assim?" },
-      { from: "Carolina", text: "Desde que aconteceu aquela coisa com a minha mãe..." },
-      { from: "Bia", text: "Carolina, conta-nos tudo. Não tens de esconder nada de nós." },
-      { from: "Carolina", text: "A infeção começou depois de uma coisa sair da boca da minha mãe quando ela estava inconsciente." },
-      { from: "Isa", text: "Uma coisa?! Como assim?!" },
-      { from: "Carolina", text: "Eu sei que parece impossível, mas acho que tem a ver com o Algorithmus." },
-      { from: "Ben", text: "Então temos de descobrir o que te está a acontecer." },
-      { from: "Juw", text: "Vamos investigar. Deve existir alguma maneira de te ajudar." },
-      { from: "Miriam", text: "Podemos começar por procurar pistas sobre o Professor." },
-      { from: "Carolina", text: "O Professor? O que é que ele tem a ver com isto?" },
-      { from: "Bia", text: "Há uma coisa que ainda não vos contei..." },
-      { from: "Bia", text: "O Professor... trabalha para a Leonor." },
-      { from: "SISTEMA", text: "REGISTO INTERROMPIDO.", system: true },
-      { from: "SISTEMA", text: "ANOMALIA DETETADA.", system: true },
-      { from: "Desconhecido", text: "Não deviam estar a investigar.", glitch: true }
+      {from:"Juw",text:"Carolina, estás ainda pior do que de manhã. Tens a certeza de que estás bem?"},
+      {from:"Carolina",text:"Não... Não paro de tossir e sinto-me bué tonta."},
+      {from:"Miriam",text:"Espera, desde quando é que te sentes assim?"},
+      {from:"Carolina",text:"Desde que aconteceu aquela coisa com a minha mãe..."},
+      {from:"Bia",text:"Carolina, conta-nos tudo. Não tens de esconder nada de nós."},
+      {from:"Carolina",text:"A infeção começou depois de uma coisa sair da boca da minha mãe quando ela estava inconsciente."},
+      {from:"Isa",text:"Uma coisa?! Como assim?!"},
+      {from:"Carolina",text:"Eu sei que parece impossível, mas acho que tem a ver com o Algorithmus."},
+      {from:"Ben",text:"Então temos de descobrir o que te está a acontecer."},
+      {from:"Juw",text:"Vamos investigar. Deve existir alguma maneira de te ajudar."},
+      {from:"Miriam",text:"Podemos começar por procurar pistas sobre o Professor."},
+      {from:"Carolina",text:"O Professor? O que é que ele tem a ver com isto?"},
+      {from:"Bia",text:"Há uma coisa que ainda não vos contei..."},
+      {from:"Bia",text:"O Professor... trabalha para a Leonor."},
+      {from:"SISTEMA",text:"REGISTO INTERROMPIDO.",system:true},
+      {from:"SISTEMA",text:"ANOMALIA DETETADA.",system:true},
+      {from:"Desconhecido",text:"Não deviam estar a investigar.",glitch:true}
     ]
   },
 
   carolina: {
-    name: "Carolina",
-    avatar: "🌸",
+    name: "Carolina", avatar: "🌸",
     messages: [
-      { from: "Carolina", text: "Não percebo o que me está a acontecer..." },
-      { from: "Carolina", text: "Estou doente, tenho tonturas e não paro de tossir." },
-      { from: "Bia", text: "Vamos descobrir o que se passa. Não estás sozinha." },
-      { from: "Carolina", text: "E se não existir uma cura?" },
-      { from: "Bia", text: "Não vamos desistir antes de tentar." },
-      { from: "SISTEMA", text: "FICHEIRO: ALGORITHMUS. ACESSO NEGADO.", system: true },
-      { from: "Desconhecido", text: "A infeção não aconteceu por acaso.", glitch: true }
+      {from:"Carolina",text:"Não percebo o que me está a acontecer..."},
+      {from:"Carolina",text:"Estou doente, tenho tonturas e não paro de tossir."},
+      {from:"Bia",text:"Vamos descobrir o que se passa. Não estás sozinha."},
+      {from:"Carolina",text:"E se não existir uma cura?"},
+      {from:"Bia",text:"Não vamos desistir antes de tentar."},
+      {from:"SISTEMA",text:"FICHEIRO: ALGORITHMUS. ACESSO NEGADO.",system:true},
+      {from:"Desconhecido",text:"A infeção não aconteceu por acaso.",glitch:true}
     ]
   },
 
   bia: {
-    name: "Bia",
-    avatar: "💜",
+    name: "Bia", avatar: "💜",
     messages: [
-      { from: "Bia", text: "Preciso de vos contar uma coisa sobre o Professor." },
-      { from: "Carolina", text: "O que aconteceu?" },
-      { from: "Bia", text: "Descobri uma ligação entre ele e a Leonor." },
-      { from: "Juw", text: "Que ligação?" },
-      { from: "Bia", text: "O Professor trabalha para a Leonor." },
-      { from: "Carolina", text: "A LEONOR?! Mas porquê?!" },
-      { from: "Bia", text: "Ainda não sei. Temos de descobrir o que ela quer." },
-      { from: "SISTEMA", text: "ACESSO AO REGISTO BLOQUEADO.", system: true },
-      { from: "Desconhecido", text: "Há verdades que deviam continuar escondidas.", glitch: true }
+      {from:"Bia",text:"Preciso de vos contar uma coisa sobre o Professor."},
+      {from:"Carolina",text:"O que aconteceu?"},
+      {from:"Bia",text:"Descobri uma ligação entre ele e a Leonor."},
+      {from:"Juw",text:"Que ligação?"},
+      {from:"Bia",text:"O Professor trabalha para a Leonor."},
+      {from:"Carolina",text:"A LEONOR?! Mas porquê?!"},
+      {from:"Bia",text:"Ainda não sei. Temos de descobrir o que ela quer."},
+      {from:"SISTEMA",text:"ACESSO AO REGISTO BLOQUEADO.",system:true},
+      {from:"Desconhecido",text:"Há verdades que deviam continuar escondidas.",glitch:true}
     ]
   },
 
   professor: {
-    name: "Professor",
-    avatar: "🕶️",
+    name: "Professor", avatar: "🕶️",
     messages: [
-      { from: "Professor", text: "A Carolina começou a apresentar sintomas." },
-      { from: "Desconhecido", text: "Era uma questão de tempo." },
-      { from: "Professor", text: "Não era suposto as coisas chegarem a este ponto." },
-      { from: "Desconhecido", text: "A Leonor espera resultados." },
-      { from: "Professor", text: "Eu sei." },
-      { from: "SISTEMA", text: "CONVERSA CLASSIFICADA.", system: true },
-      { from: "Desconhecido", text: "Não te esqueças de quem está a dar as ordens.", glitch: true }
+      {from:"Professor",text:"A Carolina começou a apresentar sintomas."},
+      {from:"Desconhecido",text:"Era uma questão de tempo."},
+      {from:"Professor",text:"Não era suposto as coisas chegarem a este ponto."},
+      {from:"Desconhecido",text:"A Leonor espera resultados."},
+      {from:"Professor",text:"Eu sei."},
+      {from:"SISTEMA",text:"CONVERSA CLASSIFICADA.",system:true},
+      {from:"Desconhecido",text:"Não te esqueças de quem está a dar as ordens.",glitch:true}
     ]
   },
 
   leonor: {
-    name: "Leonor",
-    avatar: "🖤",
+    name: "Leonor", avatar: "🖤",
     messages: [
-      { from: "Leonor", text: "Então, já começaram a fazer perguntas?" },
-      { from: "Professor", text: "A Carolina está a investigar." },
-      { from: "Leonor", text: "Era previsível." },
-      { from: "Professor", text: "E se descobrir a verdade?" },
-      { from: "Leonor", text: "Então teremos de lidar com isso." },
-      { from: "SISTEMA", text: "MENSAGENS PARCIALMENTE CORROMPIDAS.", system: true },
-      { from: "Leonor", text: "Não deixes que descubram mais do que devem.", glitch: true }
+      {from:"Leonor",text:"Então, já começaram a fazer perguntas?"},
+      {from:"Professor",text:"A Carolina está a investigar."},
+      {from:"Leonor",text:"Era previsível."},
+      {from:"Professor",text:"E se descobrir a verdade?"},
+      {from:"Leonor",text:"Então teremos de lidar com isso."},
+      {from:"SISTEMA",text:"MENSAGENS PARCIALMENTE CORROMPIDAS.",system:true},
+      {from:"Leonor",text:"Não deixes que descubram mais do que devem.",glitch:true}
     ]
   }
 };
@@ -1395,18 +969,14 @@ function selectChat(chatId) {
   });
 
   const chat = chats[chatId];
-
   $("mc-current-name").textContent = chat.name;
   $("mc-current-avatar").textContent = chat.avatar;
   $("mc-current-status").textContent = "mensagens recuperadas parcialmente";
-
   $("mc-messages").textContent = "";
 
   const note = document.createElement("div");
   note.className = "mc-note";
-  note.textContent =
-    "Arquivo recuperado. Algumas mensagens podem estar em falta.";
-
+  note.textContent = "Arquivo recuperado. Algumas mensagens podem estar em falta.";
   $("mc-messages").appendChild(note);
 
   chatProgress[chatId] = 0;
@@ -1421,9 +991,7 @@ document.querySelectorAll(".mc-contact").forEach(button => {
 });
 
 function addChatMessage(message) {
-  const messages = $("mc-messages");
   const bubble = document.createElement("div");
-
   bubble.className = "mc-message";
 
   if (message.system) {
@@ -1445,20 +1013,17 @@ function addChatMessage(message) {
   const time = document.createElement("small");
   time.className = "mc-time";
   time.textContent = new Date().toLocaleTimeString("pt-PT", {
-    hour: "2-digit",
-    minute: "2-digit"
+    hour: "2-digit", minute: "2-digit"
   });
 
   bubble.append(sender, content, time);
-  messages.appendChild(bubble);
-  messages.scrollTop = messages.scrollHeight;
+  $("mc-messages").appendChild(bubble);
+  $("mc-messages").scrollTop = $("mc-messages").scrollHeight;
 
-  if (message.glitch) {
-    showToast("⚠ ANOMALIA DETETADA NO MUNDOCHAT");
-  }
+  if (message.glitch) showToast("⚠ ANOMALIA DETETADA NO MUNDOCHAT");
 }
 
-$("mc-next")?.addEventListener("click", () => {
+$("mc-next").addEventListener("click", () => {
   const chat = chats[currentChatId];
   if (!chat) return;
 
@@ -1484,15 +1049,6 @@ $("mc-next")?.addEventListener("click", () => {
 });
 
 selectChat("grupo");
-
-/* ==================================
-   FIM DO SISTEMA
-   ================================== */
 </script>
-
-<!-- ==================================
-     PARTE 4/4: FINAL DO DOCUMENTO
-     ================================== -->
-
 </body>
 </html>
