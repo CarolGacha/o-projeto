@@ -20,7 +20,6 @@
 }
 
 * { box-sizing: border-box; }
-
 [hidden], .hidden { display: none !important; }
 
 html, body {
@@ -32,7 +31,7 @@ html, body {
 }
 
 body { min-height: 100vh; overflow-x: hidden; }
-button { font: inherit; }
+button, input { font: inherit; }
 
 button {
   color: var(--text);
@@ -179,14 +178,122 @@ body.glitching::after {
   margin-top: 10px;
 }
 
+/* LOGIN */
+
+#login-screen {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 22px;
+  background: radial-gradient(ellipse at center, #14251e, #080910 72%);
+}
+
+.login-panel {
+  width: 100%;
+  max-width: 420px;
+  padding: 30px 24px;
+  text-align: center;
+  background: #080c0b;
+  border: 1px solid #32694f;
+  box-shadow: 0 0 35px #55f5a51a;
+}
+
+.login-logo {
+  font-size: 38px;
+  margin-bottom: 12px;
+}
+
+.login-panel h2 {
+  color: var(--green);
+  font-size: 24px;
+  letter-spacing: 3px;
+  margin: 10px 0;
+}
+
+.login-description {
+  color: var(--muted);
+  font-size: 11px;
+  line-height: 1.8;
+  margin-bottom: 25px;
+}
+
+.login-label {
+  display: block;
+  color: var(--green);
+  font-size: 11px;
+  text-align: left;
+  margin-bottom: 8px;
+  letter-spacing: 1px;
+}
+
+#password-input {
+  width: 100%;
+  padding: 13px;
+  color: var(--green);
+  background: #030604;
+  border: 1px solid #32694f;
+  outline: none;
+  font-size: 16px;
+  letter-spacing: 2px;
+}
+
+#password-input:focus {
+  border-color: var(--green);
+  box-shadow: 0 0 12px #55f5a522;
+}
+
+#login-button {
+  width: 100%;
+  margin-top: 15px;
+  padding: 13px;
+  color: var(--green);
+  border-color: var(--green);
+  letter-spacing: 2px;
+}
+
+#login-status {
+  min-height: 42px;
+  margin-top: 18px;
+  color: var(--muted);
+  font-size: 11px;
+  line-height: 1.8;
+  overflow-wrap: anywhere;
+}
+
+#login-status.error { color: var(--pink); }
+
+.login-back {
+  margin-top: 12px;
+  font-size: 11px;
+  background: transparent;
+  border-color: transparent;
+  color: var(--muted);
+}
+
+#login-screen.login-denied .login-panel {
+  border-color: var(--pink);
+  box-shadow: 0 0 28px #ff496c33;
+}
+
+#login-screen.login-denied .login-logo {
+  animation: login-shake .12s steps(2, end) 5;
+}
+
+@keyframes login-shake {
+  0% { transform: translate(0); }
+  25% { transform: translate(4px, -2px); }
+  50% { transform: translate(-4px, 2px); }
+  75% { transform: translate(2px, 1px); }
+  100% { transform: translate(0); }
+}
+
 /* AMBIENTE DE TRABALHO */
 
 #computer {
   position: relative;
   min-height: 100vh;
   padding-bottom: 70px;
-  background:
-    radial-gradient(ellipse at 50% 0%, #282044 0%, #101323 45%, #080910 100%);
+  background: radial-gradient(ellipse at 50% 0%, #282044, #101323 45%, #080910);
 }
 
 .desktop-header {
@@ -289,8 +396,6 @@ body.glitching::after {
   color: var(--muted);
   font-size: 11px;
 }
-
-/* BARRA INFERIOR */
 
 .taskbar {
   position: fixed;
@@ -533,6 +638,37 @@ body.glitching::after {
   </div>
 </section>
 
+<section id="login-screen" class="screen hidden">
+  <div class="login-panel">
+    <div class="login-logo">🔐</div>
+    <h2>MUNDO G OS</h2>
+
+    <p class="login-description">
+      AUTENTICAÇÃO NECESSÁRIA<br>
+      UTILIZADOR AUTORIZADO: CAROLINA<br>
+      ACESSO RESTRITO // NÍVEL 01
+    </p>
+
+    <form id="login-form">
+      <label class="login-label" for="password-input">PALAVRA-PASSE</label>
+      <input
+        id="password-input"
+        type="password"
+        placeholder="Introduz a palavra-passe..."
+        autocomplete="off"
+        spellcheck="false"
+        required
+      >
+      <button id="login-button" type="submit">INICIAR SESSÃO</button>
+      <p id="login-status" aria-live="polite">À espera de autenticação...</p>
+    </form>
+
+    <button id="login-back" class="login-back" type="button">
+      ← VOLTAR AO TERMINAL
+    </button>
+  </div>
+</section>
+
 <section id="computer" class="screen hidden">
   <header class="desktop-header">
     <span>◈ MUNDO G OS // AMBIENTE DE TRABALHO</span>
@@ -565,7 +701,10 @@ body.glitching::after {
         <button id="clear-format">Limpar formatação</button>
       </div>
       <div id="document-text" contenteditable="true" spellcheck="false"></div>
-      <div class="editor-footer"><span id="document-status">Pronto.</span><button id="restore-document">RESTAURAR ORIGINAL</button></div>
+      <div class="editor-footer">
+        <span id="document-status">Pronto.</span>
+        <button id="restore-document">RESTAURAR ORIGINAL</button>
+      </div>
     </div>
   </section>
 
@@ -581,7 +720,10 @@ body.glitching::after {
 
   <section id="recycle-window" class="window hidden">
     <div class="window-title"><span>🗑️ RECICLAGEM</span><button data-close="recycle-window">✕</button></div>
-    <div class="window-content"><p>Não existem ficheiros eliminados.</p><p class="muted">Ou será que existem?</p></div>
+    <div class="window-content">
+      <p>Não existem ficheiros eliminados.</p>
+      <p class="muted">Ou será que existem?</p>
+    </div>
   </section>
 
   <section id="mundochat-window" class="window hidden">
@@ -595,13 +737,22 @@ body.glitching::after {
         <button class="mc-contact" data-chat="professor"><span class="mc-avatar">🕶️</span><span class="mc-contact-info"><strong>Professor</strong><small>Última ligação desconhecida</small></span></button>
         <button class="mc-contact" data-chat="leonor"><span class="mc-avatar">🖤</span><span class="mc-contact-info"><strong>Leonor</strong><small>online...</small></span></button>
       </aside>
+
       <div class="mc-chat">
         <header class="mc-chat-header">
           <span id="mc-current-avatar" class="mc-avatar">👥</span>
-          <div><strong id="mc-current-name">Grupo do Projeto</strong><small id="mc-current-status">mensagens recuperadas parcialmente</small></div>
+          <div>
+            <strong id="mc-current-name">Grupo do Projeto</strong>
+            <small id="mc-current-status">mensagens recuperadas parcialmente</small>
+          </div>
         </header>
-        <div id="mc-messages" class="mc-messages" aria-live="polite"><div class="mc-note">As mensagens deste arquivo foram recuperadas parcialmente.</div></div>
-        <div class="mc-controls"><p id="mc-hint">A conversa ainda não terminou...</p><button id="mc-next">PRÓXIMA MENSAGEM ▸</button></div>
+        <div id="mc-messages" class="mc-messages" aria-live="polite">
+          <div class="mc-note">As mensagens deste arquivo foram recuperadas parcialmente.</div>
+        </div>
+        <div class="mc-controls">
+          <p id="mc-hint">A conversa ainda não terminou...</p>
+          <button id="mc-next">PRÓXIMA MENSAGEM ▸</button>
+        </div>
       </div>
     </div>
   </section>
@@ -616,15 +767,17 @@ body.glitching::after {
 
 <div id="alert-toast" class="alert-toast hidden" role="status" aria-live="polite"></div>
 
-
 <script>
 "use strict";
 
 const $ = id => document.getElementById(id);
 
+/* DOCUMENTOS CONFIDENCIAIS */
+
 const characterFiles = [
   {
-    name: "Carolina", icon: "🌸",
+    name: "Carolina",
+    icon: "🌸",
     description: `REGISTO: CAROLINA
 
 Estado: Em observação.
@@ -636,7 +789,8 @@ NOTA:
 A verdade sobre a infeção ainda não foi descoberta.`
   },
   {
-    name: "Leonor", icon: "🖤",
+    name: "Leonor",
+    icon: "🖤",
     description: `REGISTO: LEONOR
 
 Estado: CONFIDENCIAL.
@@ -647,7 +801,8 @@ NOTA:
 Alguns registos continuam bloqueados.`
   },
   {
-    name: "Professor", icon: "🕶️",
+    name: "Professor",
+    icon: "🕶️",
     description: `REGISTO: PROFESSOR
 
 Estado: Sob investigação.
@@ -655,7 +810,8 @@ Estado: Sob investigação.
 A ligação entre o Professor, Leonor e o Algorithmus continua por esclarecer.`
   },
   {
-    name: "Bia", icon: "💜",
+    name: "Bia",
+    icon: "💜",
     description: `REGISTO: BIA
 
 Estado: Ativo.
@@ -663,7 +819,8 @@ Estado: Ativo.
 Bia descobriu informações importantes sobre o Professor e Leonor.`
   },
   {
-    name: "Juw", icon: "🔮",
+    name: "Juw",
+    icon: "🔮",
     description: `REGISTO: JUW
 
 Estado: Ativo.
@@ -671,7 +828,8 @@ Estado: Ativo.
 Capacidade conhecida: telecinese.`
   },
   {
-    name: "Miriam", icon: "🌀",
+    name: "Miriam",
+    icon: "🌀",
     description: `REGISTO: MIRIAM
 
 Estado: Ativo.
@@ -679,7 +837,8 @@ Estado: Ativo.
 Capacidade conhecida: criação de portais.`
   },
   {
-    name: "Isa", icon: "👁️",
+    name: "Isa",
+    icon: "👁️",
     description: `REGISTO: ISA
 
 Estado: Ativo.
@@ -687,7 +846,8 @@ Estado: Ativo.
 Capacidade conhecida: invisibilidade.`
   },
   {
-    name: "Ben", icon: "👻",
+    name: "Ben",
+    icon: "👻",
     description: `REGISTO: BEN
 
 Estado: Ativo.
@@ -696,10 +856,10 @@ Condição: fantasma.`
   }
 ];
 
-/* NAVEGAÇÃO */
+/* NAVEGAÇÃO ENTRE ECRÃS */
 
 function showScreen(id) {
-  ["home", "terminal", "computer"].forEach(screenId => {
+  ["home", "terminal", "login-screen", "computer"].forEach(screenId => {
     $(screenId).classList.toggle("hidden", screenId !== id);
   });
 }
@@ -708,6 +868,7 @@ function openWindow(id) {
   document.querySelectorAll("#computer .window").forEach(win => {
     win.classList.add("hidden");
   });
+
   const target = $(id);
   if (target) target.classList.remove("hidden");
 }
@@ -717,11 +878,13 @@ function closeWindow(id) {
   if (element) element.classList.add("hidden");
 }
 
+/* TERMINAL */
+
 const terminalLines = [
   "> A iniciar ligação ao Mundo G...",
   "> A verificar arquivos...",
   "> Foram detetadas anomalias.",
-  "> Acesso autorizado.",
+  "> Acesso ao terminal autorizado.",
   "> AVISO: alguns dados poderão não ser fiáveis."
 ];
 
@@ -730,6 +893,7 @@ $("enter-button").addEventListener("click", async () => {
   document.body.classList.add("glitching");
 
   await new Promise(resolve => setTimeout(resolve, 650));
+
   document.body.classList.remove("glitching");
   showScreen("terminal");
 
@@ -740,6 +904,7 @@ $("enter-button").addEventListener("click", async () => {
     const row = document.createElement("p");
     row.textContent = line;
     output.appendChild(row);
+
     await new Promise(resolve => setTimeout(resolve, 250));
   }
 
@@ -752,65 +917,152 @@ $("terminal-back").addEventListener("click", () => {
   $("open-files").classList.add("hidden");
 });
 
+/* DO TERMINAL PARA O LOGIN */
+
 $("open-files").addEventListener("click", () => {
-  showScreen("computer");
+  showScreen("login-screen");
+
+  $("password-input").value = "";
+  $("login-status").textContent = "À espera de autenticação...";
+  $("login-status").classList.remove("error");
+  $("login-screen").classList.remove("login-denied");
+
+  $("password-input").focus();
+});
+
+/* LOGIN E PALAVRA-PASSE */
+
+const correctPassword = "agm3.carol";
+
+$("login-form").addEventListener("submit", event => {
+  event.preventDefault();
+
+  const enteredPassword = $("password-input").value;
+
+  if (enteredPassword === correctPassword) {
+    $("login-status").textContent = "ACESSO AUTORIZADO.";
+    $("login-status").classList.remove("error");
+    $("login-button").disabled = true;
+
+    setTimeout(() => {
+      $("login-button").disabled = false;
+      showScreen("computer");
+      openWindow("file-window");
+    }, 500);
+
+  } else {
+    $("login-screen").classList.add("login-denied");
+    document.body.classList.add("glitching");
+
+    $("login-status").textContent =
+      "⛔ ACESSO NEGADO. Palavra-passe incorreta.";
+
+    $("login-status").classList.add("error");
+
+    showToast(
+      "⚠ ALGORITHMUS: tentativa de acesso desconhecida detetada."
+    );
+
+    setTimeout(() => {
+      document.body.classList.remove("glitching");
+      $("login-screen").classList.remove("login-denied");
+    }, 900);
+
+    $("password-input").value = "";
+    $("password-input").focus();
+  }
+});
+
+$("login-back").addEventListener("click", () => {
+  showScreen("terminal");
+
+  $("login-status").textContent = "À espera de autenticação...";
+  $("login-status").classList.remove("error");
+  $("login-screen").classList.remove("login-denied");
+});
+
+/* ÍCONES DO AMBIENTE DE TRABALHO */
+
+$("desktop-files").addEventListener("click", () => {
   openWindow("file-window");
 });
 
-$("desktop-files").addEventListener("click", () => openWindow("file-window"));
-$("taskbar-files").addEventListener("click", () => openWindow("file-window"));
-$("desktop-system").addEventListener("click", () => openWindow("system-window"));
-$("desktop-recycle").addEventListener("click", () => openWindow("recycle-window"));
+$("taskbar-files").addEventListener("click", () => {
+  openWindow("file-window");
+});
 
-function openMundoChat() {
-  openWindow("mundochat-window");
-  selectChat("grupo");
-}
+$("desktop-system").addEventListener("click", () => {
+  openWindow("system-window");
+});
 
-$("desktop-chat").addEventListener("click", openMundoChat);
-$("taskbar-chat").addEventListener("click", openMundoChat);
-$("taskbar-home").addEventListener("click", () => showScreen("home"));
+$("desktop-recycle").addEventListener("click", () => {
+  openWindow("recycle-window");
+});
+
+$("taskbar-home").addEventListener("click", () => {
+  showScreen("home");
+  $("enter-button").disabled = false;
+});
 
 document.querySelectorAll("[data-close]").forEach(button => {
-  button.addEventListener("click", () => closeWindow(button.dataset.close));
+  button.addEventListener("click", () => {
+    closeWindow(button.dataset.close);
+  });
 });
 
 /* RELÓGIO */
 
 function updateClock() {
   $("clock").textContent = new Date().toLocaleTimeString("pt-PT", {
-    hour: "2-digit", minute: "2-digit", second: "2-digit"
+    hour: "2-digit",
+    minute: "2-digit",
+    second: "2-digit"
   });
 }
 
 updateClock();
 setInterval(updateClock, 1000);
 
-/* FICHEIROS E DOCUMENTOS */
+/* ABRIR E EDITAR DOCUMENTOS */
 
 let currentDocumentIndex = 0;
 
 characterFiles.forEach((character, index) => {
   const button = document.createElement("button");
+
   button.className = "file-entry";
   button.textContent = `${character.icon} ${character.name}.txt`;
-  button.addEventListener("click", () => openDocument(index));
+
+  button.addEventListener("click", () => {
+    openDocument(index);
+  });
+
   $("file-list").appendChild(button);
 });
 
 function openDocument(index) {
   currentDocumentIndex = index;
+
   const character = characterFiles[index];
   if (!character) return;
 
-  $("document-title").textContent = `${character.icon} ${character.name}.txt`;
+  $("document-title").textContent =
+    `${character.icon} ${character.name}.txt`;
 
-  const saved = localStorage.getItem("oprojeto-document-" + character.name);
-  $("document-text").textContent = saved ?? character.description;
-  $("document-status").textContent = saved ? "Documento guardado." : "Documento original.";
+  const saved = localStorage.getItem(
+    "oprojeto-document-" + character.name
+  );
+
+  $("document-text").textContent =
+    saved ?? character.description;
+
+  $("document-status").textContent =
+    saved !== null ? "Documento guardado." : "Documento original.";
 
   openWindow("document-window");
 }
+
+/* GUARDAR ALTERAÇÕES AUTOMATICAMENTE */
 
 $("document-text").addEventListener("input", () => {
   const character = characterFiles[currentDocumentIndex];
@@ -821,61 +1073,80 @@ $("document-text").addEventListener("input", () => {
     $("document-text").innerText
   );
 
-  $("document-status").textContent = "Alterações guardadas automaticamente.";
+  $("document-status").textContent =
+    "Alterações guardadas automaticamente.";
 });
+
+/* FORMATAÇÃO DO TEXTO */
 
 document.querySelectorAll("[data-command]").forEach(button => {
   button.addEventListener("click", () => {
     $("document-text").focus();
-    document.execCommand(button.dataset.command, false, null);
+
+    document.execCommand(
+      button.dataset.command,
+      false,
+      null
+    );
   });
 });
 
 $("clear-format").addEventListener("click", () => {
   const editor = $("document-text");
+
   editor.textContent = editor.innerText;
   editor.focus();
 });
+
+/* RESTAURAR DOCUMENTO ORIGINAL */
 
 $("restore-document").addEventListener("click", () => {
   const character = characterFiles[currentDocumentIndex];
   if (!character) return;
 
-  localStorage.removeItem("oprojeto-document-" + character.name);
+  localStorage.removeItem(
+    "oprojeto-document-" + character.name
+  );
+
   $("document-text").textContent = character.description;
   $("document-status").textContent = "Versão original restaurada.";
 });
 
-/* SISTEMA E NOTIFICAÇÕES */
+/* SISTEMA */
 
 $("system-scan").addEventListener("click", () => {
   $("system-status").textContent = "ANOMALIA DETETADA";
   $("integrity-status").textContent = "67%";
-  showToast("⚠ AVISO: foi detetada uma atividade desconhecida.");
+
+  showToast(
+    "⚠ AVISO: foi detetada uma atividade desconhecida."
+  );
 });
+
+/* NOTIFICAÇÕES */
 
 let toastTimer = null;
 
 function showToast(message) {
   const toast = $("alert-toast");
+
   if (!toast || !message || !String(message).trim()) return;
 
   toast.textContent = message;
   toast.classList.remove("hidden");
 
   clearTimeout(toastTimer);
+
   toastTimer = setTimeout(() => {
     toast.classList.add("hidden");
     toast.textContent = "";
   }, 3500);
 }
+
+/* O CÓDIGO DO MUNDOCHAT VEM NA PARTE 3 */
 </script>
 
-
 <script>
-/* MUNDOCHAT: EPISÓDIO BÓNUS
-   A VERDADE ESCONDIDA */
-
 const chats = {
   grupo: {
     name: "Grupo do Projeto",
@@ -902,7 +1173,8 @@ const chats = {
   },
 
   carolina: {
-    name: "Carolina", avatar: "🌸",
+    name: "Carolina",
+    avatar: "🌸",
     messages: [
       {from:"Carolina",text:"Não percebo o que me está a acontecer..."},
       {from:"Carolina",text:"Estou doente, tenho tonturas e não paro de tossir."},
@@ -915,7 +1187,8 @@ const chats = {
   },
 
   bia: {
-    name: "Bia", avatar: "💜",
+    name: "Bia",
+    avatar: "💜",
     messages: [
       {from:"Bia",text:"Preciso de vos contar uma coisa sobre o Professor."},
       {from:"Carolina",text:"O que aconteceu?"},
@@ -930,7 +1203,8 @@ const chats = {
   },
 
   professor: {
-    name: "Professor", avatar: "🕶️",
+    name: "Professor",
+    avatar: "🕶️",
     messages: [
       {from:"Professor",text:"A Carolina começou a apresentar sintomas."},
       {from:"Desconhecido",text:"Era uma questão de tempo."},
@@ -943,7 +1217,8 @@ const chats = {
   },
 
   leonor: {
-    name: "Leonor", avatar: "🖤",
+    name: "Leonor",
+    avatar: "🖤",
     messages: [
       {from:"Leonor",text:"Então, já começaram a fazer perguntas?"},
       {from:"Professor",text:"A Carolina está a investigar."},
@@ -969,6 +1244,7 @@ function selectChat(chatId) {
   });
 
   const chat = chats[chatId];
+
   $("mc-current-name").textContent = chat.name;
   $("mc-current-avatar").textContent = chat.avatar;
   $("mc-current-status").textContent = "mensagens recuperadas parcialmente";
@@ -1013,14 +1289,17 @@ function addChatMessage(message) {
   const time = document.createElement("small");
   time.className = "mc-time";
   time.textContent = new Date().toLocaleTimeString("pt-PT", {
-    hour: "2-digit", minute: "2-digit"
+    hour: "2-digit",
+    minute: "2-digit"
   });
 
   bubble.append(sender, content, time);
   $("mc-messages").appendChild(bubble);
   $("mc-messages").scrollTop = $("mc-messages").scrollHeight;
 
-  if (message.glitch) showToast("⚠ ANOMALIA DETETADA NO MUNDOCHAT");
+  if (message.glitch) {
+    showToast("⚠ ANOMALIA DETETADA NO MUNDOCHAT");
+  }
 }
 
 $("mc-next").addEventListener("click", () => {
@@ -1046,6 +1325,16 @@ $("mc-next").addEventListener("click", () => {
     $("mc-hint").textContent =
       `${chat.messages.length - chatProgress[currentChatId]} mensagens por recuperar.`;
   }
+});
+
+$("desktop-chat").addEventListener("click", () => {
+  openWindow("mundochat-window");
+  selectChat("grupo");
+});
+
+$("taskbar-chat").addEventListener("click", () => {
+  openWindow("mundochat-window");
+  selectChat("grupo");
 });
 
 selectChat("grupo");
