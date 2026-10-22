@@ -609,6 +609,218 @@ body.glitching::after {
     animation-iteration-count: 1 !important;
   }
 }
+
+
+/* ===== MUNDOCALL ===== */
+.mundocall-icon {
+  position: relative;
+}
+
+.mundocall-icon .call-symbol {
+  font-size: 37px;
+  display: block;
+  margin-bottom: 5px;
+}
+
+#mundocall-window {
+  width: min(650px, 94%);
+  max-height: 82vh;
+  overflow: hidden;
+  color: #f4f0ff;
+  background: #15131d;
+  border: 1px solid #77649d;
+}
+
+#mundocall-window .mc-body {
+  padding: 16px;
+  overflow-y: auto;
+  max-height: 70vh;
+}
+
+.mc-app-header {
+  padding: 14px;
+  background: linear-gradient(120deg, #29203d, #15131d);
+  border-bottom: 1px solid #514266;
+}
+
+.mc-app-title {
+  font-size: 21px;
+  font-weight: bold;
+  letter-spacing: 2px;
+}
+
+.mc-app-subtitle {
+  margin-top: 5px;
+  color: #b8a9d7;
+  font-size: 12px;
+}
+
+.mc-section-title {
+  color: #c8b6f3;
+  font-size: 12px;
+  letter-spacing: 2px;
+  margin: 15px 0 9px;
+}
+
+.mc-contact-list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 9px;
+}
+
+.mc-contact-card {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-align: left;
+  padding: 12px;
+  color: #f4f0ff;
+  background: #211d2c;
+  border: 1px solid #494057;
+  border-radius: 9px;
+  cursor: pointer;
+}
+
+.mc-contact-card:hover {
+  background: #302541;
+  border-color: #a88de3;
+}
+
+.mc-contact-avatar {
+  font-size: 27px;
+}
+
+.mc-contact-info strong,
+.mc-contact-info small {
+  display: block;
+}
+
+.mc-contact-info small {
+  color: #a99bbd;
+  margin-top: 4px;
+}
+
+.mc-call-panel {
+  text-align: center;
+  padding: 22px 12px;
+  margin-top: 12px;
+  background: #1d1928;
+  border: 1px solid #443852;
+  border-radius: 12px;
+}
+
+.mc-call-avatar {
+  font-size: 60px;
+  margin-bottom: 8px;
+}
+
+.mc-call-name {
+  font-size: 23px;
+  font-weight: bold;
+}
+
+.mc-call-status {
+  color: #c3b5d7;
+  margin: 9px 0 16px;
+  white-space: pre-wrap;
+}
+
+.mc-call-dialogue {
+  min-height: 65px;
+  line-height: 1.6;
+  margin: 15px 0;
+  padding: 12px;
+  background: #100e17;
+  border-radius: 8px;
+  white-space: pre-wrap;
+}
+
+.mc-call-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 9px;
+}
+
+.mc-call-btn {
+  padding: 11px 15px;
+  color: white;
+  border: 0;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.mc-call-btn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.mc-call-btn.green {
+  background: #218451;
+}
+
+.mc-call-btn.red {
+  background: #b93249;
+}
+
+.mc-call-btn.purple {
+  background: #6849a0;
+}
+
+.mc-call-btn.neutral {
+  background: #393342;
+}
+
+.mc-call-log {
+  margin-top: 15px;
+  padding: 12px;
+  background: #100e17;
+  border-radius: 8px;
+  color: #bdb2cb;
+  font-size: 12px;
+  line-height: 1.8;
+}
+
+#mundocall-window.mc-call-horror {
+  border-color: #d82c50;
+  animation: mc-call-glitch 0.22s linear 3;
+}
+
+#mundocall-window.mc-call-horror .mc-app-header {
+  background: linear-gradient(120deg, #510d24, #151019);
+}
+
+#mundocall-window.mc-call-horror .mc-call-panel {
+  background: #230d18;
+  border-color: #a82040;
+}
+
+#mundocall-window.mc-call-horror .mc-call-dialogue {
+  color: #ffb6c6;
+  background: #10070c;
+}
+
+#mundocall-window.mc-call-horror .mc-call-status {
+  color: #ff6a8a;
+}
+
+@keyframes mc-call-glitch {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-3px); }
+  50% { transform: translateX(3px); }
+  75% { transform: translateX(-2px); }
+}
+
+@media (max-width: 480px) {
+  .mc-contact-list {
+    grid-template-columns: 1fr;
+  }
+
+  #mundocall-window .mc-body {
+    padding: 10px;
+  }
+}
 </style>
 </head>
 <body>
@@ -680,6 +892,13 @@ body.glitching::after {
     <button class="desktop-icon" id="desktop-chat"><span class="big-icon">💬</span><span>MundoChat</span></button>
     <button class="desktop-icon" id="desktop-system"><span class="big-icon">⚙️</span><span>Sistema</span></button>
     <button class="desktop-icon" id="desktop-recycle"><span class="big-icon">🗑️</span><span>Reciclagem</span></button>
+    
+<!-- ÍCONE DA APP MUNDOCALL -->
+<button id="desktop-call" class="desktop-icon mundocall-icon" type="button">
+  <span class="call-symbol">📞</span>
+  <span>MundoCall</span>
+</button>
+
   </div>
 
   <section id="file-window" class="window hidden">
@@ -756,6 +975,108 @@ body.glitching::after {
       </div>
     </div>
   </section>
+
+  
+<!-- JANELA DA APP MUNDOCALL -->
+<div id="mundocall-window" class="window" style="display:none;">
+  <div class="window-header">
+    <span>📞 MundoCall.exe</span>
+    <button id="mundocall-close" type="button" aria-label="Fechar MundoCall">✕</button>
+  </div>
+
+  <div class="mc-app-header">
+    <div class="mc-app-title">📞 MUNDOCALL</div>
+    <div class="mc-app-subtitle">A tua rede de contactos do Mundo G</div>
+  </div>
+
+  <div class="mc-body">
+    <div class="mc-section-title">OS TEUS CONTACTOS</div>
+
+    <div class="mc-contact-list">
+      <button class="mc-contact-card" data-call-contact="Carolina" type="button">
+        <span class="mc-contact-avatar">🌸</span>
+        <span class="mc-contact-info">
+          <strong>Carolina</strong>
+          <small>Disponível</small>
+        </span>
+      </button>
+
+      <button class="mc-contact-card" data-call-contact="Leonor" type="button">
+        <span class="mc-contact-avatar">🖤</span>
+        <span class="mc-contact-info">
+          <strong>Leonor</strong>
+          <small>Disponível</small>
+        </span>
+      </button>
+
+      <button class="mc-contact-card" data-call-contact="Professor" type="button">
+        <span class="mc-contact-avatar">🕶️</span>
+        <span class="mc-contact-info">
+          <strong>Professor</strong>
+          <small>Disponível</small>
+        </span>
+      </button>
+
+      <button class="mc-contact-card" data-call-contact="Bia" type="button">
+        <span class="mc-contact-avatar">💜</span>
+        <span class="mc-contact-info">
+          <strong>Bia</strong>
+          <small>Disponível</small>
+        </span>
+      </button>
+
+      <button class="mc-contact-card" data-call-contact="Juw" type="button">
+        <span class="mc-contact-avatar">🔮</span>
+        <span class="mc-contact-info">
+          <strong>Juw</strong>
+          <small>Disponível</small>
+        </span>
+      </button>
+
+      <button class="mc-contact-card" data-call-contact="Miriam" type="button">
+        <span class="mc-contact-avatar">🌀</span>
+        <span class="mc-contact-info">
+          <strong>Miriam</strong>
+          <small>Disponível</small>
+        </span>
+      </button>
+
+      <button class="mc-contact-card" data-call-contact="Isa" type="button">
+        <span class="mc-contact-avatar">👻</span>
+        <span class="mc-contact-info">
+          <strong>Isa</strong>
+          <small>Disponível</small>
+        </span>
+      </button>
+
+      <button class="mc-contact-card" data-call-contact="Ben" type="button">
+        <span class="mc-contact-avatar">🌫️</span>
+        <span class="mc-contact-info">
+          <strong>Ben</strong>
+          <small>Disponível</small>
+        </span>
+      </button>
+    </div>
+
+    <div class="mc-call-panel">
+      <div id="mc-call-avatar" class="mc-call-avatar">📱</div>
+      <div id="mc-call-name" class="mc-call-name">MundoCall</div>
+      <div id="mc-call-status" class="mc-call-status">Escolhe um contacto para começar.</div>
+      <div id="mc-call-dialogue" class="mc-call-dialogue">As tuas chamadas estão à espera...</div>
+
+      <div id="mc-call-actions" class="mc-call-actions">
+        <button id="mc-call-incoming" class="mc-call-btn purple" type="button">
+          ☎ Simular chamada recebida
+        </button>
+      </div>
+    </div>
+
+    <div class="mc-call-log">
+      <strong>REGISTO DE CHAMADAS</strong>
+      <div id="mc-call-log">Nenhuma chamada realizada.</div>
+    </div>
+  </div>
+</div>
 
   <footer class="taskbar">
     <button id="taskbar-home">⌂ Início</button>
