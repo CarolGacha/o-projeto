@@ -1658,22 +1658,25 @@ $("taskbar-chat").addEventListener("click", () => {
 });
 
 selectChat("grupo");
-</script>
 
 <script>
 document.addEventListener("DOMContentLoaded", function () {
   const icon = document.getElementById("desktop-call");
   const app = document.getElementById("mundocall-window");
+  const close = document.getElementById("mundocall-close");
 
-  if (!icon || !app) {
-    console.log("MundoCall: não encontrei o ícone ou a janela.");
-    return;
+  if (icon && app) {
+    icon.addEventListener("click", function () {
+      app.style.display = "block";
+      app.style.zIndex = "9999";
+    });
   }
 
-  icon.addEventListener("click", function () {
-    app.style.display = "block";
-    app.style.zIndex = "9999";
-  });
+  if (close && app) {
+    close.addEventListener("click", function () {
+      app.style.display = "none";
+    });
+  }
 });
 </script>
 </body>
