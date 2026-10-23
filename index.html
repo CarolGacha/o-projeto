@@ -1659,5 +1659,22 @@ $("taskbar-chat").addEventListener("click", () => {
 
 selectChat("grupo");
 </script>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  const icon = document.getElementById("desktop-call");
+  const app = document.getElementById("mundocall-window");
+
+  if (!icon || !app) {
+    console.log("MundoCall: não encontrei o ícone ou a janela.");
+    return;
+  }
+
+  icon.addEventListener("click", function () {
+    app.style.display = "block";
+    app.style.zIndex = "9999";
+  });
+});
+</script>
 </body>
 </html>
