@@ -1660,16 +1660,19 @@ $("taskbar-chat").addEventListener("click", () => {
 selectChat("grupo");
 
 
-
-<script>
+  
 const icon = document.getElementById("desktop-call");
-const app = document.getElementById("mundocall-window");
 const close = document.getElementById("mundocall-close");
 
-if (icon && app) {
-  icon.addEventListener("click", function () {
-    app.style.display = "block";
-    app.style.zIndex = "9999";
+if (icon) {
+  icon.addEventListener("click", () => {
+    openWindow("mundocall-window");
+  });
+}
+
+if (close) {
+  close.addEventListener("click", () => {
+    closeWindow("mundocall-window");
   });
 }
 
