@@ -1659,25 +1659,24 @@ $("taskbar-chat").addEventListener("click", () => {
 
 selectChat("grupo");
 
+
 <script>
-document.addEventListener("DOMContentLoaded", function () {
-  const icon = document.getElementById("desktop-call");
-  const app = document.getElementById("mundocall-window");
-  const close = document.getElementById("mundocall-close");
+const icon = document.getElementById("desktop-call");
+const app = document.getElementById("mundocall-window");
+const close = document.getElementById("mundocall-close");
 
-  if (icon && app) {
-    icon.addEventListener("click", function () {
-      app.style.display = "block";
-      app.style.zIndex = "9999";
-    });
-  }
+if (icon && app) {
+  icon.onclick = function () {
+    app.style.display = "block";
+    app.style.zIndex = "9999";
+  };
+}
 
-  if (close && app) {
-    close.addEventListener("click", function () {
-      app.style.display = "none";
-    });
-  }
-});
+if (close && app) {
+  close.onclick = function () {
+    app.style.display = "none";
+  };
+}
 </script>
 </body>
 </html>
